@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A06ACB2A1608B2C300E20441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB291608B2C300E20441 /* UIKit.framework */; };
+		A06ACB2C1608B2C300E20441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2B1608B2C300E20441 /* Foundation.framework */; };
+		A06ACB2E1608B2C300E20441 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */; };
+		A06ACB341608B2C300E20441 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A06ACB321608B2C300E20441 /* InfoPlist.strings */; };
+		A06ACB361608B2C300E20441 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A06ACB351608B2C300E20441 /* main.m */; };
+		A06ACB3A1608B2C300E20441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A06ACB391608B2C300E20441 /* AppDelegate.m */; };
+		A06ACB3D1608B2C300E20441 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06ACB3C1608B2C300E20441 /* ViewController.m */; };
+		A06ACB401608B2C300E20441 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06ACB3E1608B2C300E20441 /* ViewController_iPhone.xib */; };
+		A06ACB431608B2C300E20441 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06ACB411608B2C300E20441 /* ViewController_iPad.xib */; };
+		A06ACB6B160A0FF300E20441 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB6A160A0FF300E20441 /* CoreText.framework */; };
+		A0825C7116111632006F3DB0 /* LATextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C5A16111632006F3DB0 /* LATextAppearance.m */; };
+		A0825C7216111632006F3DB0 /* LATextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C5D16111632006F3DB0 /* LATextContentView.m */; };
+		A0825C7316111632006F3DB0 /* LATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6016111632006F3DB0 /* LATextField.m */; };
+		A0825C7416111632006F3DB0 /* LATextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6216111632006F3DB0 /* LATextField+UITextInput.m */; };
+		A0825C7516111632006F3DB0 /* LATextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6616111632006F3DB0 /* LATextInteractionAssistant.m */; };
+		A0825C7616111632006F3DB0 /* LATextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6A16111632006F3DB0 /* LATextSelectionView.m */; };
+		A0825C7716111632006F3DB0 /* LATokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6D16111632006F3DB0 /* LATokenField.m */; };
+		A0825C7816111632006F3DB0 /* LATokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6F16111632006F3DB0 /* LATokenFieldCell.m */; };
+		A0825C7A16111656006F3DB0 /* LAFieldKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A0825C7916111656006F3DB0 /* LAFieldKit.bundle */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A06ACB251608B2C300E20441 /* FieldKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A06ACB291608B2C300E20441 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A06ACB2B1608B2C300E20441 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A06ACB311608B2C300E20441 /* FieldKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FieldKit-Info.plist"; sourceTree = "<group>"; };
+		A06ACB331608B2C300E20441 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A06ACB351608B2C300E20441 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A06ACB371608B2C300E20441 /* FieldKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldKit-Prefix.pch"; sourceTree = "<group>"; };
+		A06ACB381608B2C300E20441 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A06ACB391608B2C300E20441 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A06ACB3B1608B2C300E20441 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A06ACB3C1608B2C300E20441 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A06ACB3F1608B2C300E20441 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		A06ACB421608B2C300E20441 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A06ACB6A160A0FF300E20441 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		A0825C5916111632006F3DB0 /* LATextAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextAppearance.h; sourceTree = "<group>"; };
+		A0825C5A16111632006F3DB0 /* LATextAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATextAppearance.m; sourceTree = "<group>"; };
+		A0825C5B16111632006F3DB0 /* LATextContentView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextContentView_Internal.h; sourceTree = "<group>"; };
+		A0825C5C16111632006F3DB0 /* LATextContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextContentView.h; sourceTree = "<group>"; };
+		A0825C5D16111632006F3DB0 /* LATextContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATextContentView.m; sourceTree = "<group>"; };
+		A0825C5E16111632006F3DB0 /* LATextField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextField_Internal.h; sourceTree = "<group>"; };
+		A0825C5F16111632006F3DB0 /* LATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextField.h; sourceTree = "<group>"; };
+		A0825C6016111632006F3DB0 /* LATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATextField.m; sourceTree = "<group>"; };
+		A0825C6116111632006F3DB0 /* LATextField+UITextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LATextField+UITextInput.h"; sourceTree = "<group>"; };
+		A0825C6216111632006F3DB0 /* LATextField+UITextInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LATextField+UITextInput.m"; sourceTree = "<group>"; };
+		A0825C6316111632006F3DB0 /* LATextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextFieldDelegate.h; sourceTree = "<group>"; };
+		A0825C6416111632006F3DB0 /* LATextInteractionAssistant_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextInteractionAssistant_Internal.h; sourceTree = "<group>"; };
+		A0825C6516111632006F3DB0 /* LATextInteractionAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextInteractionAssistant.h; sourceTree = "<group>"; };
+		A0825C6616111632006F3DB0 /* LATextInteractionAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATextInteractionAssistant.m; sourceTree = "<group>"; };
+		A0825C6716111632006F3DB0 /* LATextSelecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextSelecting.h; sourceTree = "<group>"; };
+		A0825C6816111632006F3DB0 /* LATextSelectionView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextSelectionView_Internal.h; sourceTree = "<group>"; };
+		A0825C6916111632006F3DB0 /* LATextSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextSelectionView.h; sourceTree = "<group>"; };
+		A0825C6A16111632006F3DB0 /* LATextSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATextSelectionView.m; sourceTree = "<group>"; };
+		A0825C6B16111632006F3DB0 /* LATokenField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenField_Internal.h; sourceTree = "<group>"; };
+		A0825C6C16111632006F3DB0 /* LATokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenField.h; sourceTree = "<group>"; };
+		A0825C6D16111632006F3DB0 /* LATokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATokenField.m; sourceTree = "<group>"; };
+		A0825C6E16111632006F3DB0 /* LATokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenFieldCell.h; sourceTree = "<group>"; };
+		A0825C6F16111632006F3DB0 /* LATokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATokenFieldCell.m; sourceTree = "<group>"; };
+		A0825C7016111632006F3DB0 /* LATokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenFieldDelegate.h; sourceTree = "<group>"; };
+		A0825C7916111656006F3DB0 /* LAFieldKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LAFieldKit.bundle; path = ../Resources/LAFieldKit.bundle; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A06ACB221608B2C300E20441 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06ACB6B160A0FF300E20441 /* CoreText.framework in Frameworks */,
+				A06ACB2A1608B2C300E20441 /* UIKit.framework in Frameworks */,
+				A06ACB2C1608B2C300E20441 /* Foundation.framework in Frameworks */,
+				A06ACB2E1608B2C300E20441 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A01A10C1160C99D200EE2145 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				A0825C5916111632006F3DB0 /* LATextAppearance.h */,
+				A0825C5A16111632006F3DB0 /* LATextAppearance.m */,
+				A0825C5B16111632006F3DB0 /* LATextContentView_Internal.h */,
+				A0825C5C16111632006F3DB0 /* LATextContentView.h */,
+				A0825C5D16111632006F3DB0 /* LATextContentView.m */,
+				A0825C5E16111632006F3DB0 /* LATextField_Internal.h */,
+				A0825C6016111632006F3DB0 /* LATextField.m */,
+				A0825C6116111632006F3DB0 /* LATextField+UITextInput.h */,
+				A0825C6216111632006F3DB0 /* LATextField+UITextInput.m */,
+				A0825C6416111632006F3DB0 /* LATextInteractionAssistant_Internal.h */,
+				A0825C6516111632006F3DB0 /* LATextInteractionAssistant.h */,
+				A0825C6616111632006F3DB0 /* LATextInteractionAssistant.m */,
+				A0825C6716111632006F3DB0 /* LATextSelecting.h */,
+				A0825C6816111632006F3DB0 /* LATextSelectionView_Internal.h */,
+				A0825C6916111632006F3DB0 /* LATextSelectionView.h */,
+				A0825C6A16111632006F3DB0 /* LATextSelectionView.m */,
+				A0825C6B16111632006F3DB0 /* LATokenField_Internal.h */,
+				A0825C6D16111632006F3DB0 /* LATokenField.m */,
+				A0825C6E16111632006F3DB0 /* LATokenFieldCell.h */,
+				A0825C6F16111632006F3DB0 /* LATokenFieldCell.m */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		A01A10C2160C9A1C00EE2145 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				A0825C5F16111632006F3DB0 /* LATextField.h */,
+				A0825C6316111632006F3DB0 /* LATextFieldDelegate.h */,
+				A0825C6C16111632006F3DB0 /* LATokenField.h */,
+				A0825C7016111632006F3DB0 /* LATokenFieldDelegate.h */,
+			);
+			name = Public;
+			sourceTree = "<group>";
+		};
+		A06ACB1A1608B2C200E20441 = {
+			isa = PBXGroup;
+			children = (
+				A06ACB2F1608B2C300E20441 /* Application */,
+				A06ACB491608B35B00E20441 /* LAFieldKit */,
+				A06ACB281608B2C300E20441 /* Frameworks */,
+				A06ACB261608B2C300E20441 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A06ACB261608B2C300E20441 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A06ACB251608B2C300E20441 /* FieldKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A06ACB281608B2C300E20441 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A06ACB6A160A0FF300E20441 /* CoreText.framework */,
+				A06ACB291608B2C300E20441 /* UIKit.framework */,
+				A06ACB2B1608B2C300E20441 /* Foundation.framework */,
+				A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A06ACB2F1608B2C300E20441 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A06ACB381608B2C300E20441 /* AppDelegate.h */,
+				A06ACB391608B2C300E20441 /* AppDelegate.m */,
+				A06ACB3B1608B2C300E20441 /* ViewController.h */,
+				A06ACB3C1608B2C300E20441 /* ViewController.m */,
+				A06ACB3E1608B2C300E20441 /* ViewController_iPhone.xib */,
+				A06ACB411608B2C300E20441 /* ViewController_iPad.xib */,
+				A06ACB301608B2C300E20441 /* Supporting Files */,
+			);
+			name = Application;
+			path = FieldKit;
+			sourceTree = "<group>";
+		};
+		A06ACB301608B2C300E20441 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A06ACB311608B2C300E20441 /* FieldKit-Info.plist */,
+				A06ACB321608B2C300E20441 /* InfoPlist.strings */,
+				A06ACB351608B2C300E20441 /* main.m */,
+				A06ACB371608B2C300E20441 /* FieldKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A06ACB491608B35B00E20441 /* LAFieldKit */ = {
+			isa = PBXGroup;
+			children = (
+				A0825C7916111656006F3DB0 /* LAFieldKit.bundle */,
+				A01A10C2160C9A1C00EE2145 /* Public */,
+				A01A10C1160C99D200EE2145 /* Internal */,
+			);
+			name = LAFieldKit;
+			path = ../Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A06ACB241608B2C300E20441 /* FieldKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A06ACB461608B2C300E20441 /* Build configuration list for PBXNativeTarget "FieldKit" */;
+			buildPhases = (
+				A06ACB211608B2C300E20441 /* Sources */,
+				A06ACB221608B2C300E20441 /* Frameworks */,
+				A06ACB231608B2C300E20441 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FieldKit;
+			productName = LauggaKit;
+			productReference = A06ACB251608B2C300E20441 /* FieldKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A06ACB1C1608B2C200E20441 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Luis Laugga";
+			};
+			buildConfigurationList = A06ACB1F1608B2C200E20441 /* Build configuration list for PBXProject "FieldKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A06ACB1A1608B2C200E20441;
+			productRefGroup = A06ACB261608B2C300E20441 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A06ACB241608B2C300E20441 /* FieldKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A06ACB231608B2C300E20441 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06ACB341608B2C300E20441 /* InfoPlist.strings in Resources */,
+				A06ACB401608B2C300E20441 /* ViewController_iPhone.xib in Resources */,
+				A06ACB431608B2C300E20441 /* ViewController_iPad.xib in Resources */,
+				A0825C7A16111656006F3DB0 /* LAFieldKit.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A06ACB211608B2C300E20441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06ACB361608B2C300E20441 /* main.m in Sources */,
+				A06ACB3A1608B2C300E20441 /* AppDelegate.m in Sources */,
+				A06ACB3D1608B2C300E20441 /* ViewController.m in Sources */,
+				A0825C7116111632006F3DB0 /* LATextAppearance.m in Sources */,
+				A0825C7216111632006F3DB0 /* LATextContentView.m in Sources */,
+				A0825C7316111632006F3DB0 /* LATextField.m in Sources */,
+				A0825C7416111632006F3DB0 /* LATextField+UITextInput.m in Sources */,
+				A0825C7516111632006F3DB0 /* LATextInteractionAssistant.m in Sources */,
+				A0825C7616111632006F3DB0 /* LATextSelectionView.m in Sources */,
+				A0825C7716111632006F3DB0 /* LATokenField.m in Sources */,
+				A0825C7816111632006F3DB0 /* LATokenFieldCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A06ACB321608B2C300E20441 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06ACB331608B2C300E20441 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A06ACB3E1608B2C300E20441 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06ACB3F1608B2C300E20441 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		A06ACB411608B2C300E20441 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06ACB421608B2C300E20441 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A06ACB441608B2C300E20441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A06ACB451608B2C300E20441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A06ACB471608B2C300E20441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FieldKit/FieldKit-Prefix.pch";
+				INFOPLIST_FILE = "FieldKit/FieldKit-Info.plist";
+				PRODUCT_NAME = FieldKit;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A06ACB481608B2C300E20441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FieldKit/FieldKit-Prefix.pch";
+				INFOPLIST_FILE = "FieldKit/FieldKit-Info.plist";
+				PRODUCT_NAME = FieldKit;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A06ACB1F1608B2C200E20441 /* Build configuration list for PBXProject "FieldKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06ACB441608B2C300E20441 /* Debug */,
+				A06ACB451608B2C300E20441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A06ACB461608B2C300E20441 /* Build configuration list for PBXNativeTarget "FieldKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06ACB471608B2C300E20441 /* Debug */,
+				A06ACB481608B2C300E20441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A06ACB1C1608B2C200E20441 /* Project object */;
+}
