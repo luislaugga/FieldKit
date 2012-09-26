@@ -32,6 +32,4 @@ typedef NSUInteger LATokenStyle;
 
 - (id)initWithString:(NSString *)string andFont:(UIFont *)font;
 
-+ (CGRect)textRectInsetForRect:(CGRect)rect;
-
 @end

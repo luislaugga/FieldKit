@@ -168,9 +168,10 @@
     // Calculate content view frame
     CGRect contentViewFrame = _contentView.frame;
     contentViewFrame.origin.x = offset.x;
-    contentViewFrame.origin.y = offset.y;
-    contentViewFrame = [LATokenFieldCell textRectInsetForRect:contentViewFrame];
+    contentViewFrame.origin.y = offset.y + 2; // check with cell for insets...
 
+    NSLog(@"content view frame %f %f %f %f", contentViewFrame.origin.x, contentViewFrame.origin.y, contentViewFrame.size.width, contentViewFrame.size.height);
+    
     // Update content view
     _contentView.frame = contentViewFrame;
     [_contentView updateContentIfNeeded];

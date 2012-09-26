@@ -86,9 +86,4 @@
 #pragma mark -
 #pragma mark Helpers
 
-+ (CGRect)textRectInsetForRect:(CGRect)rect
-{
-    return CGRectInset(rect, 0, kTokenFieldCellInsetTop);
-}
-
 @end
