@@ -144,6 +144,16 @@
     return [super becomeFirstResponder];
 }
 
+- (UIView *)inputAccessoryView
+{
+    return nil; // unsupported
+}
+
+- (UIView *)inputView // needed, to prevent cascading up in the responder chain (possibly with unexpected results)
+{
+    return nil; // Use system-supplied keyboard 
+}
+
 #pragma mark -
 #pragma mark Layout
 
