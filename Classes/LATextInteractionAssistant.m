@@ -71,7 +71,7 @@
     }
     
     // Send tap to selection view
-    [_selectingContainer.selectionView setCaretSelectionForPoint:[singleTapGesture locationInView:_selectingContainer.selectionView]];
+    [_selectingContainer.textSelectionView setCaretSelectionForPoint:[singleTapGesture locationInView:_selectingContainer.textSelectionView]];
 }
 
 #pragma mark -
@@ -82,7 +82,7 @@
     PrettyLog;
         
     // Send tap to selection view
-    [_selectingContainer.selectionView setWordSelectionForPoint:[doubleTapGesture locationInView:_selectingContainer.selectionView]];
+    [_selectingContainer.textSelectionView setWordSelectionForPoint:[doubleTapGesture locationInView:_selectingContainer.textSelectionView]];
 }
 
 #pragma mark -

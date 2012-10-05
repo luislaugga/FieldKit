@@ -25,7 +25,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 
 - (id)initWithSelectingContainer:(UIView<LATextSelectingContainer> *)selectingContainer
 {
-    self = [super initWithFrame:selectingContainer.contentView.frame];
+    self = [super initWithFrame:selectingContainer.textContentView.frame];
     if(self)
     {
         // Assign the LATextSelectingContainer conforming UIView
@@ -98,7 +98,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
             [self updateSelectionIfNeeded];
             
             // Notify selection did change to container's responder input delegate
-            [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
+            [_selectingContainer.responder.inputDelegate selectionDidChange:_selectingContainer.responder];
         }
     }
 }
@@ -144,7 +144,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     PrettyLog;
     
     // Set selection location based on index closest to point
-    NSUInteger index = [_selectingContainer.contentView textClosestIndexForPoint:point]; // closest index
+    NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     self.selectionRange = NSMakeRange(index, 0); // set location
 }
 
@@ -153,8 +153,8 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     PrettyLog;
     
     // Set selection location+length based on word that contains index closest to point
-    NSUInteger index = [_selectingContainer.contentView textClosestIndexForPoint:point]; // closest index
-    NSRange range = [_selectingContainer.contentView textWordRangeForIndex:index]; // word range for closest index
+    NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
+    NSRange range = [_selectingContainer.textContentView textWordRangeForIndex:index]; // word range for closest index
     self.selectionRange = range; // set word range
 }
 
@@ -164,7 +164,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 - (void)insertTextIntoSelection:(NSString *)insertedText
 {
     // Create mutable copy
-    NSMutableString * mutableText = [_selectingContainer.contentView.text mutableCopy];
+    NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
     
     // Create selection change copy
     NSRange updatedSelectionRange = _selectionRange;
@@ -188,16 +188,16 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     [_selectingContainer.responder.inputDelegate textWillChange:_selectingContainer.responder];
     
     // Update content
-    _selectingContainer.contentView.text = mutableText;
+    _selectingContainer.textContentView.text = mutableText;
+    
+    // Update selection
+    self.selectionRange = updatedSelectionRange;
     
     // Notify text did change to container's responder input delegate
     [_selectingContainer.responder.inputDelegate textDidChange:_selectingContainer.responder];
     
     // Clean up
     [mutableText release];
-    
-    // Update selection
-    self.selectionRange = updatedSelectionRange;
 }
 
 - (void)deleteTextFromSelection
@@ -206,7 +206,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
         return; // nothing to delete
     
     // Create mutable copy
-    NSMutableString * mutableText = [_selectingContainer.contentView.text mutableCopy];
+    NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
     
     // Create selection change copy
     NSRange updatedSelectionRange = _selectionRange;
@@ -231,16 +231,16 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     [_selectingContainer.responder.inputDelegate textWillChange:_selectingContainer.responder];
     
     // Update content
-    _selectingContainer.contentView.text = mutableText;
+    _selectingContainer.textContentView.text = mutableText;
+    
+    // Update selection
+    self.selectionRange = updatedSelectionRange;
     
     // Notify text did change to container's responder input delegate
     [_selectingContainer.responder.inputDelegate textDidChange:_selectingContainer.responder];
     
     // Clean up
     [mutableText release];
-    
-    // Update selection
-    self.selectionRange = updatedSelectionRange;
 }
 
 - (void)replaceTextInRange:(NSRange)replacementRange withText:(NSString *)replacementText
@@ -248,7 +248,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     PrettyLog;
     
     // Create mutable copy
-    NSMutableString * mutableText = [_selectingContainer.contentView.text mutableCopy];
+    NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
  
     // Create selection change copy
     NSRange updatedSelectionRange = _selectionRange;
@@ -286,16 +286,16 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     [_selectingContainer.responder.inputDelegate textWillChange:_selectingContainer.responder];
     
     // Update content
-    _selectingContainer.contentView.text = mutableText;
+    _selectingContainer.textContentView.text = mutableText;
+    
+    // Update selection
+    self.selectionRange = updatedSelectionRange;
     
     // Notify text did change to container's responder input delegate
     [_selectingContainer.responder.inputDelegate textDidChange:_selectingContainer.responder];
     
     // Clean up
     [mutableText release];
-    
-    // Update selection
-    self.selectionRange = updatedSelectionRange;
 }
 
 #pragma mark -
@@ -332,7 +332,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 - (void)updateCaret
 {
     // Update caret view frame
-    CGRect textRect = [_selectingContainer.contentView textOffsetRectForIndex:_selectionRange.location];
+    CGRect textRect = [_selectingContainer.textContentView textOffsetRectForIndex:_selectionRange.location];
     _caretView.frame = [LATextAppearance selectionCaretFrameForTextRect:textRect];
 }
 
@@ -406,7 +406,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 {
     if(_rangeView != nil)
     {
-        _rangeView.rects = [_selectingContainer.contentView textRectsForRange:_selectionRange];
+        _rangeView.rects = [_selectingContainer.textContentView textRectsForRange:_selectionRange];
     }
 }
 

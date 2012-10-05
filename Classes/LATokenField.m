@@ -127,6 +127,22 @@
     }
 }
 
+- (NSString *)stringForRepresentedObject:(id)representedObject
+{
+    NSString * string = @"";
+    
+    if([representedObject isKindOfClass:[NSString class]])
+    {
+        string = representedObject;
+    }
+    else if(_delegate && [_delegate respondsToSelector:@selector(tokenField:displayStringForRepresentedObject:)])
+    {
+            string = [self.delegate tokenField:self displayStringForRepresentedObject:representedObject]; 
+    }
+    
+    return string;
+}
+
 + (NSCharacterSet *)defaultTokenizingCharacterSet
 {
     return kLATokenFieldDefaultTokenizers;
@@ -192,7 +208,7 @@
         // Check if text is not empty, and creates a new token
         if([self.text length] > 1)
         {
-            NSString * token = [self.text substringToIndex:[self.text length]];
+            NSString * token = self.text;
             LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:token] retain];
             [self addTokenFieldCell:tokenFieldCell];
             [tokenFieldCell release];
@@ -251,11 +267,14 @@
 
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
 {
-    id representedObject = nil;
-    if(_delegate && [_delegate respondsToSelector:@selector(tokenField:representedObjectForEditingString:)])
+    if(tokenFieldCell.representedObject == nil)
+    {
+        id representedObject;
+        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:representedObjectForEditingString:)])
         representedObject = [self.delegate tokenField:self representedObjectForEditingString:tokenFieldCell.string];
     
-    tokenFieldCell.representedObject = representedObject;
+        tokenFieldCell.representedObject = representedObject;
+    }
     [_tokenFieldCells addObject:tokenFieldCell];
     [self addSubview:tokenFieldCell];
     [self setNeedsLayout];
@@ -301,12 +320,10 @@
     // Hide if text is empty
     if([self.text length] > 0)
     {
-        NSInteger index; // not supported
-        
         // Get completions
-        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)])
+        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:completionsForSubstring:indexOfToken:)])
         {
-            self.completionArray = [self.delegate tokenField:self completionsForSubstring:self.text indexOfToken:[_tokenFieldCells count] indexOfSelectedItem:&index];
+            self.completionArray = [self.delegate tokenField:self completionsForSubstring:self.text indexOfToken:[_tokenFieldCells count]];
             [_completionListView reloadData];
         }
         
@@ -431,7 +448,7 @@
 		cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-	cell.textLabel.text = [_completionArray objectAtIndex:indexPath.row];
+	cell.textLabel.text = [self stringForRepresentedObject:[_completionArray objectAtIndex:indexPath.row]];
     
 	return cell;
     
@@ -442,8 +459,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * token = [_completionArray objectAtIndex:indexPath.row];
-    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:token] retain];
+    id tokenRepresentedObject = [_completionArray objectAtIndex:indexPath.row];
+    NSString * tokenString = [self stringForRepresentedObject:tokenRepresentedObject];
+    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:tokenString] retain];
+    tokenFieldCell.representedObject = tokenRepresentedObject;
     [self addTokenFieldCell:tokenFieldCell];
     [tokenFieldCell release];
     self.text = @"";

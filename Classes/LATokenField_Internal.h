@@ -40,6 +40,8 @@
 - (void)animateCompletionView;
 - (void)hideCompletionView;
 
+- (NSString *)stringForRepresentedObject:(id)representedObject;
+
 - (void)keyboardWillShow:(NSNotification *)notification;
 - (void)registerForKeyboardNotifications;
 - (void)unregisterForKeyboardNotifications;

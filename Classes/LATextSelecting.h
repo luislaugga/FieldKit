@@ -80,9 +80,9 @@
 @protocol LATextSelectingContainer
 
 @property(readonly, nonatomic) UIResponder<UITextInput> * responder;
-@property(readonly, nonatomic) UIView<LATextSelectingContent> * contentView;
-@property(readonly, nonatomic) LATextInteractionAssistant * interactionAssistant;
-@property(readonly, nonatomic) LATextSelectionView * selectionView;
+@property(readonly, nonatomic) LATextInteractionAssistant * textInteractionAssistant;
+@property(readonly, nonatomic) UIView<LATextSelectingContent> * textContentView;
+@property(readonly, nonatomic) LATextSelectionView * textSelectionView;
 
 @property(readonly, nonatomic, getter=isEditing) BOOL editing;
 @property(readonly, nonatomic, getter=isEditable) BOOL editable;

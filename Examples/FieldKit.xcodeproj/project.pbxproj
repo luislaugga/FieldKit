@@ -17,6 +17,7 @@
 		A06ACB401608B2C300E20441 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06ACB3E1608B2C300E20441 /* ViewController_iPhone.xib */; };
 		A06ACB431608B2C300E20441 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06ACB411608B2C300E20441 /* ViewController_iPad.xib */; };
 		A06ACB6B160A0FF300E20441 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB6A160A0FF300E20441 /* CoreText.framework */; };
+		A07DC78E1614A1E700F75DC5 /* LAScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DC78C1614A1E700F75DC5 /* LAScrollField.m */; };
 		A0825C7116111632006F3DB0 /* LATextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C5A16111632006F3DB0 /* LATextAppearance.m */; };
 		A0825C7216111632006F3DB0 /* LATextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C5D16111632006F3DB0 /* LATextContentView.m */; };
 		A0825C7316111632006F3DB0 /* LATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0825C6016111632006F3DB0 /* LATextField.m */; };
@@ -44,6 +45,10 @@
 		A06ACB3F1608B2C300E20441 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A06ACB421608B2C300E20441 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		A06ACB6A160A0FF300E20441 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		A07DC78B1614A1E700F75DC5 /* LAScrollField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAScrollField.h; sourceTree = "<group>"; };
+		A07DC78C1614A1E700F75DC5 /* LAScrollField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAScrollField.m; sourceTree = "<group>"; };
+		A07DC78D1614A1E700F75DC5 /* LAScrollFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAScrollFieldDelegate.h; sourceTree = "<group>"; };
+		A07DC7941614A2C300F75DC5 /* LAScrollField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAScrollField_Internal.h; sourceTree = "<group>"; };
 		A0825C5916111632006F3DB0 /* LATextAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextAppearance.h; sourceTree = "<group>"; };
 		A0825C5A16111632006F3DB0 /* LATextAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATextAppearance.m; sourceTree = "<group>"; };
 		A0825C5B16111632006F3DB0 /* LATextContentView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATextContentView_Internal.h; sourceTree = "<group>"; };
@@ -106,9 +111,11 @@
 				A0825C6916111632006F3DB0 /* LATextSelectionView.h */,
 				A0825C6A16111632006F3DB0 /* LATextSelectionView.m */,
 				A0825C6B16111632006F3DB0 /* LATokenField_Internal.h */,
-				A0825C6D16111632006F3DB0 /* LATokenField.m */,
 				A0825C6E16111632006F3DB0 /* LATokenFieldCell.h */,
+				A0825C6D16111632006F3DB0 /* LATokenField.m */,
 				A0825C6F16111632006F3DB0 /* LATokenFieldCell.m */,
+				A07DC78C1614A1E700F75DC5 /* LAScrollField.m */,
+				A07DC7941614A2C300F75DC5 /* LAScrollField_Internal.h */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -120,6 +127,8 @@
 				A0825C6316111632006F3DB0 /* LATextFieldDelegate.h */,
 				A0825C6C16111632006F3DB0 /* LATokenField.h */,
 				A0825C7016111632006F3DB0 /* LATokenFieldDelegate.h */,
+				A07DC78B1614A1E700F75DC5 /* LAScrollField.h */,
+				A07DC78D1614A1E700F75DC5 /* LAScrollFieldDelegate.h */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -266,6 +275,7 @@
 				A0825C7616111632006F3DB0 /* LATextSelectionView.m in Sources */,
 				A0825C7716111632006F3DB0 /* LATokenField.m in Sources */,
 				A0825C7816111632006F3DB0 /* LATokenFieldCell.m in Sources */,
+				A07DC78E1614A1E700F75DC5 /* LAScrollField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

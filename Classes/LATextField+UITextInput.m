@@ -48,7 +48,15 @@
 
 - (id<UITextInputTokenizer>)tokenizer
 {
-    return nil;
+    if(_tokenizer == nil)
+        _tokenizer = [[UITextInputStringTokenizer alloc] initWithTextInput:self];
+                      
+    return _tokenizer;
+}
+
+- (UIView *)textInputView
+{
+    return self;
 }
 
 - (UITextStorageDirection)selectionAffinity

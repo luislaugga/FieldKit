@@ -21,7 +21,7 @@
  It conforms to UITextInput (and UIKeyInput) protocols and also NSCoding
  */
 
-@interface LATextField : UIControl /*<UITextInput>, NSCoding>*/
+@interface LATextField : UIControl /*, NSCoding>*/
 {
     LATextContentView * _contentView;
     LATextSelectionView * _selectionView;

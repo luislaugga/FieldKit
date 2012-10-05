@@ -11,6 +11,15 @@
 #import "LATokenFieldDelegate.h"
 #import "LATokenFieldCell.h"
 
+/*!
+ @abstract Text Field
+ @discussion 
+ The text field is a view used for text input.
+ It conforms to UITextInput (and UIKeyInput) protocols and also NSCoding
+ 
+ Accessing the 'text' property will return only the current editing string, if any. In order to set the tokens
+ the property 'representedObjects' should be used instead.
+ */
 @interface LATokenField : LATextField
 {
     NSCharacterSet * _tokenizingCharacterSet; // default is newline

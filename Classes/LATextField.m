@@ -14,9 +14,9 @@
 
 @implementation LATextField
 
-@synthesize contentView = _contentView;
-@synthesize selectionView = _selectionView;
-@synthesize interactionAssistant = _interactionAssistant;
+@synthesize textContentView = _contentView;
+@synthesize textSelectionView = _selectionView;
+@synthesize textInteractionAssistant = _interactionAssistant;
 
 @synthesize editing = _editing;
 @synthesize editable = _editable;
