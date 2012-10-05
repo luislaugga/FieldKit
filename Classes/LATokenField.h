@@ -11,6 +11,10 @@
 #import "LATokenFieldDelegate.h"
 #import "LATokenFieldCell.h"
 
+static const NSString * LATokenFieldCompletionText = @"Text";
+static const NSString * LATokenFieldCompletionDetailDescription = @"DetailDescription";
+static const NSString * LATokenFieldCompletionDetailText = @"DetailText";
+
 /*!
  @abstract Text Field
  @discussion 

@@ -14,7 +14,7 @@
 
 @synthesize selected = _selected;
 @synthesize font = _font;
-@synthesize string = _string;
+@synthesize text = _text;
 
 #define kTokenFieldCellInsetLeft 9
 #define kTokenFieldCellInsetTop 2
@@ -22,14 +22,14 @@
 #pragma mark -
 #pragma mark Initialization
 
-- (id)initWithString:(NSString *)string andFont:(UIFont *)font;
+- (id)initWithText:(NSString *)text andFont:(UIFont *)font;
 {
-    CGSize stringSize = [string sizeWithFont:font];
-    self = [super initWithFrame:CGRectMake(0, 0, kTokenFieldCellInsetLeft + stringSize.width + kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop + stringSize.height + kTokenFieldCellInsetTop)];
+    CGSize textSize = [text sizeWithFont:font];
+    self = [super initWithFrame:CGRectMake(0, 0, kTokenFieldCellInsetLeft + textSize.width + kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop + textSize.height + kTokenFieldCellInsetTop)];
     if (self) 
     {
         _selected = NO;
-        self.string = string; // copy
+        self.text = text; // copy
         self.font = font; // assign
         self.backgroundColor = [UIColor clearColor];
     }
@@ -38,7 +38,7 @@
 
 - (void)dealloc
 {
-    self.string = nil;
+    self.text = nil;
     self.font = nil;
     
     [super dealloc];
@@ -80,7 +80,7 @@
     
     // Draw display string
     [textColor setFill];
-    [_string drawAtPoint:CGPointMake(kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop) withFont:_font];
+    [_text drawAtPoint:CGPointMake(kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop) withFont:_font];
 }
 
 #pragma mark -

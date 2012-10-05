@@ -18,7 +18,7 @@ typedef NSUInteger LATokenStyle;
 @interface LATokenFieldCell : UIControl
 {
     UIFont * _font;
-    NSString * _string;
+    NSString * _text;
     BOOL _selected;
     
     id _representedObject;
@@ -26,10 +26,10 @@ typedef NSUInteger LATokenStyle;
 
 @property(nonatomic, assign) id representedObject;
 
-@property(nonatomic, copy) NSString * string;
+@property(nonatomic, copy) NSString * text;
 @property(nonatomic, assign) UIFont * font;
 @property(nonatomic, assign, getter = isSelected) BOOL selected;
 
-- (id)initWithString:(NSString *)string andFont:(UIFont *)font;
+- (id)initWithText:(NSString *)string andFont:(UIFont *)font;
 
 @end

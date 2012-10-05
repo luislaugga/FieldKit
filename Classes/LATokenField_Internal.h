@@ -26,9 +26,10 @@
 @property(nonatomic, retain) NSArray * completionArray;
 @property(nonatomic, retain) UITableView * completionListView;
 
-- (LATokenFieldCell *)tokenFieldCellWithText:(NSString *)text;
+- (LATokenFieldCell *)tokenizeEditingString:(NSString *)editingString;
+- (LATokenFieldCell *)tokenizeEditingDictionary:(NSDictionary *)editingDictionary;
 
-- (LATokenFieldCell *)tokenize:(NSString *)tokenString;
+- (LATokenFieldCell *)tokenFieldCellWithEditingText:(NSString *)editingText forRepresentedObject:(id)representedObject;
 
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
 - (void)removeTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
@@ -41,8 +42,6 @@
 - (void)showCompletionView;
 - (void)animateCompletionView;
 - (void)hideCompletionView;
-
-- (NSString *)stringForRepresentedObject:(id)representedObject;
 
 - (void)keyboardWillShow:(NSNotification *)notification;
 - (void)registerForKeyboardNotifications;

@@ -12,20 +12,20 @@
 
 @class LATokenField;
 
-
 /*!
  @protocol LATokenFieldDelegate
  @abstract The LATokenFieldDelegate protocol defines the optional methods implemented by delegates of LATokenField objects.
  @discussion
  1. As the user types the delegate receives tokenField:completionsForSubstring:indexOfToken: and returns a list of editing strings
  2. If the user picks a completion from the list or types the tokening character, the editing string is set
- 3. The delegate receives tokenField:representedObjectForEditingString: and may return an object that represents the editing string
+ 3. The delegate receives tokenField:representedObjectForEditing(String/Dictionary): and may return an object that represents the editing string
  4. If 3. succeeds then the delegate receives tokenField:displayStringForRepresentedObject: and may return a display string for the represented object
  
  The editing string can be anything and is set when a tokening character is inserted or a completion is picked from the list.
- The editing string picked from a completion list can have two different formats: 1. "String" or 2. "String,Label:Value"
- If Label:Value exists, they are displayed in the completion list as a detail sub-label for each String. This "Label:Value" format
- helps to solve ambiguous situations, when there are more than one possible completions all related to the same entity.
+ The editing string picked from a completion list can either be a NSString or NSDictionary instance.
+ The NSDictionary may contain detailed information about the completion. 
+ Detail is displayed in the completion list as a sub-label ('Description' 'Text'). 
+ It helps solving ambiguous situations, when there are more than one possible completions all related to the same entity.
  */
 @protocol LATokenFieldDelegate <LATextFieldDelegate>
 
@@ -58,16 +58,10 @@
  @param tokenField The token field where editing is occurring.
  @param substring The partial string that is to be completed.
  @param tokenIndex The index of the token being edited.
- @return An array of editing strings that are possible completions. The string format should be "'Editing String'" or "'Editing String','Label String':'Value String'".
+ @return An array of editing NSString or NSDictionary that are possible completions. 
  @discussion If the delegate does not implement this method, no completions are provided.
  */
 - (NSArray *)tokenField:(LATokenField *)tokenField completionsForSubstring:(NSString *)substring indexOfToken:(NSInteger)tokenIndex;
-
-/*!
- Allows the delegate to provide a string to be edited as a proxy for a represented object.
- @return A string that’s an editable proxy of the represented object, or nil if the token should not be editable.
- */
-- (NSString *)tokenField:(LATokenField *)tokenField editingStringForRepresentedObject:(id)representedObject;
 
 /*!
  Allows the delegate to provide a represented object for the given editing string.
@@ -75,6 +69,7 @@
  @return A represented object that is displayed rather than the editing string.
  */
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingString:(NSString *)editingString;
+- (id)tokenField:(LATokenField *)tokenField representedObjectForEditingDictionary:(NSDictionary *)editingDictionary;
 
 /*!
  @return An array of validated token represented objects.

@@ -108,8 +108,7 @@
     {
         if([representedObject isKindOfClass:[NSString class]])
         {
-            LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:representedObject] retain];
-            tokenFieldCell.representedObject = representedObject;
+            LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithEditingText:representedObject forRepresentedObject:nil] retain];
             [self addTokenFieldCell:tokenFieldCell];
             [tokenFieldCell release];
         }
@@ -117,9 +116,7 @@
         {
             if(_delegate && [_delegate respondsToSelector:@selector(tokenField:displayStringForRepresentedObject:)])
             {
-                NSString * displayString = [self.delegate tokenField:self displayStringForRepresentedObject:representedObject];
-                LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:displayString] retain];
-                tokenFieldCell.representedObject = representedObject;
+                LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithEditingText:@"" forRepresentedObject:representedObject] retain];
                 [self addTokenFieldCell:tokenFieldCell];
                 [tokenFieldCell release];
             }
@@ -127,7 +124,7 @@
     }
 }
 
-- (NSString *)stringForRepresentedObject:(id)representedObject
+- (NSString *)displayStringForRepresentedObject:(id)representedObject
 {
     NSString * string = @"";
     
@@ -161,8 +158,7 @@
     // Tokenize whatever is in the field...
     if([self.text length] > 0)
     {
-        NSString * tokenString = self.text;
-        [self tokenize:tokenString];
+        [self tokenizeEditingString:self.text];
     }
     
     // Update
@@ -227,8 +223,7 @@
         // Check if text is not empty, and creates a new token
         if([self.text length] > 0)
         {
-            NSString * tokenString = self.text;
-            [self tokenize:tokenString];
+            [self tokenizeEditingString:self.text];
         }
     }
     else
@@ -275,9 +270,33 @@
 #pragma mark -
 #pragma mark Token
 
-- (LATokenFieldCell *)tokenize:(NSString *)tokenString
+- (LATokenFieldCell *)tokenizeEditingString:(NSString *)editingString
 {
-    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:tokenString] retain];
+    id representedObject = nil;
+    
+    // Ask delegate for editing string's represented object
+    if(_delegate && [_delegate respondsToSelector:@selector(tokenField:representedObjectForEditingString:)])
+        representedObject = [self.delegate tokenField:self representedObjectForEditingString:editingString];
+    
+    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithEditingText:editingString forRepresentedObject:representedObject] retain];
+    tokenFieldCell.representedObject = representedObject;
+    [self addTokenFieldCell:tokenFieldCell];
+    [tokenFieldCell release];
+    self.text = @"";
+    
+    return tokenFieldCell;
+}
+
+- (LATokenFieldCell *)tokenizeEditingDictionary:(NSDictionary *)editingDictionary
+{
+    id representedObject = nil;
+    
+    // Ask delegate for editing dictionary's represented object
+    if(_delegate && [_delegate respondsToSelector:@selector(tokenField:representedObjectForEditingDictionary:)])
+        representedObject = [self.delegate tokenField:self representedObjectForEditingDictionary:editingDictionary];
+    
+    NSString * editingText = [editingDictionary objectForKey:LATokenFieldCompletionText];
+    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithEditingText:editingText forRepresentedObject:representedObject] retain];
     [self addTokenFieldCell:tokenFieldCell];
     [tokenFieldCell release];
     self.text = @"";
@@ -288,22 +307,24 @@
 #pragma mark -
 #pragma mark Token Cells
 
-- (LATokenFieldCell *)tokenFieldCellWithText:(NSString *)text
+- (LATokenFieldCell *)tokenFieldCellWithEditingText:(NSString *)editingText forRepresentedObject:(id)representedObject
 {
-    LATokenFieldCell * tokenFieldCell = [[LATokenFieldCell alloc] initWithString:text andFont:_contentView.font];
+    NSString * displayString = editingText;
+    
+    if(representedObject != nil)
+    {
+        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:displayStringForRepresentedObject:)])
+            displayString = [self.delegate tokenField:self displayStringForRepresentedObject:representedObject];
+    }
+    
+    LATokenFieldCell * tokenFieldCell = [[LATokenFieldCell alloc] initWithText:displayString andFont:_contentView.font];
+    tokenFieldCell.representedObject = representedObject;
+    
     return [tokenFieldCell autorelease];
 }
 
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
 {
-    if(tokenFieldCell.representedObject == nil)
-    {
-        id representedObject;
-        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:representedObjectForEditingString:)])
-        representedObject = [self.delegate tokenField:self representedObjectForEditingString:tokenFieldCell.string];
-    
-        tokenFieldCell.representedObject = representedObject;
-    }
     [_tokenFieldCells addObject:tokenFieldCell];
     [self addSubview:tokenFieldCell];
     [self setNeedsLayout];
@@ -468,16 +489,52 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"LATokenFieldCompletionListCell";
+    static NSString * CellIdentifier = @"LATokenFieldCompletionListCell";
+    static NSUInteger DetailTextLabelTag = 58839;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UILabel * textLabel, * detailDescriptionLabel, * detailTextLabel;
+    
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) 
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryNone;
+        
+//        UILabel * _detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 220.0, 15.0)];
+//        _detailTextLabel.tag = DetailTextLabelTag;
+//        _detailTextLabel.font = cell.detailTextLabel.font;
+//        _detailTextLabel.textAlignment = UITextAlignmentLeft;
+//        _detailTextLabel.textColor = cell.detailTextLabel.textColor;
+//        _detailTextLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+//        [cell.contentView addSubview:_detailTextLabel];
+        
+        textLabel = cell.textLabel;
+        //detailTextLabel = _detailTextLabel;
+        detailDescriptionLabel = cell.detailTextLabel;
+    }
+    else
+    {
+        textLabel = cell.textLabel;
+        detailDescriptionLabel = cell.detailTextLabel;
     }
     
-	cell.textLabel.text = [self stringForRepresentedObject:[_completionArray objectAtIndex:indexPath.row]];
+    id completion = [_completionArray objectAtIndex:indexPath.row];
+    
+    if([completion isKindOfClass:[NSString class]])
+    {
+        textLabel.text = [_completionArray objectAtIndex:indexPath.row];
+        detailDescriptionLabel.text = @"";
+    }
+    else if([completion isKindOfClass:[NSDictionary class]])
+    {
+        NSDictionary * dictionaryString = [_completionArray objectAtIndex:indexPath.row];
+        textLabel.text = [dictionaryString objectForKey:LATokenFieldCompletionText];
+        detailDescriptionLabel.text = [NSString stringWithFormat:@"%@ %@", [dictionaryString objectForKey:LATokenFieldCompletionDetailDescription], [dictionaryString objectForKey:LATokenFieldCompletionDetailText]];
+    }
+    else
+    {
+        cell.textLabel.text = @"Invalid Object";
+    }
     
 	return cell;
     
@@ -488,15 +545,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id tokenRepresentedObject = [_completionArray objectAtIndex:indexPath.row];
-    NSString * tokenString = [self stringForRepresentedObject:tokenRepresentedObject];
-    LATokenFieldCell * tokenFieldCell = [self tokenize:tokenString];
-    tokenFieldCell.representedObject = tokenRepresentedObject;
+    id completionAtSelectedIndexPath = [_completionArray objectAtIndex:indexPath.row];
     
-    // Show/Hide completion view if it's the case
-    [self updateCompletionViewIfNeeded];
+    if([completionAtSelectedIndexPath isKindOfClass:[NSString class]])
+    {
+        [self tokenizeEditingString:(NSString *)completionAtSelectedIndexPath];
+    }
+    else if([completionAtSelectedIndexPath isKindOfClass:[NSDictionary class]])
+    {
+        [self tokenizeEditingDictionary:(NSDictionary *)completionAtSelectedIndexPath];
+    }
     
-    // Deselect
+    [self hideCompletionView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

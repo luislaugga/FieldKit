@@ -96,7 +96,7 @@
 #pragma mark -
 #pragma mark LATokenFieldDelegate
 
-- (NSArray *)tokenField:(LATokenField *)tokenField completionsForSubstring:(NSString *)substring indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
+- (NSArray *)tokenField:(LATokenField *)tokenField completionsForSubstring:(NSString *)substring indexOfToken:(NSInteger)tokenIndex
 {
     NSMutableArray * completionsForSubstring = [[NSMutableArray alloc] init];
     
@@ -104,15 +104,16 @@
     {
         NSRange substringRange = [completion rangeOfString:substring options:(NSCaseInsensitiveSearch)];
         if(substringRange.location != NSNotFound)
-            [completionsForSubstring addObject:completion];
+        {
+            NSString * name = completion;
+            NSString * label = @"label";
+            NSString * value = @"email/phone number";
+            NSDictionary * completionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, LATokenFieldCompletionText, label, LATokenFieldCompletionDetailDescription, value, LATokenFieldCompletionDetailText, nil];
+            [completionsForSubstring addObject:completionDictionary];
+        }
     }
     
     return [completionsForSubstring autorelease];
-}
-
-- (NSString *)tokenField:(LATokenField *)tokenField displayStringForRepresentedObject:(id)representedObject
-{
-    return @"";
 }
 
 + (NSArray *)tokenFieldCompletions
