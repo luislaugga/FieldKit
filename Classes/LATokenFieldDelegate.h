@@ -13,26 +13,37 @@
 @class LATokenField;
 
 /*!
+ NSDictionary keys for tokenField:completionsForSubstring:indexOfToken: returned completions and
+ tokenField:representedObjectForEditingDictionary: editing completion
+ */
+static const NSString * LATokenFieldCompletionDictionaryText = @"0";
+static const NSString * LATokenFieldCompletionDictionaryDetailDescription = @"1";
+static const NSString * LATokenFieldCompletionDictionaryDetailText = @"2";
+
+/*!
  @protocol LATokenFieldDelegate
  @abstract The LATokenFieldDelegate protocol defines the optional methods implemented by delegates of LATokenField objects.
  @discussion
- 1. As the user types the delegate receives tokenField:completionsForSubstring:indexOfToken: and returns a list of editing strings
- 2. If the user picks a completion from the list or types the tokening character, the editing string is set
- 3. The delegate receives tokenField:representedObjectForEditing(String/Dictionary): and may return an object that represents the editing string
- 4. If 3. succeeds then the delegate receives tokenField:displayStringForRepresentedObject: and may return a display string for the represented object
+ 1. As the user types the delegate can provide a list of completions via tokenField:completionsForSubstring:indexOfToken:
+ 2. The user can pick a completion from the list or continue typing up until a tokening character
+ 3. Once an editing string is set (from 2.) the delegate can provide a represented object via representedObjectForEditingString: 
+ 4. If 3. succeeds the delegate can also provide a display string via tokenField:displayStringForRepresentedObject:
+ 5. If 3. or 4. fail the editing string is used as display string for token cells.
  
- The editing string can be anything and is set when a tokening character is inserted or a completion is picked from the list.
- The editing string picked from a completion list can either be a NSString or NSDictionary instance.
- The NSDictionary may contain detailed information about the completion. 
- Detail is displayed in the completion list as a sub-label ('Description' 'Text'). 
- It helps solving ambiguous situations, when there are more than one possible completions all related to the same entity.
+ Notes:
+ - If the represented object is an NSString instance the token field uses it directly as display string.
+ - It is also possible to provide NSDictionary completions on tokenField:completionsForSubstring:indexOfToken: for
+ multi-attribute case scenarios (ie. Person with multiple contacts and a completion for each contact). In this case,
+ the editing string picked from a completion list can either be a NSString or NSDictionary instance. The delegate must
+ implement tokenField:representedObjectForEditingString: and/or tokenField:representedObjectForEditingDictionary: 
+ depending on the type of completions provided.
  */
 @protocol LATokenFieldDelegate <LATextFieldDelegate>
 
 @optional
 
 /*!
- @group Displaying Tokenized Strings
+ @group Displaying Tokenized String
  */
 
 /*!
@@ -50,7 +61,7 @@
 - (NSString *)tokenField:(LATokenField *)tokenField displayStringForRepresentedObject:(id)representedObject;
 
 /*!
- @group Editing a Tokenized Strings
+ @group Editing Tokenized String
  */
 
 /*!
@@ -69,6 +80,12 @@
  @return A represented object that is displayed rather than the editing string.
  */
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingString:(NSString *)editingString;
+
+/*!
+ Allows the delegate to provide a represented object for the given editing dictionary.
+ @param editingDictionary The editing dictionary picked from the list of completions
+ @return A represented object for the editing dictionary
+ */
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingDictionary:(NSDictionary *)editingDictionary;
 
 /*!

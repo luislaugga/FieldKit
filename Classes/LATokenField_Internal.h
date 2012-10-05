@@ -29,7 +29,7 @@
 - (LATokenFieldCell *)tokenizeEditingString:(NSString *)editingString;
 - (LATokenFieldCell *)tokenizeEditingDictionary:(NSDictionary *)editingDictionary;
 
-- (LATokenFieldCell *)tokenFieldCellWithEditingText:(NSString *)editingText forRepresentedObject:(id)representedObject;
+- (LATokenFieldCell *)createTokenWithEditingString:(NSString *)editingString forRepresentedObject:(id)representedObject;
 
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
 - (void)removeTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;

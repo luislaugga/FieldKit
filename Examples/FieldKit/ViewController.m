@@ -105,15 +105,36 @@
         NSRange substringRange = [completion rangeOfString:substring options:(NSCaseInsensitiveSearch)];
         if(substringRange.location != NSNotFound)
         {
-            NSString * name = completion;
-            NSString * label = @"label";
-            NSString * value = @"email/phone number";
-            NSDictionary * completionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, LATokenFieldCompletionText, label, LATokenFieldCompletionDetailDescription, value, LATokenFieldCompletionDetailText, nil];
-            [completionsForSubstring addObject:completionDictionary];
+            BOOL useDictionary = rand()%2;
+            
+            if(useDictionary)
+            {
+                NSString * name = completion;
+                NSString * label = @"label";
+                NSString * value = @"value";
+                NSDictionary * completionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, LATokenFieldCompletionDictionaryText, label, LATokenFieldCompletionDictionaryDetailDescription, value, LATokenFieldCompletionDictionaryDetailText, nil];
+                [completionsForSubstring addObject:completionDictionary];
+            }
+            else
+            {
+                [completionsForSubstring addObject:completion];
+            }
         }
     }
     
     return [completionsForSubstring autorelease];
+}
+
+- (id)tokenField:(LATokenField *)tokenField representedObjectForEditingString:(NSString *)editingString
+{
+    NSString * object = [[NSString alloc] initWithFormat:@"Represented Object"];
+    return [object autorelease];
+}
+
+- (id)tokenField:(LATokenField *)tokenField representedObjectForEditingDictionary:(NSDictionary *)editingDictionary
+{
+    NSString * object = [[NSString alloc] initWithFormat:@"Represented Object"];
+    return [object autorelease];
 }
 
 + (NSArray *)tokenFieldCompletions

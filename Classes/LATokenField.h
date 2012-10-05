@@ -11,10 +11,6 @@
 #import "LATokenFieldDelegate.h"
 #import "LATokenFieldCell.h"
 
-static const NSString * LATokenFieldCompletionText = @"Text";
-static const NSString * LATokenFieldCompletionDetailDescription = @"DetailDescription";
-static const NSString * LATokenFieldCompletionDetailText = @"DetailText";
-
 /*!
  @abstract Text Field
  @discussion 
@@ -44,8 +40,9 @@ static const NSString * LATokenFieldCompletionDetailText = @"DetailText";
 @property(nonatomic, copy) NSCharacterSet * tokenizingCharacterSet;
 
 /*!
- List of objects being represented by tokens
- If these objects are not strings, the token field queries its delegate for the strings to display for the represented objects
+ Provide a list of objects being represented by tokens.
+ @discussion If the represented object is an instance of NSString the token field uses it as display string, otherwise 
+ the delegate can provide a display string via tokenField:displayStringForRepresentedObject:
  */
 @property(nonatomic, copy) NSArray * representedObjects;
 
