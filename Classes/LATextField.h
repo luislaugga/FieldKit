@@ -43,4 +43,7 @@
 @property(nonatomic, retain) UIFont * font;
 @property(nonatomic, assign) id<LATextFieldDelegate> delegate;
 
+@property(nonatomic, readonly, getter=isEditing) BOOL editing;
+@property(nonatomic, getter=isEditable) BOOL editable;
+
 @end

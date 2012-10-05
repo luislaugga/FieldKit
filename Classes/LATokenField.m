@@ -154,6 +154,25 @@
 }
 
 #pragma mark -
+#pragma mark LATextField
+
+- (void)setEditing:(BOOL)editing
+{
+    // Tokenize whatever is in the field...
+    if([self.text length] > 0)
+    {
+        NSString * tokenString = self.text;
+        [self tokenize:tokenString];
+    }
+    
+    // Update
+    [self updateCompletionViewIfNeeded];
+    
+    // Super
+    super.editing = editing;
+}
+
+#pragma mark -
 #pragma mark Layout
 
 - (void)layoutSubviews
@@ -206,13 +225,10 @@
     if([_tokenizingCharacterSet characterIsMember:[text characterAtIndex:0]]) 
     {
         // Check if text is not empty, and creates a new token
-        if([self.text length] > 1)
+        if([self.text length] > 0)
         {
-            NSString * token = self.text;
-            LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:token] retain];
-            [self addTokenFieldCell:tokenFieldCell];
-            [tokenFieldCell release];
-            self.text = @"";
+            NSString * tokenString = self.text;
+            [self tokenize:tokenString];
         }
     }
     else
@@ -254,6 +270,19 @@
     
     // Show/Hide completion view if it's the case
     [self updateCompletionViewIfNeeded];
+}
+
+#pragma mark -
+#pragma mark Token
+
+- (LATokenFieldCell *)tokenize:(NSString *)tokenString
+{
+    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:tokenString] retain];
+    [self addTokenFieldCell:tokenFieldCell];
+    [tokenFieldCell release];
+    self.text = @"";
+    
+    return tokenFieldCell;
 }
 
 #pragma mark -
@@ -461,11 +490,8 @@
 {
     id tokenRepresentedObject = [_completionArray objectAtIndex:indexPath.row];
     NSString * tokenString = [self stringForRepresentedObject:tokenRepresentedObject];
-    LATokenFieldCell * tokenFieldCell = [[self tokenFieldCellWithText:tokenString] retain];
+    LATokenFieldCell * tokenFieldCell = [self tokenize:tokenString];
     tokenFieldCell.representedObject = tokenRepresentedObject;
-    [self addTokenFieldCell:tokenFieldCell];
-    [tokenFieldCell release];
-    self.text = @"";
     
     // Show/Hide completion view if it's the case
     [self updateCompletionViewIfNeeded];

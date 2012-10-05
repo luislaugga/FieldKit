@@ -28,6 +28,8 @@
 
 - (LATokenFieldCell *)tokenFieldCellWithText:(NSString *)text;
 
+- (LATokenFieldCell *)tokenize:(NSString *)tokenString;
+
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
 - (void)removeTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
 

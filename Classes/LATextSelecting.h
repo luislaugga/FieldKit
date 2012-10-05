@@ -10,14 +10,17 @@
 @class LATextSelectionView;
 
 #pragma mark -
-#pragma mark LATextSelectingContent
+#pragma mark LATextSelectingResponder
 
-@protocol LATextSelection <UITextInput>
-//- (id)rectsForRange:(id)arg1;
-//
-//@optional
-//@property(nonatomic) int selectionGranularity;
+@protocol LATextSelectingResponder <UITextInput>
+
+@property(readonly, nonatomic, getter=isEditing) BOOL editing;
+@property(readonly, nonatomic, getter=isEditable) BOOL editable;
+
 @end
+
+#pragma mark -
+#pragma mark LATextSelectingContent
 
 @protocol LATextSelectingContent
 @property(nonatomic, copy) NSString * text;
@@ -79,13 +82,10 @@
 
 @protocol LATextSelectingContainer
 
-@property(readonly, nonatomic) UIResponder<UITextInput> * responder;
-@property(readonly, nonatomic) LATextInteractionAssistant * textInteractionAssistant;
+@property(readonly, nonatomic) UIResponder<LATextSelectingResponder> * responder;
 @property(readonly, nonatomic) UIView<LATextSelectingContent> * textContentView;
+@property(readonly, nonatomic) LATextInteractionAssistant * textInteractionAssistant;
 @property(readonly, nonatomic) LATextSelectionView * textSelectionView;
-
-@property(readonly, nonatomic, getter=isEditing) BOOL editing;
-@property(readonly, nonatomic, getter=isEditable) BOOL editable;
 
 //- (struct CGRect)selectionClipRect;
 //- (void)endSelectionChange;

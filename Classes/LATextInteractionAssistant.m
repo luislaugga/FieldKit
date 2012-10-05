@@ -64,14 +64,16 @@
 {
     PrettyLog;
     
-    // Make container's responder the first responder
-    if([_selectingContainer.responder isFirstResponder] == NO)
+    // Proceed if responder is editable
+    if([_selectingContainer.responder isEditable])
     {
-        [_selectingContainer.responder becomeFirstResponder];
-    }
+        // Make container's responder the first responder
+        if([_selectingContainer.responder isFirstResponder] == NO)
+            [_selectingContainer.responder becomeFirstResponder];
     
-    // Send tap to selection view
-    [_selectingContainer.textSelectionView setCaretSelectionForPoint:[singleTapGesture locationInView:_selectingContainer.textSelectionView]];
+        // Send tap to selection view
+        [_selectingContainer.textSelectionView setCaretSelectionForPoint:[singleTapGesture locationInView:_selectingContainer.textSelectionView]];
+    }
 }
 
 #pragma mark -
@@ -90,7 +92,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.isEditing == NO)
+    if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
         return NO; // Only accept double-tap while editing
         
     return YES;
@@ -98,7 +100,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.isEditing == NO)
+    if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
         return NO; // Only accept double-tap while editing
     
     return YES;

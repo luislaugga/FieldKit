@@ -108,11 +108,21 @@
         [_selectionView removeFromSuperview];
 }
 
+- (void)setEditable:(BOOL)editable
+{
+    _editable = editable;
+    
+    if(self.isEditing && self.isEditable == NO)
+    {
+        [self resignFirstResponder];
+    }
+}
+
 #pragma mark -
-#pragma mark Responder
+#pragma mark UIResponder
 
 - (BOOL)canBecomeFirstResponder
-{  
+{
     return YES;
 }
 

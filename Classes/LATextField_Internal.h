@@ -20,7 +20,7 @@
  */
 @interface LATextField () <LATextSelectingContainer>
 
-@property(readwrite, nonatomic) BOOL editing;
+@property(nonatomic, readwrite) BOOL editing;
 
 @end
 
