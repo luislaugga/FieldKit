@@ -8,6 +8,9 @@
 
 #import "LATextField.h"
 #import "LATextSelecting.h"
+#import "LATextContentView.h"
+#import "LATextSelectionView.h"
+#import "LATextInteractionAssistant.h"
 
 #import "LATextSelectionView.h"
 #import "LATextInteractionAssistant.h"
@@ -19,6 +22,12 @@
  @category LATextField internal extension
  */
 @interface LATextField () <LATextSelectingContainer>
+{
+    @protected
+    LATextContentView * _contentView;
+    LATextSelectionView * _selectionView;
+    LATextInteractionAssistant * _interactionAssistant;    
+}
 
 @property(nonatomic, readwrite) BOOL editing;
 

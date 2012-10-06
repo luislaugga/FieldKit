@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LATextContentView.h"
-#import "LATextSelectionView.h"
-#import "LATextInteractionAssistant.h"
-
 #import "LATextFieldDelegate.h"
 
 /*!
@@ -23,10 +19,6 @@
 
 @interface LATextField : UIControl /*, NSCoding>*/
 {
-    LATextContentView * _contentView;
-    LATextSelectionView * _selectionView;
-    LATextInteractionAssistant * _interactionAssistant;
-    
     BOOL _editable;
     BOOL _editing;
     

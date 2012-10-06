@@ -7,6 +7,7 @@
 //
 
 #import "LATextField.h"
+#import "LATextField_Internal.h"
 
 #pragma mark -
 #pragma mark LATextField (UITextInput)

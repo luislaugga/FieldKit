@@ -36,7 +36,7 @@
 		A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026E1620DF8A003DA76F /* LAScrollFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01C02A11620E06B003DA76F /* LATokenField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02811620DF8A003DA76F /* LATokenField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A01C02A21620E06B003DA76F /* LATokenField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02821620DF8A003DA76F /* LATokenField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02841620DF8A003DA76F /* LATokenFieldCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02841620DF8A003DA76F /* LATokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026F1620DF8A003DA76F /* LATextAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01C02A91620E06B003DA76F /* LATextContentView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -283,6 +283,7 @@
 				A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */,
 				A01C02A21620E06B003DA76F /* LATokenField.h in Headers */,
 				A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */,
+				A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */,
 				A01C02AD1620E06B003DA76F /* LATextField.h in Headers */,
 				A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */,
 				A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */,
@@ -294,7 +295,6 @@
 				A01C02B51620E06B003DA76F /* LATextSelecting.h in Headers */,
 				A01C02B61620E06B003DA76F /* LATextSelectionView_Internal.h in Headers */,
 				A01C02A11620E06B003DA76F /* LATokenField_Internal.h in Headers */,
-				A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */,
 				A01C02B71620E06B003DA76F /* LATextSelectionView.h in Headers */,
 				A01C02A91620E06B003DA76F /* LATextContentView_Internal.h in Headers */,
 				A01C02AA1620E06B003DA76F /* LATextContentView.h in Headers */,
