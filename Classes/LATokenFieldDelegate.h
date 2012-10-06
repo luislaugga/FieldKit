@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LATextFieldDelegate.h"
 #import "LATokenFieldCell.h"
 
 @class LATokenField;

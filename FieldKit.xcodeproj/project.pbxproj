@@ -1,0 +1,746 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		A01C024F1620DA06003DA76F /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A01C02501620DA06003DA76F /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				A01C02591620DA95003DA76F /* ShellScript */,
+			);
+			dependencies = (
+				A01C02541620DA13003DA76F /* PBXTargetDependency */,
+				A01C02561620DA15003DA76F /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = "Framework Debug";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		A01C02951620E060003DA76F /* LAScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C026D1620DF8A003DA76F /* LAScrollField.m */; };
+		A01C02961620E060003DA76F /* LATokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02831620DF8A003DA76F /* LATokenField.m */; };
+		A01C02971620E060003DA76F /* LATokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02851620DF8A003DA76F /* LATokenFieldCell.m */; };
+		A01C02981620E060003DA76F /* LATextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02701620DF8A003DA76F /* LATextAppearance.m */; };
+		A01C02991620E060003DA76F /* LATextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02731620DF8A003DA76F /* LATextContentView.m */; };
+		A01C029A1620E060003DA76F /* LATextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */; };
+		A01C029B1620E060003DA76F /* LATextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */; };
+		A01C029C1620E060003DA76F /* LATextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02801620DF8A003DA76F /* LATextSelectionView.m */; };
+		A01C029D1620E06B003DA76F /* LAScrollField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026B1620DF8A003DA76F /* LAScrollField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C029E1620E06B003DA76F /* LAScrollField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026C1620DF8A003DA76F /* LAScrollField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026E1620DF8A003DA76F /* LAScrollFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02A11620E06B003DA76F /* LATokenField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02811620DF8A003DA76F /* LATokenField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02A21620E06B003DA76F /* LATokenField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02821620DF8A003DA76F /* LATokenField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02841620DF8A003DA76F /* LATokenFieldCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026F1620DF8A003DA76F /* LATextAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02A91620E06B003DA76F /* LATextContentView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02AA1620E06B003DA76F /* LATextContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02721620DF8A003DA76F /* LATextContentView.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02AC1620E06B003DA76F /* LATextField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02741620DF8A003DA76F /* LATextField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02AD1620E06B003DA76F /* LATextField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02751620DF8A003DA76F /* LATextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A01C02B21620E06B003DA76F /* LATextInteractionAssistant_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02B31620E06B003DA76F /* LATextInteractionAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02B51620E06B003DA76F /* LATextSelecting.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027D1620DF8A003DA76F /* LATextSelecting.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02B61620E06B003DA76F /* LATextSelectionView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027E1620DF8A003DA76F /* LATextSelectionView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02B71620E06B003DA76F /* LATextSelectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027F1620DF8A003DA76F /* LATextSelectionView.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02BE1620E122003DA76F /* LAFieldKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A01C02901620DFC4003DA76F /* LAFieldKit.bundle */; };
+		A01C02C01620E286003DA76F /* FieldKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A01C02BF1620E286003DA76F /* FieldKit-Info.plist */; };
+		A01C02C71620E7A5003DA76F /* LATokenFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */; };
+		A01C02C81620E7E7003DA76F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB6A160A0FF300E20441 /* CoreText.framework */; };
+		A01C02C91620E7E7003DA76F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */; };
+		A01C02CA1620E7E7003DA76F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01C02411620D9BA003DA76F /* CoreFoundation.framework */; };
+		A01C02CB1620E7FB003DA76F /* LAScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C026D1620DF8A003DA76F /* LAScrollField.m */; };
+		A01C02CC1620E815003DA76F /* LATokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02831620DF8A003DA76F /* LATokenField.m */; };
+		A01C02CD1620E815003DA76F /* LATokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02851620DF8A003DA76F /* LATokenFieldCell.m */; };
+		A01C02CE1620E81F003DA76F /* LATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02761620DF8A003DA76F /* LATextField.m */; };
+		A01C02CF1620E820003DA76F /* LATextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02701620DF8A003DA76F /* LATextAppearance.m */; };
+		A01C02D01620E820003DA76F /* LATextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02731620DF8A003DA76F /* LATextContentView.m */; };
+		A01C02D11620E820003DA76F /* LATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02761620DF8A003DA76F /* LATextField.m */; };
+		A01C02D21620E820003DA76F /* LATextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */; };
+		A01C02D31620E820003DA76F /* LATextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */; };
+		A01C02D41620E820003DA76F /* LATextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02801620DF8A003DA76F /* LATextSelectionView.m */; };
+		A039A76A161F8C08009E4C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A039A769161F8C08009E4C10 /* SenTestingKit.framework */; };
+		A039A76B161F8C08009E4C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB291608B2C300E20441 /* UIKit.framework */; };
+		A039A76C161F8C08009E4C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2B1608B2C300E20441 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A01C02531620DA13003DA76F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A06ACB1C1608B2C200E20441 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A01C02111620D8B4003DA76F;
+			remoteInfo = "Static Library";
+		};
+		A01C02551620DA15003DA76F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A06ACB1C1608B2C200E20441 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A01C023F1620D9BA003DA76F;
+			remoteInfo = "Resources Bundle";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A01C02121620D8B4003DA76F /* libFieldKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFieldKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01C02401620D9BA003DA76F /* FieldKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FieldKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01C02411620D9BA003DA76F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A01C026B1620DF8A003DA76F /* LAScrollField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAScrollField_Internal.h; path = Classes/LAScrollField_Internal.h; sourceTree = "<group>"; };
+		A01C026C1620DF8A003DA76F /* LAScrollField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAScrollField.h; path = Classes/LAScrollField.h; sourceTree = "<group>"; };
+		A01C026D1620DF8A003DA76F /* LAScrollField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LAScrollField.m; path = Classes/LAScrollField.m; sourceTree = "<group>"; };
+		A01C026E1620DF8A003DA76F /* LAScrollFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAScrollFieldDelegate.h; path = Classes/LAScrollFieldDelegate.h; sourceTree = "<group>"; };
+		A01C026F1620DF8A003DA76F /* LATextAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextAppearance.h; path = Classes/LATextAppearance.h; sourceTree = "<group>"; };
+		A01C02701620DF8A003DA76F /* LATextAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATextAppearance.m; path = Classes/LATextAppearance.m; sourceTree = "<group>"; };
+		A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextContentView_Internal.h; path = Classes/LATextContentView_Internal.h; sourceTree = "<group>"; };
+		A01C02721620DF8A003DA76F /* LATextContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextContentView.h; path = Classes/LATextContentView.h; sourceTree = "<group>"; };
+		A01C02731620DF8A003DA76F /* LATextContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATextContentView.m; path = Classes/LATextContentView.m; sourceTree = "<group>"; };
+		A01C02741620DF8A003DA76F /* LATextField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextField_Internal.h; path = Classes/LATextField_Internal.h; sourceTree = "<group>"; };
+		A01C02751620DF8A003DA76F /* LATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextField.h; path = Classes/LATextField.h; sourceTree = "<group>"; };
+		A01C02761620DF8A003DA76F /* LATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATextField.m; path = Classes/LATextField.m; sourceTree = "<group>"; };
+		A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LATextField+UITextInput.h"; path = "Classes/LATextField+UITextInput.h"; sourceTree = "<group>"; };
+		A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LATextField+UITextInput.m"; path = "Classes/LATextField+UITextInput.m"; sourceTree = "<group>"; };
+		A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextFieldDelegate.h; path = Classes/LATextFieldDelegate.h; sourceTree = "<group>"; };
+		A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextInteractionAssistant_Internal.h; path = Classes/LATextInteractionAssistant_Internal.h; sourceTree = "<group>"; };
+		A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextInteractionAssistant.h; path = Classes/LATextInteractionAssistant.h; sourceTree = "<group>"; };
+		A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATextInteractionAssistant.m; path = Classes/LATextInteractionAssistant.m; sourceTree = "<group>"; };
+		A01C027D1620DF8A003DA76F /* LATextSelecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextSelecting.h; path = Classes/LATextSelecting.h; sourceTree = "<group>"; };
+		A01C027E1620DF8A003DA76F /* LATextSelectionView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextSelectionView_Internal.h; path = Classes/LATextSelectionView_Internal.h; sourceTree = "<group>"; };
+		A01C027F1620DF8A003DA76F /* LATextSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATextSelectionView.h; path = Classes/LATextSelectionView.h; sourceTree = "<group>"; };
+		A01C02801620DF8A003DA76F /* LATextSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATextSelectionView.m; path = Classes/LATextSelectionView.m; sourceTree = "<group>"; };
+		A01C02811620DF8A003DA76F /* LATokenField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATokenField_Internal.h; path = Classes/LATokenField_Internal.h; sourceTree = "<group>"; };
+		A01C02821620DF8A003DA76F /* LATokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATokenField.h; path = Classes/LATokenField.h; sourceTree = "<group>"; };
+		A01C02831620DF8A003DA76F /* LATokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATokenField.m; path = Classes/LATokenField.m; sourceTree = "<group>"; };
+		A01C02841620DF8A003DA76F /* LATokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATokenFieldCell.h; path = Classes/LATokenFieldCell.h; sourceTree = "<group>"; };
+		A01C02851620DF8A003DA76F /* LATokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATokenFieldCell.m; path = Classes/LATokenFieldCell.m; sourceTree = "<group>"; };
+		A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATokenFieldDelegate.h; path = Classes/LATokenFieldDelegate.h; sourceTree = "<group>"; };
+		A01C02901620DFC4003DA76F /* LAFieldKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LAFieldKit.bundle; path = Resources/LAFieldKit.bundle; sourceTree = "<group>"; };
+		A01C02921620DFDD003DA76F /* build_framework.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_framework.sh; path = Support/build_framework.sh; sourceTree = "<group>"; };
+		A01C02941620E015003DA76F /* FieldKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FieldKit-Prefix.pch"; path = "Support/FieldKit-Prefix.pch"; sourceTree = "<group>"; };
+		A01C02BF1620E286003DA76F /* FieldKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FieldKit-Info.plist"; path = "Support/FieldKit-Info.plist"; sourceTree = "<group>"; };
+		A01C02C51620E7A5003DA76F /* LATokenFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenFieldTest.h; sourceTree = "<group>"; };
+		A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATokenFieldTest.m; sourceTree = "<group>"; };
+		A039A768161F8C08009E4C10 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A039A769161F8C08009E4C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A06ACB291608B2C300E20441 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A06ACB2B1608B2C300E20441 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A06ACB6A160A0FF300E20441 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A039A764161F8C08009E4C10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01C02C81620E7E7003DA76F /* CoreText.framework in Frameworks */,
+				A039A76B161F8C08009E4C10 /* UIKit.framework in Frameworks */,
+				A039A76C161F8C08009E4C10 /* Foundation.framework in Frameworks */,
+				A01C02C91620E7E7003DA76F /* CoreGraphics.framework in Frameworks */,
+				A039A76A161F8C08009E4C10 /* SenTestingKit.framework in Frameworks */,
+				A01C02CA1620E7E7003DA76F /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A01C02641620DF34003DA76F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A01C02681620DF54003DA76F /* ScrollField */,
+				A01C02671620DF43003DA76F /* TokenField */,
+				A01C02661620DF3A003DA76F /* TextField */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		A01C02661620DF3A003DA76F /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				A01C026F1620DF8A003DA76F /* LATextAppearance.h */,
+				A01C02701620DF8A003DA76F /* LATextAppearance.m */,
+				A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */,
+				A01C02721620DF8A003DA76F /* LATextContentView.h */,
+				A01C02731620DF8A003DA76F /* LATextContentView.m */,
+				A01C02741620DF8A003DA76F /* LATextField_Internal.h */,
+				A01C02751620DF8A003DA76F /* LATextField.h */,
+				A01C02761620DF8A003DA76F /* LATextField.m */,
+				A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */,
+				A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */,
+				A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */,
+				A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */,
+				A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */,
+				A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */,
+				A01C027D1620DF8A003DA76F /* LATextSelecting.h */,
+				A01C027E1620DF8A003DA76F /* LATextSelectionView_Internal.h */,
+				A01C027F1620DF8A003DA76F /* LATextSelectionView.h */,
+				A01C02801620DF8A003DA76F /* LATextSelectionView.m */,
+			);
+			name = TextField;
+			sourceTree = "<group>";
+		};
+		A01C02671620DF43003DA76F /* TokenField */ = {
+			isa = PBXGroup;
+			children = (
+				A01C02811620DF8A003DA76F /* LATokenField_Internal.h */,
+				A01C02821620DF8A003DA76F /* LATokenField.h */,
+				A01C02831620DF8A003DA76F /* LATokenField.m */,
+				A01C02841620DF8A003DA76F /* LATokenFieldCell.h */,
+				A01C02851620DF8A003DA76F /* LATokenFieldCell.m */,
+				A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */,
+			);
+			name = TokenField;
+			sourceTree = "<group>";
+		};
+		A01C02681620DF54003DA76F /* ScrollField */ = {
+			isa = PBXGroup;
+			children = (
+				A01C026B1620DF8A003DA76F /* LAScrollField_Internal.h */,
+				A01C026C1620DF8A003DA76F /* LAScrollField.h */,
+				A01C026D1620DF8A003DA76F /* LAScrollField.m */,
+				A01C026E1620DF8A003DA76F /* LAScrollFieldDelegate.h */,
+			);
+			name = ScrollField;
+			sourceTree = "<group>";
+		};
+		A01C02691620DF5E003DA76F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A01C02BF1620E286003DA76F /* FieldKit-Info.plist */,
+				A01C02941620E015003DA76F /* FieldKit-Prefix.pch */,
+				A01C02921620DFDD003DA76F /* build_framework.sh */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		A01C026A1620DF64003DA76F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A01C02901620DFC4003DA76F /* LAFieldKit.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A039A76D161F8C08009E4C10 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A01C02C51620E7A5003DA76F /* LATokenFieldTest.h */,
+				A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		A06ACB1A1608B2C200E20441 = {
+			isa = PBXGroup;
+			children = (
+				A01C02641620DF34003DA76F /* Classes */,
+				A01C026A1620DF64003DA76F /* Resources */,
+				A01C02691620DF5E003DA76F /* Support */,
+				A039A76D161F8C08009E4C10 /* Test */,
+				A06ACB281608B2C300E20441 /* Frameworks */,
+				A06ACB261608B2C300E20441 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A06ACB261608B2C300E20441 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A039A768161F8C08009E4C10 /* Test.octest */,
+				A01C02121620D8B4003DA76F /* libFieldKit.a */,
+				A01C02401620D9BA003DA76F /* FieldKit.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A06ACB281608B2C300E20441 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A06ACB6A160A0FF300E20441 /* CoreText.framework */,
+				A06ACB291608B2C300E20441 /* UIKit.framework */,
+				A06ACB2B1608B2C300E20441 /* Foundation.framework */,
+				A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */,
+				A039A769161F8C08009E4C10 /* SenTestingKit.framework */,
+				A01C02411620D9BA003DA76F /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A01C02101620D8B4003DA76F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01C029E1620E06B003DA76F /* LAScrollField.h in Headers */,
+				A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */,
+				A01C02A21620E06B003DA76F /* LATokenField.h in Headers */,
+				A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */,
+				A01C02AD1620E06B003DA76F /* LATextField.h in Headers */,
+				A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */,
+				A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */,
+				A01C029D1620E06B003DA76F /* LAScrollField_Internal.h in Headers */,
+				A01C02AC1620E06B003DA76F /* LATextField_Internal.h in Headers */,
+				A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */,
+				A01C02B21620E06B003DA76F /* LATextInteractionAssistant_Internal.h in Headers */,
+				A01C02B31620E06B003DA76F /* LATextInteractionAssistant.h in Headers */,
+				A01C02B51620E06B003DA76F /* LATextSelecting.h in Headers */,
+				A01C02B61620E06B003DA76F /* LATextSelectionView_Internal.h in Headers */,
+				A01C02A11620E06B003DA76F /* LATokenField_Internal.h in Headers */,
+				A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */,
+				A01C02B71620E06B003DA76F /* LATextSelectionView.h in Headers */,
+				A01C02A91620E06B003DA76F /* LATextContentView_Internal.h in Headers */,
+				A01C02AA1620E06B003DA76F /* LATextContentView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A01C02111620D8B4003DA76F /* Static Library */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A01C021C1620D8B4003DA76F /* Build configuration list for PBXNativeTarget "Static Library" */;
+			buildPhases = (
+				A01C020E1620D8B4003DA76F /* Sources */,
+				A01C02101620D8B4003DA76F /* Headers */,
+				A01C023B1620D97B003DA76F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Static Library";
+			productName = "Static Library";
+			productReference = A01C02121620D8B4003DA76F /* libFieldKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A01C023F1620D9BA003DA76F /* Resources Bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A01C024A1620D9BA003DA76F /* Build configuration list for PBXNativeTarget "Resources Bundle" */;
+			buildPhases = (
+				A01C023E1620D9BA003DA76F /* Resources */,
+				A01C024E1620D9E8003DA76F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Resources Bundle";
+			productName = "Resources Bundle";
+			productReference = A01C02401620D9BA003DA76F /* FieldKit.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		A039A767161F8C08009E4C10 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A039A777161F8C08009E4C10 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				A039A763161F8C08009E4C10 /* Sources */,
+				A039A764161F8C08009E4C10 /* Frameworks */,
+				A039A765161F8C08009E4C10 /* Resources */,
+				A039A766161F8C08009E4C10 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = A039A768161F8C08009E4C10 /* Test.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A06ACB1C1608B2C200E20441 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Luis Laugga";
+			};
+			buildConfigurationList = A06ACB1F1608B2C200E20441 /* Build configuration list for PBXProject "FieldKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A06ACB1A1608B2C200E20441;
+			productRefGroup = A06ACB261608B2C300E20441 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A039A767161F8C08009E4C10 /* Test */,
+				A01C02111620D8B4003DA76F /* Static Library */,
+				A01C023F1620D9BA003DA76F /* Resources Bundle */,
+				A01C024F1620DA06003DA76F /* Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A01C023E1620D9BA003DA76F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01C02BE1620E122003DA76F /* LAFieldKit.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A039A765161F8C08009E4C10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01C02C01620E286003DA76F /* FieldKit-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A01C023B1620D97B003DA76F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\n# Directory for public and private headers\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# Merge marked as 'Public' and 'Private' headers into the same directory 'Headers'\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PRIVATE_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/PrivateHeaders\"";
+		};
+		A01C024E1620D9E8003DA76F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\n# Update the version into ${PRODUCT_NAME}-Info.plist\nFRAMEWORK_BUILD_VERSION=`git describe --tags --long`\nFRAMEWORK_RELEASE_VERSION=`git describe --abbrev=0 --tags`\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion $FRAMEWORK_BUILD_VERSION (${CONFIGURATION})\" \"${INFOPLIST_FILE}\"\n/usr/libexec/PlistBuddy -c \"Set CFBundleShortVersionString $FRAMEWORK_RELEASE_VERSION\" \"${INFOPLIST_FILE}\"\n#/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist\n\n# Directory for resources\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Resources\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Resources\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Resources\"";
+		};
+		A01C02591620DA95003DA76F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run build framework script\nSupport/build_framework.sh";
+		};
+		A039A766161F8C08009E4C10 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A01C020E1620D8B4003DA76F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01C02951620E060003DA76F /* LAScrollField.m in Sources */,
+				A01C02961620E060003DA76F /* LATokenField.m in Sources */,
+				A01C02971620E060003DA76F /* LATokenFieldCell.m in Sources */,
+				A01C02981620E060003DA76F /* LATextAppearance.m in Sources */,
+				A01C02991620E060003DA76F /* LATextContentView.m in Sources */,
+				A01C029A1620E060003DA76F /* LATextField+UITextInput.m in Sources */,
+				A01C029B1620E060003DA76F /* LATextInteractionAssistant.m in Sources */,
+				A01C029C1620E060003DA76F /* LATextSelectionView.m in Sources */,
+				A01C02CE1620E81F003DA76F /* LATextField.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A039A763161F8C08009E4C10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01C02C71620E7A5003DA76F /* LATokenFieldTest.m in Sources */,
+				A01C02CB1620E7FB003DA76F /* LAScrollField.m in Sources */,
+				A01C02CC1620E815003DA76F /* LATokenField.m in Sources */,
+				A01C02CD1620E815003DA76F /* LATokenFieldCell.m in Sources */,
+				A01C02CF1620E820003DA76F /* LATextAppearance.m in Sources */,
+				A01C02D01620E820003DA76F /* LATextContentView.m in Sources */,
+				A01C02D11620E820003DA76F /* LATextField.m in Sources */,
+				A01C02D21620E820003DA76F /* LATextField+UITextInput.m in Sources */,
+				A01C02D31620E820003DA76F /* LATextInteractionAssistant.m in Sources */,
+				A01C02D41620E820003DA76F /* LATextSelectionView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A01C02541620DA13003DA76F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A01C02111620D8B4003DA76F /* Static Library */;
+			targetProxy = A01C02531620DA13003DA76F /* PBXContainerItemProxy */;
+		};
+		A01C02561620DA15003DA76F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A01C023F1620D9BA003DA76F /* Resources Bundle */;
+			targetProxy = A01C02551620DA15003DA76F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A01C021A1620D8B4003DA76F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/Static_Library.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/luis/Products/FieldKit/Examples/FieldKit/FieldKit-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_PrivateHeaders";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		A01C021B1620D8B4003DA76F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/Static_Library.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/luis/Products/FieldKit/Examples/FieldKit/FieldKit-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_PrivateHeaders";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		A01C024B1620D9BA003DA76F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv7,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Resources Bundle/Resources Bundle-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Support/$(PROJECT_NAME)-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		A01C024C1620D9BA003DA76F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv7,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Resources Bundle/Resources Bundle-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Support/$(PROJECT_NAME)-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		A01C02511620DA06003DA76F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Debug;
+		};
+		A01C02521620DA06003DA76F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Release;
+		};
+		A039A778161F8C08009E4C10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Support/FieldKit-Prefix.pch";
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A039A779161F8C08009E4C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Support/FieldKit-Prefix.pch";
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		A06ACB441608B2C300E20441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A06ACB451608B2C300E20441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A01C021C1620D8B4003DA76F /* Build configuration list for PBXNativeTarget "Static Library" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01C021A1620D8B4003DA76F /* Debug */,
+				A01C021B1620D8B4003DA76F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A01C024A1620D9BA003DA76F /* Build configuration list for PBXNativeTarget "Resources Bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01C024B1620D9BA003DA76F /* Debug */,
+				A01C024C1620D9BA003DA76F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A01C02501620DA06003DA76F /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01C02511620DA06003DA76F /* Debug */,
+				A01C02521620DA06003DA76F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A039A777161F8C08009E4C10 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A039A778161F8C08009E4C10 /* Debug */,
+				A039A779161F8C08009E4C10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A06ACB1F1608B2C200E20441 /* Build configuration list for PBXProject "FieldKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06ACB441608B2C300E20441 /* Debug */,
+				A06ACB451608B2C300E20441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A06ACB1C1608B2C200E20441 /* Project object */;
+}
