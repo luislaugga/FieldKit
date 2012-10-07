@@ -43,7 +43,7 @@
 		A01C02AA1620E06B003DA76F /* LATextContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02721620DF8A003DA76F /* LATextContentView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A01C02AC1620E06B003DA76F /* LATextField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02741620DF8A003DA76F /* LATextField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A01C02AD1620E06B003DA76F /* LATextField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02751620DF8A003DA76F /* LATextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01C02B21620E06B003DA76F /* LATextInteractionAssistant_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A01C02B31620E06B003DA76F /* LATextInteractionAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -66,6 +66,7 @@
 		A01C02D21620E820003DA76F /* LATextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */; };
 		A01C02D31620E820003DA76F /* LATextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */; };
 		A01C02D41620E820003DA76F /* LATextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02801620DF8A003DA76F /* LATextSelectionView.m */; };
+		A01C02FA1621C052003DA76F /* FieldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02F91621C006003DA76F /* FieldKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A039A76A161F8C08009E4C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A039A769161F8C08009E4C10 /* SenTestingKit.framework */; };
 		A039A76B161F8C08009E4C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB291608B2C300E20441 /* UIKit.framework */; };
 		A039A76C161F8C08009E4C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2B1608B2C300E20441 /* Foundation.framework */; };
@@ -126,6 +127,8 @@
 		A01C02BF1620E286003DA76F /* FieldKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FieldKit-Info.plist"; path = "Support/FieldKit-Info.plist"; sourceTree = "<group>"; };
 		A01C02C51620E7A5003DA76F /* LATokenFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenFieldTest.h; sourceTree = "<group>"; };
 		A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATokenFieldTest.m; sourceTree = "<group>"; };
+		A01C02F71621BF7B003DA76F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		A01C02F91621C006003DA76F /* FieldKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FieldKit.h; path = Classes/FieldKit.h; sourceTree = "<group>"; };
 		A039A768161F8C08009E4C10 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A039A769161F8C08009E4C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		A06ACB291608B2C300E20441 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +157,7 @@
 		A01C02641620DF34003DA76F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A01C02F91621C006003DA76F /* FieldKit.h */,
 				A01C02681620DF54003DA76F /* ScrollField */,
 				A01C02671620DF43003DA76F /* TokenField */,
 				A01C02661620DF3A003DA76F /* TextField */,
@@ -213,6 +217,7 @@
 		A01C02691620DF5E003DA76F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				A01C02F71621BF7B003DA76F /* README.md */,
 				A01C02BF1620E286003DA76F /* FieldKit-Info.plist */,
 				A01C02941620E015003DA76F /* FieldKit-Prefix.pch */,
 				A01C02921620DFDD003DA76F /* build_framework.sh */,
@@ -279,17 +284,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01C02FA1621C052003DA76F /* FieldKit.h in Headers */,
 				A01C029E1620E06B003DA76F /* LAScrollField.h in Headers */,
 				A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */,
 				A01C02A21620E06B003DA76F /* LATokenField.h in Headers */,
 				A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */,
 				A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */,
 				A01C02AD1620E06B003DA76F /* LATextField.h in Headers */,
+				A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */,
 				A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */,
 				A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */,
 				A01C029D1620E06B003DA76F /* LAScrollField_Internal.h in Headers */,
 				A01C02AC1620E06B003DA76F /* LATextField_Internal.h in Headers */,
-				A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */,
 				A01C02B21620E06B003DA76F /* LATextInteractionAssistant_Internal.h in Headers */,
 				A01C02B31620E06B003DA76F /* LATextInteractionAssistant.h in Headers */,
 				A01C02B51620E06B003DA76F /* LATextSelecting.h in Headers */,
@@ -518,12 +524,9 @@
 				GCC_PREFIX_HEADER = "/Users/luis/Products/FieldKit/Examples/FieldKit/FieldKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_PrivateHeaders";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_Headers";
@@ -542,12 +545,9 @@
 				GCC_PREFIX_HEADER = "/Users/luis/Products/FieldKit/Examples/FieldKit/FieldKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_PrivateHeaders";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_Headers";

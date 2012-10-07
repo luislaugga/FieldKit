@@ -100,6 +100,8 @@
 
 - (void)setEditing:(BOOL)editing
 {
+    PrettyLog;
+    
     _editing = editing;
     
     if(_editing)
@@ -110,6 +112,8 @@
 
 - (void)setEditable:(BOOL)editable
 {
+    PrettyLog;
+    
     _editable = editable;
     
     if(self.isEditing && self.isEditable == NO)
@@ -154,6 +158,13 @@
     return nil; // Use system-supplied keyboard 
 }
 
+- (UIResponder<UITextInput> *)responder
+{
+    PrettyLog;
+    
+    return self;
+}
+
 #pragma mark -
 #pragma mark Layout
 
@@ -169,12 +180,5 @@
     [_selectionView updateSelectionIfNeeded];
 }
 
-#pragma mark -
-#pragma mark LATextSelectingContainer protocol
-
-- (UIResponder<UITextInput> *)responder
-{
-    return self;
-}
 
 @end

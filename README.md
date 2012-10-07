@@ -25,6 +25,20 @@ Deployment
 * Minimum iOS: 4.3
 * Requires CoreText.framework
 
+Usage
+-----
+
+Framework
+=========
+
+* -ObjC in "Other Linker Flags" (in order to load categories - TEMP)
+* Add FieldKit.framework
+
+Copying Source
+==============
+
+...
+
 Overview
 --------
 
@@ -38,6 +52,10 @@ Known Bugs
 
 Examples
 --------
+
+* Message Composer (as used in messages)
+* Mail Composer (as used in mail)
+* Keywords (add/remove tokens)
 
 
 References
