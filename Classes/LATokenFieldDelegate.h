@@ -44,7 +44,7 @@ static const NSString * LATokenFieldCompletionDictionaryDetailText = @"2";
 @optional
 
 /*!
- @group Displaying Tokenized String
+ @group Displaying Token
  */
 
 /*!
@@ -62,7 +62,7 @@ static const NSString * LATokenFieldCompletionDictionaryDetailText = @"2";
 - (NSString *)tokenField:(LATokenField *)tokenField displayStringForRepresentedObject:(id)representedObject;
 
 /*!
- @group Editing Tokenized String
+ @group Editing Token
  */
 
 /*!
@@ -90,14 +90,46 @@ static const NSString * LATokenFieldCompletionDictionaryDetailText = @"2";
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingDictionary:(NSDictionary *)editingDictionary;
 
 /*!
- @return An array of validated token represented objects.
- @param tokenField The token field that sent the message.
- @param tokens An array of token represented objects to be inserted in the receiver at index.
- @param index The index of the receiver in which the array of tokens to be validated (tokens) will be inserted.
- @discussion The delegate can return the array unchanged or return a modified array of tokens. 
- To reject the add completely, return an empty array. Returning nil causes an error.
+ @group Managing Token
  */
-- (NSArray *)tokenField:(LATokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index;
+
+/*!
+ @return YES if the token field should add the specified token.
+ @param tokenField The token field that sent the message.
+ @param representedObject The token represented object to be inserted in the receiver at index.
+ @param index The index of the receiver in which the token to be validated will be inserted.
+ @discussion The delegate can return NO to prevent object insertion.
+ */
+- (BOOL)tokenField:(LATokenField *)tokenField shouldAddRepresentedObject:(id)representedObject atIndex:(NSUInteger)index;
+
+/*!
+ Tells the delegate a token was inserted in a specified index.
+ @param tokenField The token field that sent the message.
+ @param representedObject The token represented object inserted in the receiver at index.
+ @param index The index of the receiver in which the token was inserted.
+ */
+- (void)tokenField:(LATokenField *)tokenField didAddRepresentedObject:(id)representedObject atIndex:(NSUInteger)index;
+
+/*!
+ @return YES if the token field should remove the specified token.
+ @param tokenField The token field that sent the message.
+ @param representedObject The token represented object to be removed in the receiver at index.
+ @param index The index of the receiver in which the token to be validated will be removed from.
+ @discussion The delegate can return NO to prevent object removal. 
+ */
+- (BOOL)tokenField:(LATokenField *)tokenField shouldRemoveRepresentedObject:(id)representedObject atIndex:(NSUInteger)index;
+
+/*!
+ Tells the delegate a token was removed from a specified index.
+ @param tokenField The token field that sent the message.
+ @param representedObject The token represented object remove in the receiver from index.
+ @param index The index of the receiver in which the token was removed.
+ */
+- (void)tokenField:(LATokenField *)tokenField didRemoveRepresentedObject:(id)representedObject atIndex:(NSUInteger)index;
+
+/*!
+ @group Pasteboard
+ */
 
 //
 ///*!

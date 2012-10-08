@@ -312,16 +312,44 @@
 
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
 {
-    [_tokenFieldCells addObject:tokenFieldCell];
-    [self addSubview:tokenFieldCell];
-    [self setNeedsLayout];
+    BOOL shouldAdd = YES;
+    NSUInteger index = [_tokenFieldCells count];
+    
+    if(_delegate && [_delegate respondsToSelector:@selector(tokenField:shouldAddRepresentedObject:atIndex:)])
+        shouldAdd = [self.delegate tokenField:self shouldAddRepresentedObject:tokenFieldCell.representedObject atIndex:index];
+    
+    if(shouldAdd)
+    {
+        [_tokenFieldCells addObject:tokenFieldCell];
+        [self addSubview:tokenFieldCell];
+        [self setNeedsLayout];            
+            
+        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:didAddRepresentedObject:atIndex:)])
+            [self.delegate tokenField:self didAddRepresentedObject:tokenFieldCell.representedObject atIndex:index];
+    }
 }
 
 - (void)removeTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
 {
-    [tokenFieldCell removeFromSuperview];
-    [_tokenFieldCells removeObject:tokenFieldCell];
-    [self setNeedsLayout];
+    BOOL shouldRemove = YES;
+    NSUInteger index = [_tokenFieldCells count]-1;
+    
+    if(_delegate && [_delegate respondsToSelector:@selector(tokenField:shouldRemoveRepresentedObject:atIndex:)])
+        shouldRemove = [self.delegate tokenField:self shouldRemoveRepresentedObject:tokenFieldCell.representedObject atIndex:index];
+    
+    if(shouldRemove)
+    {
+        [tokenFieldCell retain];
+        
+        [tokenFieldCell removeFromSuperview];
+        [_tokenFieldCells removeObject:tokenFieldCell];
+        [self setNeedsLayout];
+        
+        if(_delegate && [_delegate respondsToSelector:@selector(tokenField:didRemoveRepresentedObject:atIndex:)])
+            [self.delegate tokenField:self didRemoveRepresentedObject:tokenFieldCell.representedObject atIndex:index];
+        
+        [tokenFieldCell release];
+    }
 }
 
 #pragma mark -

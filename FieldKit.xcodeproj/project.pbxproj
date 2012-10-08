@@ -168,17 +168,17 @@
 		A01C02661620DF3A003DA76F /* TextField */ = {
 			isa = PBXGroup;
 			children = (
+				A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */,
+				A01C02751620DF8A003DA76F /* LATextField.h */,
+				A01C02741620DF8A003DA76F /* LATextField_Internal.h */,
+				A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */,
+				A01C02761620DF8A003DA76F /* LATextField.m */,
+				A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */,
 				A01C026F1620DF8A003DA76F /* LATextAppearance.h */,
 				A01C02701620DF8A003DA76F /* LATextAppearance.m */,
 				A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */,
 				A01C02721620DF8A003DA76F /* LATextContentView.h */,
 				A01C02731620DF8A003DA76F /* LATextContentView.m */,
-				A01C02741620DF8A003DA76F /* LATextField_Internal.h */,
-				A01C02751620DF8A003DA76F /* LATextField.h */,
-				A01C02761620DF8A003DA76F /* LATextField.m */,
-				A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */,
-				A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */,
-				A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */,
 				A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */,
 				A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */,
 				A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */,
@@ -193,12 +193,12 @@
 		A01C02671620DF43003DA76F /* TokenField */ = {
 			isa = PBXGroup;
 			children = (
-				A01C02811620DF8A003DA76F /* LATokenField_Internal.h */,
+				A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */,
 				A01C02821620DF8A003DA76F /* LATokenField.h */,
+				A01C02811620DF8A003DA76F /* LATokenField_Internal.h */,
 				A01C02831620DF8A003DA76F /* LATokenField.m */,
 				A01C02841620DF8A003DA76F /* LATokenFieldCell.h */,
 				A01C02851620DF8A003DA76F /* LATokenFieldCell.m */,
-				A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */,
 			);
 			name = TokenField;
 			sourceTree = "<group>";

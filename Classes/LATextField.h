@@ -38,4 +38,6 @@
 @property(nonatomic, readonly, getter=isEditing) BOOL editing;
 @property(nonatomic, getter=isEditable) BOOL editable;
 
+//@property(nonatomic) NSRange selectedRange;
+
 @end
