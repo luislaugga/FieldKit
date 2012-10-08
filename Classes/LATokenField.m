@@ -48,7 +48,9 @@
         self.tokenizingCharacterSet = kLATokenFieldDefaultTokenizers;
         
         // Set up token fields
-        self.tokenFieldCells = [NSMutableArray array];
+        NSMutableArray * tokenFieldCells = [[NSMutableArray alloc] init];
+        self.tokenFieldCells = tokenFieldCells;
+        [tokenFieldCells release];
         _selectedTokenFieldCell = nil;
         
         // Set up completion view
@@ -70,6 +72,8 @@
 
 - (void)dealloc
 {
+    PrettyLog;
+    
     // Unregister for keyboard notifications
     [self unregisterForKeyboardNotifications];
     

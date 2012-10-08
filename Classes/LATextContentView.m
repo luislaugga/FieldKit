@@ -57,6 +57,8 @@
 
 - (void)setText:(NSString *)text
 {
+    PrettyLog;
+    
     if (_text == text) 
         return;
     
@@ -64,8 +66,11 @@
     _text = [text copy];
     [oldValue release];
     
-    // Update view
-    [self updateContentIfNeeded];
+    if(_text != nil)
+    {
+        // Update view
+        [self updateContentIfNeeded];
+    }
 }
 
 - (void)setTextColor:(UIColor *)textColor
@@ -77,17 +82,20 @@
     _textColor = [textColor retain];
     [oldValue release];
     
-    // Create CGColor object
-    CGColorRef cgTextColor = CGColorCreateCopy(_textColor.CGColor);
-    
-	// Set CTFont instance in our attributes dictionary, to be set on our attributed string
-    [self.attributes setObject:(id)cgTextColor forKey:(NSString *)kCTForegroundColorAttributeName];
-    
-    // Release CGColor object
-    CGColorRelease(cgTextColor);
-    
-    // Update view
-    [self updateContentIfNeeded];
+    if(_textColor != nil)
+    {    
+        // Create CGColor object
+        CGColorRef cgTextColor = CGColorCreateCopy(_textColor.CGColor);
+        
+        // Set CTFont instance in our attributes dictionary, to be set on our attributed string
+        [self.attributes setObject:(id)cgTextColor forKey:(NSString *)kCTForegroundColorAttributeName];
+        
+        // Release CGColor object
+        CGColorRelease(cgTextColor);
+        
+        // Update view
+        [self updateContentIfNeeded];
+    }
 }
 
 - (void)setFont:(UIFont *)font
@@ -99,17 +107,20 @@
     _font = [font retain];
     [oldValue release];
     
-    // Find matching CTFont via name and size
-    CTFontRef ctFont = CTFontCreateWithName((CFStringRef)self.font.fontName, self.font.pointSize, NULL);        
-	
-	// Set CTFont instance in our attributes dictionary, to be set on our attributed string
-    [self.attributes setObject:(id)ctFont forKey:(NSString *)kCTFontAttributeName];
-	
-    // Release CTFont object
-    CFRelease(ctFont);       
-    
-    // Update view
-    [self updateContentIfNeeded];
+    if(_font != nil)
+    {
+        // Find matching CTFont via name and size
+        CTFontRef ctFont = CTFontCreateWithName((CFStringRef)self.font.fontName, self.font.pointSize, NULL);        
+        
+        // Set CTFont instance in our attributes dictionary, to be set on our attributed string
+        [self.attributes setObject:(id)ctFont forKey:(NSString *)kCTFontAttributeName];
+        
+        // Release CTFont object
+        CFRelease(ctFont);       
+        
+        // Update view
+        [self updateContentIfNeeded];
+    }
 }
 
 #pragma mark -
@@ -117,15 +128,17 @@
 
 - (void)updateContentIfNeeded
 {
+    PrettyLog;
+      
     [self clearPreviouslyCachedInformation];
     
-	// Build the attributed string from our text data and string attribute data
+    // Build the attributed string from our text data and string attribute data
     NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:self.text attributes:self.attributes];    
     
-	// Create the Core Text framesetter using the attributed string
+    // Create the Core Text framesetter using the attributed string
     _framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
-	
-	// Create the Core Text frame using our current view rect bounds
+    
+    // Create the Core Text frame using our current view rect bounds
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
     _frame =  CTFramesetterCreateFrame(_framesetter, CFRangeMake(0, 0), [path CGPath], NULL);
     
@@ -133,7 +146,7 @@
     [attributedString release];
     
     // Mark view to be re-drawn
-    [self setNeedsDisplay];    
+    [self setNeedsDisplay];
 }
 
 - (void)clearPreviouslyCachedInformation
@@ -205,7 +218,7 @@
     {
         CTLineRef line = (CTLineRef)[lines objectAtIndex:i];
         CFRange cfRange = CTLineGetStringRange(line);
-        NSRange range = NSMakeRange(range.location == kCFNotFound ? NSNotFound : cfRange.location, cfRange.length);
+        NSRange range = NSMakeRange(cfRange.location, cfRange.length);
         
         if (index >= range.location && index <= range.location+range.length)
         {

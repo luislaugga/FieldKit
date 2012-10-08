@@ -247,15 +247,15 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 {
     PrettyLog;
     
+    // Check replacementRange location against text boundaries
+    if (replacementRange.location > [_selectingContainer.textContentView.text length])
+        return;
+    
     // Create mutable copy
     NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
  
     // Create selection change copy
     NSRange updatedSelectionRange = _selectionRange;
-    
-    // Check replacementRange location against text boundaries
-    if (replacementRange.location > [mutableText length])
-        return;
     
     // Check replacementRange length against text boundaries
     if ((replacementRange.location+replacementRange.length) > [mutableText length])

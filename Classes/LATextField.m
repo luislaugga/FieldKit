@@ -54,6 +54,8 @@
 
 - (void)dealloc
 {
+    PrettyLog;
+    
     // Clean up
     [_interactionAssistant release];
     [_selectionView removeFromSuperview];
@@ -102,12 +104,15 @@
 {
     PrettyLog;
     
-    _editing = editing;
-    
-    if(_editing)
-        [self insertSubview:_selectionView aboveSubview:_contentView];
-    else
-        [_selectionView removeFromSuperview];
+    if(_editing != editing)
+    {    
+        _editing = editing;
+        
+        if(_editing)
+            [self insertSubview:_selectionView aboveSubview:_contentView];
+        else
+            [_selectionView removeFromSuperview];
+    }
 }
 
 - (void)setEditable:(BOOL)editable
@@ -137,6 +142,7 @@
     self.editing = NO;
     
 	return [super resignFirstResponder];
+        
 }
 
 - (BOOL)becomeFirstResponder
