@@ -32,6 +32,8 @@
         self.text = text; // copy
         self.font = font; // assign
         self.backgroundColor = [UIColor clearColor];
+        
+        self.representedObject = nil;
     }
     return self;
 }
@@ -40,6 +42,8 @@
 {
     self.text = nil;
     self.font = nil;
+    
+    self.representedObject = nil; // release
     
     [super dealloc];
 }
@@ -66,12 +70,14 @@
     
     if(_selected)
     {
-        backgroundImage = [[UIImage imageNamed:@"LAFieldKit.bundle/token-atom-selected.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
+        NSString * selectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"LAFieldKit.bundle/token-atom-selected" ofType:@"png"];
+        backgroundImage = [[UIImage imageWithContentsOfFile:selectedPath] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
         textColor = [UIColor whiteColor];
     }
     else
     {
-        backgroundImage = [[UIImage imageNamed:@"LAFieldKit.bundle/token-atom.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
+        NSString * unselectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"LAFieldKit.bundle/token-atom" ofType:@"png"];
+        backgroundImage = [[UIImage imageWithContentsOfFile:unselectedPath] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
         textColor = [UIColor blackColor];
     }
     

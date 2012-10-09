@@ -48,9 +48,7 @@
         self.tokenizingCharacterSet = kLATokenFieldDefaultTokenizers;
         
         // Set up token fields
-        NSMutableArray * tokenFieldCells = [[NSMutableArray alloc] init];
-        self.tokenFieldCells = tokenFieldCells;
-        [tokenFieldCells release];
+        self.tokenFieldCells = [NSMutableArray array];
         _selectedTokenFieldCell = nil;
         
         // Set up completion view
@@ -92,22 +90,27 @@
 - (NSArray *)representedObjects
 {
     // Collect all token field cell's represented objects
-    NSMutableArray * representedObjects = [[NSMutableArray alloc] initWithCapacity:[_tokenFieldCells count]];
-    for(LATokenFieldCell * tokenFieldCell in _tokenFieldCells)
-        [representedObjects addObject:tokenFieldCell.representedObject];
+    NSMutableArray * mutableRepresentedObjects = [[NSMutableArray alloc] init];
+    for(LATokenFieldCell * tokenFieldCell in self.tokenFieldCells)
+    {
+        if(tokenFieldCell.representedObject)
+        {
+            [mutableRepresentedObjects addObject:tokenFieldCell.representedObject];
+        }
+    }
     
-    return [representedObjects autorelease];
+    return [mutableRepresentedObjects autorelease];
 }
 
 - (void)setRepresentedObjects:(NSArray *)representedObjects
 {
     // Remove any token field cells
-    for(LATokenFieldCell * tokenFieldCell in _tokenFieldCells)
+    for(LATokenFieldCell * tokenFieldCell in self.tokenFieldCells)
         [tokenFieldCell removeFromSuperview];
     
     // Clean up
-    _selectedTokenFieldCell = nil;
     [self.tokenFieldCells removeAllObjects];
+    _selectedTokenFieldCell = nil;
     
     // Add token field cells for each represented object
     for(id representedObject in representedObjects)
@@ -137,7 +140,7 @@
     const CGFloat offsetTolerance = _contentView.font.lineHeight*2;
     CGPoint offset = CGPointMake(_inset.width, _inset.height); // start off with inset
     CGFloat width = self.bounds.size.width;
-    for(LATokenFieldCell * tokenFieldCell in _tokenFieldCells)
+    for(LATokenFieldCell * tokenFieldCell in self.tokenFieldCells)
     {
         CGRect tokenFieldCellFrame = tokenFieldCell.frame;
         
@@ -236,9 +239,9 @@
         {
             [self removeSelectedTokenFieldCell];
         }
-        else if([_tokenFieldCells count] > 0)
+        else if([self.tokenFieldCells count] > 0)
         {
-            [self selectTokenFieldCell:[_tokenFieldCells lastObject]];
+            [self selectTokenFieldCell:[self.tokenFieldCells lastObject]];
         }
     }
     else
@@ -313,14 +316,14 @@
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
 {
     BOOL shouldAdd = YES;
-    NSUInteger index = [_tokenFieldCells count];
+    NSUInteger index = [self.tokenFieldCells count];
     
     if(_delegate && [_delegate respondsToSelector:@selector(tokenField:shouldAddRepresentedObject:atIndex:)])
         shouldAdd = [self.delegate tokenField:self shouldAddRepresentedObject:tokenFieldCell.representedObject atIndex:index];
     
     if(shouldAdd)
     {
-        [_tokenFieldCells addObject:tokenFieldCell];
+        [self.tokenFieldCells addObject:tokenFieldCell];
         [self addSubview:tokenFieldCell];
         [self setNeedsLayout];            
             
@@ -332,7 +335,7 @@
 - (void)removeTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
 {
     BOOL shouldRemove = YES;
-    NSUInteger index = [_tokenFieldCells count]-1;
+    NSUInteger index = [self.tokenFieldCells count]-1;
     
     if(_delegate && [_delegate respondsToSelector:@selector(tokenField:shouldRemoveRepresentedObject:atIndex:)])
         shouldRemove = [self.delegate tokenField:self shouldRemoveRepresentedObject:tokenFieldCell.representedObject atIndex:index];
@@ -342,7 +345,7 @@
         [tokenFieldCell retain];
         
         [tokenFieldCell removeFromSuperview];
-        [_tokenFieldCells removeObject:tokenFieldCell];
+        [self.tokenFieldCells removeObject:tokenFieldCell];
         [self setNeedsLayout];
         
         if(_delegate && [_delegate respondsToSelector:@selector(tokenField:didRemoveRepresentedObject:atIndex:)])
@@ -388,7 +391,7 @@
         // Get completions
         if(_delegate && [_delegate respondsToSelector:@selector(tokenField:completionsForSubstring:indexOfToken:)])
         {
-            self.completionArray = [self.delegate tokenField:self completionsForSubstring:self.text indexOfToken:[_tokenFieldCells count]];
+            self.completionArray = [self.delegate tokenField:self completionsForSubstring:self.text indexOfToken:[self.tokenFieldCells count]];
             [_completionListView reloadData];
         }
         

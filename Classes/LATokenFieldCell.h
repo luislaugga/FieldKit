@@ -24,7 +24,7 @@ typedef NSUInteger LATokenStyle;
     id _representedObject;
 }
 
-@property(nonatomic, assign) id representedObject;
+@property(nonatomic, retain) id representedObject;
 
 @property(nonatomic, copy) NSString * text;
 @property(nonatomic, assign) UIFont * font;
