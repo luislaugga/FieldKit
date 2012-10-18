@@ -51,6 +51,7 @@
     
     _tokenField = [[LATokenField alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height+1, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
     _tokenField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+    _tokenField.font = [UIFont systemFontOfSize:16.0f];
     _tokenField.completionSuperview = self.view;
     _tokenField.delegate = self;
     _tokenField.representedObjects = [NSArray arrayWithObjects:@"Janet Canady", @"Albert Deltoro", nil];
@@ -88,6 +89,11 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     PrettyLog;
+    
+    NSArray * representedObjects = [_tokenField.representedObjects retain];
+    NSLog(@"there are %d represented objects", [representedObjects count]);
+    [representedObjects release];
+    
 }
 
 #pragma mark -

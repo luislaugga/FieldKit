@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = A01C02501620DA06003DA76F /* Build configuration list for PBXAggregateTarget "Framework" */;
 			buildPhases = (
-				A01C02591620DA95003DA76F /* ShellScript */,
+				A01C02591620DA95003DA76F /* Run Build Framework */,
 			);
 			dependencies = (
 				A01C02541620DA13003DA76F /* PBXTargetDependency */,
@@ -31,26 +31,6 @@
 		A01C029A1620E060003DA76F /* LATextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */; };
 		A01C029B1620E060003DA76F /* LATextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */; };
 		A01C029C1620E060003DA76F /* LATextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02801620DF8A003DA76F /* LATextSelectionView.m */; };
-		A01C029D1620E06B003DA76F /* LAScrollField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026B1620DF8A003DA76F /* LAScrollField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C029E1620E06B003DA76F /* LAScrollField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026C1620DF8A003DA76F /* LAScrollField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026E1620DF8A003DA76F /* LAScrollFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A11620E06B003DA76F /* LATokenField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02811620DF8A003DA76F /* LATokenField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02A21620E06B003DA76F /* LATokenField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02821620DF8A003DA76F /* LATokenField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02841620DF8A003DA76F /* LATokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026F1620DF8A003DA76F /* LATextAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02A91620E06B003DA76F /* LATextContentView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02AA1620E06B003DA76F /* LATextContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02721620DF8A003DA76F /* LATextContentView.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02AC1620E06B003DA76F /* LATextField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02741620DF8A003DA76F /* LATextField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02AD1620E06B003DA76F /* LATextField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02751620DF8A003DA76F /* LATextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A01C02B21620E06B003DA76F /* LATextInteractionAssistant_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02B31620E06B003DA76F /* LATextInteractionAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02B51620E06B003DA76F /* LATextSelecting.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027D1620DF8A003DA76F /* LATextSelecting.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02B61620E06B003DA76F /* LATextSelectionView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027E1620DF8A003DA76F /* LATextSelectionView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02B71620E06B003DA76F /* LATextSelectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027F1620DF8A003DA76F /* LATextSelectionView.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A01C02BE1620E122003DA76F /* LAFieldKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A01C02901620DFC4003DA76F /* LAFieldKit.bundle */; };
 		A01C02C01620E286003DA76F /* FieldKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A01C02BF1620E286003DA76F /* FieldKit-Info.plist */; };
 		A01C02C71620E7A5003DA76F /* LATokenFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */; };
 		A01C02C81620E7E7003DA76F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB6A160A0FF300E20441 /* CoreText.framework */; };
@@ -66,10 +46,30 @@
 		A01C02D21620E820003DA76F /* LATextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02781620DF8A003DA76F /* LATextField+UITextInput.m */; };
 		A01C02D31620E820003DA76F /* LATextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C027C1620DF8A003DA76F /* LATextInteractionAssistant.m */; };
 		A01C02D41620E820003DA76F /* LATextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02801620DF8A003DA76F /* LATextSelectionView.m */; };
-		A01C02FA1621C052003DA76F /* FieldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02F91621C006003DA76F /* FieldKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A039A76A161F8C08009E4C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A039A769161F8C08009E4C10 /* SenTestingKit.framework */; };
 		A039A76B161F8C08009E4C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB291608B2C300E20441 /* UIKit.framework */; };
 		A039A76C161F8C08009E4C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2B1608B2C300E20441 /* Foundation.framework */; };
+		A0F1A498162FFE2A002E6BE5 /* FieldKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A0F1A497162FFE2A002E6BE5 /* FieldKit.bundle */; };
+		A0F1A4C416301B52002E6BE5 /* FieldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02F91621C006003DA76F /* FieldKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4C516301B52002E6BE5 /* LAScrollField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026B1620DF8A003DA76F /* LAScrollField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4C616301B52002E6BE5 /* LAScrollField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026C1620DF8A003DA76F /* LAScrollField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4C816301B52002E6BE5 /* LAScrollFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026E1620DF8A003DA76F /* LAScrollFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4C916301B52002E6BE5 /* LATokenFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4CA16301B52002E6BE5 /* LATokenField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02821620DF8A003DA76F /* LATokenField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4CB16301B52002E6BE5 /* LATokenField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02811620DF8A003DA76F /* LATokenField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4CD16301B52002E6BE5 /* LATokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02841620DF8A003DA76F /* LATokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4CF16301B52002E6BE5 /* LATextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02791620DF8A003DA76F /* LATextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4D016301B52002E6BE5 /* LATextField.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02751620DF8A003DA76F /* LATextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F1A4D116301B52002E6BE5 /* LATextField_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02741620DF8A003DA76F /* LATextField_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4D216301B52002E6BE5 /* LATextField+UITextInput.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02771620DF8A003DA76F /* LATextField+UITextInput.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4D516301B52002E6BE5 /* LATextAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C026F1620DF8A003DA76F /* LATextAppearance.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4D716301B52002E6BE5 /* LATextContentView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02711620DF8A003DA76F /* LATextContentView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4D816301B52002E6BE5 /* LATextContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C02721620DF8A003DA76F /* LATextContentView.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4DA16301B52002E6BE5 /* LATextInteractionAssistant_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027A1620DF8A003DA76F /* LATextInteractionAssistant_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4DB16301B52002E6BE5 /* LATextInteractionAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027B1620DF8A003DA76F /* LATextInteractionAssistant.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4DD16301B52002E6BE5 /* LATextSelecting.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027D1620DF8A003DA76F /* LATextSelecting.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4DE16301B52002E6BE5 /* LATextSelectionView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027E1620DF8A003DA76F /* LATextSelectionView_Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A0F1A4DF16301B52002E6BE5 /* LATextSelectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C027F1620DF8A003DA76F /* LATextSelectionView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,13 +121,10 @@
 		A01C02841620DF8A003DA76F /* LATokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATokenFieldCell.h; path = Classes/LATokenFieldCell.h; sourceTree = "<group>"; };
 		A01C02851620DF8A003DA76F /* LATokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LATokenFieldCell.m; path = Classes/LATokenFieldCell.m; sourceTree = "<group>"; };
 		A01C02861620DF8A003DA76F /* LATokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LATokenFieldDelegate.h; path = Classes/LATokenFieldDelegate.h; sourceTree = "<group>"; };
-		A01C02901620DFC4003DA76F /* LAFieldKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LAFieldKit.bundle; path = Resources/LAFieldKit.bundle; sourceTree = "<group>"; };
-		A01C02921620DFDD003DA76F /* build_framework.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_framework.sh; path = Support/build_framework.sh; sourceTree = "<group>"; };
 		A01C02941620E015003DA76F /* FieldKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FieldKit-Prefix.pch"; path = "Support/FieldKit-Prefix.pch"; sourceTree = "<group>"; };
 		A01C02BF1620E286003DA76F /* FieldKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FieldKit-Info.plist"; path = "Support/FieldKit-Info.plist"; sourceTree = "<group>"; };
 		A01C02C51620E7A5003DA76F /* LATokenFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenFieldTest.h; sourceTree = "<group>"; };
 		A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATokenFieldTest.m; sourceTree = "<group>"; };
-		A01C02F71621BF7B003DA76F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		A01C02F91621C006003DA76F /* FieldKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FieldKit.h; path = Classes/FieldKit.h; sourceTree = "<group>"; };
 		A039A768161F8C08009E4C10 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A039A769161F8C08009E4C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -135,6 +132,7 @@
 		A06ACB2B1608B2C300E20441 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A06ACB6A160A0FF300E20441 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		A0F1A497162FFE2A002E6BE5 /* FieldKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FieldKit.bundle; path = Resources/FieldKit.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,10 +215,8 @@
 		A01C02691620DF5E003DA76F /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				A01C02F71621BF7B003DA76F /* README.md */,
 				A01C02BF1620E286003DA76F /* FieldKit-Info.plist */,
 				A01C02941620E015003DA76F /* FieldKit-Prefix.pch */,
-				A01C02921620DFDD003DA76F /* build_framework.sh */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -228,7 +224,7 @@
 		A01C026A1620DF64003DA76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A01C02901620DFC4003DA76F /* LAFieldKit.bundle */,
+				A0F1A497162FFE2A002E6BE5 /* FieldKit.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -280,30 +276,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		A01C02101620D8B4003DA76F /* Headers */ = {
+		A0F1A4C316301B49002E6BE5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A01C02FA1621C052003DA76F /* FieldKit.h in Headers */,
-				A01C029E1620E06B003DA76F /* LAScrollField.h in Headers */,
-				A01C02A01620E06B003DA76F /* LAScrollFieldDelegate.h in Headers */,
-				A01C02A21620E06B003DA76F /* LATokenField.h in Headers */,
-				A01C02A61620E06B003DA76F /* LATokenFieldDelegate.h in Headers */,
-				A01C02A41620E06B003DA76F /* LATokenFieldCell.h in Headers */,
-				A01C02AD1620E06B003DA76F /* LATextField.h in Headers */,
-				A01C02AF1620E06B003DA76F /* LATextField+UITextInput.h in Headers */,
-				A01C02B11620E06B003DA76F /* LATextFieldDelegate.h in Headers */,
-				A01C02A71620E06B003DA76F /* LATextAppearance.h in Headers */,
-				A01C029D1620E06B003DA76F /* LAScrollField_Internal.h in Headers */,
-				A01C02AC1620E06B003DA76F /* LATextField_Internal.h in Headers */,
-				A01C02B21620E06B003DA76F /* LATextInteractionAssistant_Internal.h in Headers */,
-				A01C02B31620E06B003DA76F /* LATextInteractionAssistant.h in Headers */,
-				A01C02B51620E06B003DA76F /* LATextSelecting.h in Headers */,
-				A01C02B61620E06B003DA76F /* LATextSelectionView_Internal.h in Headers */,
-				A01C02A11620E06B003DA76F /* LATokenField_Internal.h in Headers */,
-				A01C02B71620E06B003DA76F /* LATextSelectionView.h in Headers */,
-				A01C02A91620E06B003DA76F /* LATextContentView_Internal.h in Headers */,
-				A01C02AA1620E06B003DA76F /* LATextContentView.h in Headers */,
+				A0F1A4C416301B52002E6BE5 /* FieldKit.h in Headers */,
+				A0F1A4C616301B52002E6BE5 /* LAScrollField.h in Headers */,
+				A0F1A4C816301B52002E6BE5 /* LAScrollFieldDelegate.h in Headers */,
+				A0F1A4CA16301B52002E6BE5 /* LATokenField.h in Headers */,
+				A0F1A4C916301B52002E6BE5 /* LATokenFieldDelegate.h in Headers */,
+				A0F1A4CD16301B52002E6BE5 /* LATokenFieldCell.h in Headers */,
+				A0F1A4D016301B52002E6BE5 /* LATextField.h in Headers */,
+				A0F1A4CF16301B52002E6BE5 /* LATextFieldDelegate.h in Headers */,
+				A0F1A4C516301B52002E6BE5 /* LAScrollField_Internal.h in Headers */,
+				A0F1A4CB16301B52002E6BE5 /* LATokenField_Internal.h in Headers */,
+				A0F1A4D116301B52002E6BE5 /* LATextField_Internal.h in Headers */,
+				A0F1A4D216301B52002E6BE5 /* LATextField+UITextInput.h in Headers */,
+				A0F1A4D516301B52002E6BE5 /* LATextAppearance.h in Headers */,
+				A0F1A4D716301B52002E6BE5 /* LATextContentView_Internal.h in Headers */,
+				A0F1A4D816301B52002E6BE5 /* LATextContentView.h in Headers */,
+				A0F1A4DA16301B52002E6BE5 /* LATextInteractionAssistant_Internal.h in Headers */,
+				A0F1A4DB16301B52002E6BE5 /* LATextInteractionAssistant.h in Headers */,
+				A0F1A4DD16301B52002E6BE5 /* LATextSelecting.h in Headers */,
+				A0F1A4DE16301B52002E6BE5 /* LATextSelectionView_Internal.h in Headers */,
+				A0F1A4DF16301B52002E6BE5 /* LATextSelectionView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,8 +311,8 @@
 			buildConfigurationList = A01C021C1620D8B4003DA76F /* Build configuration list for PBXNativeTarget "Static Library" */;
 			buildPhases = (
 				A01C020E1620D8B4003DA76F /* Sources */,
-				A01C02101620D8B4003DA76F /* Headers */,
-				A01C023B1620D97B003DA76F /* ShellScript */,
+				A0F1A4C316301B49002E6BE5 /* Headers */,
+				A0F1A4E816301CBC002E6BE5 /* Run Copy Framework Headers */,
 			);
 			buildRules = (
 			);
@@ -331,8 +327,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A01C024A1620D9BA003DA76F /* Build configuration list for PBXNativeTarget "Resources Bundle" */;
 			buildPhases = (
+				A0F1A4C016301A5D002E6BE5 /* Run Update Bundle Version */,
 				A01C023E1620D9BA003DA76F /* Resources */,
-				A01C024E1620D9E8003DA76F /* ShellScript */,
+				A0F1A4EA16301D15002E6BE5 /* Run Copy Framework Resources */,
 			);
 			buildRules = (
 			);
@@ -395,7 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A01C02BE1620E122003DA76F /* LAFieldKit.bundle in Resources */,
+				A0F1A498162FFE2A002E6BE5 /* FieldKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,44 +407,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A01C023B1620D97B003DA76F /* ShellScript */ = {
+		A01C02591620DA95003DA76F /* Run Build Framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Build Framework";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# Directory for public and private headers\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# Merge marked as 'Public' and 'Private' headers into the same directory 'Headers'\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PRIVATE_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/PrivateHeaders\"";
-		};
-		A01C024E1620D9E8003DA76F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# Update the version into ${PRODUCT_NAME}-Info.plist\nFRAMEWORK_BUILD_VERSION=`git describe --tags --long`\nFRAMEWORK_RELEASE_VERSION=`git describe --abbrev=0 --tags`\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion $FRAMEWORK_BUILD_VERSION (${CONFIGURATION})\" \"${INFOPLIST_FILE}\"\n/usr/libexec/PlistBuddy -c \"Set CFBundleShortVersionString $FRAMEWORK_RELEASE_VERSION\" \"${INFOPLIST_FILE}\"\n#/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist\n\n# Directory for resources\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Resources\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Resources\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Resources\"";
-		};
-		A01C02591620DA95003DA76F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run build framework script\nSupport/build_framework.sh";
+			shellScript = "\"${SRCROOT}/Scripts/build_framework.sh\"";
 		};
 		A039A766161F8C08009E4C10 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -461,6 +433,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		A0F1A4C016301A5D002E6BE5 /* Run Update Bundle Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Update Bundle Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/update_bundle_version.sh\"";
+		};
+		A0F1A4E816301CBC002E6BE5 /* Run Copy Framework Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Copy Framework Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/copy_framework_headers.sh\"";
+		};
+		A0F1A4EA16301D15002E6BE5 /* Run Copy Framework Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Copy Framework Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/copy_framework_resources.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -521,8 +535,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Static_Library.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/luis/Products/FieldKit/Examples/FieldKit/FieldKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "Support/FieldKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = "Support/FieldKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = staticlib;
@@ -542,8 +558,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Static_Library.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/luis/Products/FieldKit/Examples/FieldKit/FieldKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "Support/FieldKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = "Support/FieldKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = staticlib;
@@ -666,7 +684,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -684,8 +705,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
