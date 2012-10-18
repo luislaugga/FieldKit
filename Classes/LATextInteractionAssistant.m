@@ -32,7 +32,7 @@
         UITapGestureRecognizer * singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidSingleTap:)];
         singleTapGesture.numberOfTapsRequired = 1;
         singleTapGesture.delegate = self;
-        [_selectingContainer addGestureRecognizer:singleTapGesture];
+        [_selectingContainer.textContentView addGestureRecognizer:singleTapGesture];
         self.singleTapGesture = singleTapGesture;
         [singleTapGesture release];
         

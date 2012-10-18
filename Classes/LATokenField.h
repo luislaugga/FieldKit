@@ -28,7 +28,6 @@
     UIView * _completionSuperview; // host UIView for completion view
     
     NSMutableArray * _tokenFieldCells;
-    LATokenFieldCell * _selectedTokenFieldCell;
     
     LATokenStyle _tokenStyle; // LATokenFieldCell style
 }

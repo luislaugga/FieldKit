@@ -166,8 +166,6 @@
 
 - (UIResponder<UITextInput> *)responder
 {
-    PrettyLog;
-    
     return self;
 }
 

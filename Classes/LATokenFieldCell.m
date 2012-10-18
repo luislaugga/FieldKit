@@ -12,7 +12,6 @@
 
 @synthesize representedObject = _representedObject;
 
-@synthesize selected = _selected;
 @synthesize font = _font;
 @synthesize text = _text;
 
@@ -28,7 +27,7 @@
     self = [super initWithFrame:CGRectMake(0, 0, kTokenFieldCellInsetLeft + textSize.width + kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop + textSize.height + kTokenFieldCellInsetTop)];
     if (self) 
     {
-        _selected = NO;
+        self.selected = NO;
         self.text = text; // copy
         self.font = font; // assign
         self.backgroundColor = [UIColor clearColor];
@@ -53,12 +52,19 @@
 
 - (void)setSelected:(BOOL)selected
 {
-    _selected = selected;
+    [super setSelected:selected];
     
     // Update drawing
     [self setNeedsDisplay];
 }
 
+#pragma mark -
+#pragma mark UIControl
+
+- (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
+{
+    [super sendAction:action to:target forEvent:event];
+}
 
 #pragma mark -
 #pragma mark Drawing
@@ -68,15 +74,15 @@
     UIImage * backgroundImage;
     UIColor * textColor;
     
-    if(_selected)
+    if(self.selected)
     {
-        NSString * selectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"LAFieldKit.bundle/token-atom-selected" ofType:@"png"];
+        NSString * selectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom-selected" ofType:@"png"];
         backgroundImage = [[UIImage imageWithContentsOfFile:selectedPath] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
         textColor = [UIColor whiteColor];
     }
     else
     {
-        NSString * unselectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"LAFieldKit.bundle/token-atom" ofType:@"png"];
+        NSString * unselectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom" ofType:@"png"];
         backgroundImage = [[UIImage imageWithContentsOfFile:unselectedPath] stretchableImageWithLeftCapWidth:12 topCapHeight:12];
         textColor = [UIColor blackColor];
     }

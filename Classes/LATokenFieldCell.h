@@ -19,7 +19,6 @@ typedef NSUInteger LATokenStyle;
 {
     UIFont * _font;
     NSString * _text;
-    BOOL _selected;
     
     id _representedObject;
 }
@@ -28,7 +27,6 @@ typedef NSUInteger LATokenStyle;
 
 @property(nonatomic, copy) NSString * text;
 @property(nonatomic, assign) UIFont * font;
-@property(nonatomic, assign, getter = isSelected) BOOL selected;
 
 - (id)initWithText:(NSString *)string andFont:(UIFont *)font;
 

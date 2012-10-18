@@ -21,6 +21,7 @@
 @synthesize completionArray = _completionArray;
 @synthesize completionListView = _completionListView;
 @synthesize completionSuperview = _completionSuperview;
+@synthesize selectedTokenFieldCell = _selectedTokenFieldCell;
 @dynamic delegate;
 
 #define kLATokenFieldDefaultInset CGSizeMake(4,6)
@@ -28,6 +29,8 @@
 #define kLATokenFieldDefaultTokenizers [NSCharacterSet characterSetWithCharactersInString:@"\n"]
 #define kLATokenFieldDefaultCompletionDelay 0.25
 #define kLATokenFieldDefaultCompletionAnimationDuration 0.4
+
+#define kLATokenFieldCompletionCellLabelTag 394932
 
 #pragma mark -
 #pragma mark Initialization
@@ -129,6 +132,17 @@
     return kLATokenFieldDefaultCompletionDelay;
 }
 
+- (void)setSelectedTokenFieldCell:(LATokenFieldCell *)selectedTokenFieldCell
+{
+    if(_selectedTokenFieldCell)
+        _selectedTokenFieldCell.selected = NO;
+    
+    _selectedTokenFieldCell = selectedTokenFieldCell;
+    
+    if(_selectedTokenFieldCell)
+        _selectedTokenFieldCell.selected = YES;
+}
+
 #pragma mark -
 #pragma mark Layout
 
@@ -191,6 +205,9 @@
         [self updateCompletionViewIfNeeded];
     }
     
+    // Unselect any selected token field cell
+    self.selectedTokenFieldCell = nil;
+    
     // Super
     super.editing = editing;
 }
@@ -218,7 +235,8 @@
         if(_selectedTokenFieldCell)
         {
             // If there's a selected token field cell, remove it first
-            [self removeSelectedTokenFieldCell];
+            [self removeTokenFieldCell:_selectedTokenFieldCell];
+            self.selectedTokenFieldCell = nil;
         }
         
         // Insert text as normal
@@ -237,11 +255,12 @@
         // Check if there's a selected cell
         if(_selectedTokenFieldCell)
         {
-            [self removeSelectedTokenFieldCell];
+            [self removeTokenFieldCell:_selectedTokenFieldCell];
+            self.selectedTokenFieldCell = nil;
         }
         else if([self.tokenFieldCells count] > 0)
         {
-            [self selectTokenFieldCell:[self.tokenFieldCells lastObject]];
+            self.selectedTokenFieldCell = [self.tokenFieldCells lastObject];
         }
     }
     else
@@ -307,6 +326,9 @@
     LATokenFieldCell * tokenFieldCell = [[LATokenFieldCell alloc] initWithText:displayString andFont:_contentView.font];
     tokenFieldCell.representedObject = representedObject;
     
+    // Setup token field cell actions
+    [tokenFieldCell addTarget:self action:@selector(tokenFieldCellDidTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Add token field cell
     [self addTokenFieldCell:tokenFieldCell];
     
@@ -356,26 +378,18 @@
 }
 
 #pragma mark -
-#pragma mark Token Selection
+#pragma mark Token Events
 
-- (void)selectTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
+- (void)tokenFieldCellDidTouchUpInside:(LATokenFieldCell *)tokenFieldCell
 {
-    _selectedTokenFieldCell = tokenFieldCell;
-    tokenFieldCell.selected = YES;
-}
-
-- (void)unselectTokenFieldCell:(LATokenFieldCell *)tokenFieldCell
-{
-    _selectedTokenFieldCell = nil;
-    tokenFieldCell.selected = NO;
-}
-
-- (void)removeSelectedTokenFieldCell
-{
-    if(_selectedTokenFieldCell)
+    PrettyLog;
+    
+    if(self.isEditable)
     {
-        [self removeTokenFieldCell:_selectedTokenFieldCell];
-        _selectedTokenFieldCell = nil;
+        if(![self isFirstResponder])
+            [self becomeFirstResponder];
+        
+        self.selectedTokenFieldCell = tokenFieldCell;
     }
 }
 
@@ -524,8 +538,7 @@
     else if([completion isKindOfClass:[NSDictionary class]])
     {
         static NSString * DictionaryCompletionCellIdentifier = @"LATokenFieldDictionaryCompletionCell";
-        //static NSUInteger DetailTextLabelTag = 58839;
-        //UILabel * textLabel, * detailDescriptionLabel, * detailTextLabel;
+        static const NSUInteger SecondDetailTextLabelTag = 58839;
         
         cell = [tableView dequeueReusableCellWithIdentifier:DictionaryCompletionCellIdentifier];
         if (cell == nil) 
@@ -533,19 +546,30 @@
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DictionaryCompletionCellIdentifier] autorelease];
             cell.accessoryType = UITableViewCellAccessoryNone;
             
-            //        UILabel * _detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 220.0, 15.0)];
-            //        _detailTextLabel.tag = DetailTextLabelTag;
-            //        _detailTextLabel.font = cell.detailTextLabel.font;
-            //        _detailTextLabel.textAlignment = UITextAlignmentLeft;
-            //        _detailTextLabel.textColor = cell.detailTextLabel.textColor;
-            //        _detailTextLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-            //        [cell.contentView addSubview:_detailTextLabel];
+            UILabel * secondDetailTextLabel = [[UILabel alloc] initWithFrame:cell.detailTextLabel.frame];
+            secondDetailTextLabel.tag = SecondDetailTextLabelTag;
+            secondDetailTextLabel.font = [UIFont systemFontOfSize:14.0f];
+            secondDetailTextLabel.adjustsFontSizeToFitWidth = NO;
+            secondDetailTextLabel.highlightedTextColor = cell.detailTextLabel.highlightedTextColor;
+            secondDetailTextLabel.textColor = cell.detailTextLabel.textColor;
+            [cell.contentView addSubview:secondDetailTextLabel];
+            [secondDetailTextLabel release];
+            
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+            cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:14.0f];
         }
         
-        
         NSDictionary * completionDictionary = (NSDictionary *)completion;
+        
         cell.textLabel.text = [completionDictionary objectForKey:LATokenFieldCompletionDictionaryText];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", [completionDictionary objectForKey:LATokenFieldCompletionDictionaryDetailDescription], [completionDictionary objectForKey:LATokenFieldCompletionDictionaryDetailText]];
+        cell.detailTextLabel.text = [completionDictionary objectForKey:LATokenFieldCompletionDictionaryDetailDescription];
+        
+        UILabel * secondDetailTextLabel = (UILabel *)[cell.contentView viewWithTag:SecondDetailTextLabelTag];
+        secondDetailTextLabel.text = [NSString stringWithFormat:@" %@", [completionDictionary objectForKey:LATokenFieldCompletionDictionaryDetailText]];
+        
+        CGSize cellDetailTextLabelSize = [cell.detailTextLabel.text sizeWithFont:cell.detailTextLabel.font];
+        CGSize secondDetailTextLabelSize = [secondDetailTextLabel.text sizeWithFont:secondDetailTextLabel.font];
+        secondDetailTextLabel.frame = CGRectMake(cellDetailTextLabelSize.width+12, cell.textLabel.font.lineHeight+4, secondDetailTextLabelSize.width, secondDetailTextLabelSize.height);
     }
     else
     {

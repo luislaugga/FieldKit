@@ -255,6 +255,9 @@
     {
         [self showTextView:_textField.text];
     }
+    
+    if(delegate && [delegate respondsToSelector:@selector(textFieldDidChange:)])
+       [delegate textFieldDidChange:self];
 }
 
 #pragma mark -
@@ -316,6 +319,9 @@
                 [self showTextField:_textView.text];
         }
     }
+    
+    if(delegate && [delegate respondsToSelector:@selector(textFieldDidChange:)])
+        [delegate textFieldDidChange:self];
 }
 
 @end

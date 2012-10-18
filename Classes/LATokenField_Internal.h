@@ -19,9 +19,12 @@
     NSTimer * _completionTimer;
     NSArray * _completionArray;
     UITableView * _completionListView;
+    
+    LATokenFieldCell * _selectedTokenFieldCell;
 }
 
 @property(nonatomic, retain) NSMutableArray * tokenFieldCells;
+@property(nonatomic, assign) LATokenFieldCell * selectedTokenFieldCell;
 @property(nonatomic, retain) NSTimer * completionTimer;
 @property(nonatomic, retain) NSArray * completionArray;
 @property(nonatomic, retain) UITableView * completionListView;
