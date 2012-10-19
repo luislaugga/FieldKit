@@ -51,10 +51,10 @@
     
     _tokenField = [[LATokenField alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height+1, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
     _tokenField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-    _tokenField.font = [UIFont systemFontOfSize:16.0f];
+    _tokenField.font = [UIFont systemFontOfSize:15.0f];
     _tokenField.completionSuperview = self.view;
     _tokenField.delegate = self;
-    _tokenField.representedObjects = [NSArray arrayWithObjects:@"Janet Canady", @"Albert Deltoro", nil];
+    _tokenField.representedObjects = [NSArray arrayWithObjects:@"Janet Canady", @"Albert Deltoro", @"Luis Laugga", @"Maria", @"Yellow", @"Super Store", @"Very Looonngg Name", nil];
     [scrollView addSubview:_tokenField];
     
     _textField.text = text;
