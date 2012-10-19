@@ -8,7 +8,7 @@
 
 #import "LATokenField.h"
 
-@interface LATokenField () <UITableViewDelegate, UITableViewDataSource>
+@interface LATokenField () <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     CGRect _frame; // used to save state before displaying completion view
     UIView * _superview; // used to save state before displaying completion view
@@ -23,8 +23,7 @@
     LATokenFieldCell * _selectedTokenFieldCell;
     
     UILongPressGestureRecognizer * _longPressGestureRecognizer;
-    LATokenFieldCell * _longPressTokenFieldCell;
-    CGPoint _longPressLocationDelta;
+    CGPoint _longPressGestureHitOffset;
 }
 
 @property(nonatomic, retain) NSMutableArray * tokenFieldCells;
@@ -40,10 +39,6 @@
 
 - (void)addTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
 - (void)removeTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
-
-- (void)selectTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
-- (void)unselectTokenFieldCell:(LATokenFieldCell *)tokenFieldCell;
-- (void)removeSelectedTokenFieldCell;
 
 - (void)updateCompletionViewIfNeeded;
 - (void)showCompletionView;

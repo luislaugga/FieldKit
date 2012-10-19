@@ -16,31 +16,33 @@
 @synthesize representedObject = _representedObject;
 
 @synthesize scaled = _scaled;
-@synthesize unscaledBounds = _unscaledBounds;
+@synthesize size = _size;
 
 #define kTokenFieldCellInsetLeft 8
-#define kTokenFieldCellScaledInsetLeft 10
 #define kTokenFieldCellInsetTop 3
-#define kTokenFieldCellScaledInsetTop 4
+#define kTokenFieldCellStretchCap 12
+#define kTokenFieldCellOpacity 1.0
 
-#define kTokenFieldCellScaleAnimationDuration 0.15
-
-#define kTokenFieldCellUnscaledFactor 1.0
-#define kTokenFieldCellUnscaledCap 12
-#define kTokenFieldCellUnscaledAlpha 1.0
 #define kTokenFieldCellScaledFactor 1.2
-#define kTokenFieldCellScaledCap 15
-#define kTokenFieldCellScaledAlpha 0.9
+#define kTokenFieldCellScaledInsetLeft 10
+#define kTokenFieldCellScaledInsetTop 4
+#define kTokenFieldCellScaledStretchCap 15
+#define kTokenFieldCellScaledOpacity 0.9
+
+#define kTokenFieldCellScaledAnimationDuration 0.15
 
 #pragma mark -
 #pragma mark Initialization
 
 - (id)initWithText:(NSString *)text andFont:(UIFont *)font;
-{
-    CGSize textSize = [text sizeWithFont:font];
-    self = [super initWithFrame:CGRectMake(0, 0, kTokenFieldCellInsetLeft + textSize.width + kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop + textSize.height + kTokenFieldCellInsetTop)];
+{ 
+    self = [super init];
     if (self) 
     {
+        CGSize textSize = [text sizeWithFont:font];
+        _size = CGSizeMake(kTokenFieldCellInsetLeft + textSize.width + kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop + textSize.height + kTokenFieldCellInsetTop);
+        
+        self.frame = CGRectMake(0, 0, _size.width, _size.height);
         self.selected = NO;
         
         self.text = text; // copy
@@ -48,13 +50,6 @@
         
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeRedraw; // drawRect: method invoked when the frame rectangle changes (ie. scaled = YES)
-        
-        _unscaledBounds = self.bounds;
-        _scaledBounds = CGRectApplyAffineTransform(_unscaledBounds, CGAffineTransformMakeScale(kTokenFieldCellScaledFactor, kTokenFieldCellScaledFactor));
-        _scaledBounds.size.width = floorf(_scaledBounds.size.width);
-        _scaledBounds.size.height = floorf(_scaledBounds.size.height);
-        
-        _scaledFont = [UIFont fontWithName:font.fontName size:floorf(font.pointSize*kTokenFieldCellScaledFactor)];
         
         self.representedObject = nil;
     }
@@ -88,42 +83,33 @@
     
     if(_scaled)
     {
-        self.bounds = _scaledBounds;
-        self.alpha = kTokenFieldCellScaledAlpha;
+        self.bounds = CGRectMake(0, 0, floorf(kTokenFieldCellScaledFactor*_size.width), floorf(kTokenFieldCellScaledFactor*_size.height));
+        self.alpha = kTokenFieldCellScaledOpacity;
     }
     else
     {
-        self.bounds = _unscaledBounds;
-        self.alpha = kTokenFieldCellUnscaledAlpha;
+        self.bounds = CGRectMake(0, 0, _size.width, _size.height);
+        self.alpha = kTokenFieldCellOpacity;
     }
-
-//    if(animated)
-//    {
-//        [UIView animateWithDuration:kTokenFieldCellScaleAnimationDuration animations:^{
-//            if(scaled)
-//            {
-//                _scaled = YES;
-//                [self setNeedsDisplay];
-//                self.bounds = _scaledBounds;
-//                self.alpha = kTokenFieldCellScaledAlpha;
-//            }
-//            else
-//            {
-//                self.bounds = _unscaledBounds;
-//                self.alpha = kTokenFieldCellUnscaledAlpha;
-//            }
-//        }
-//                         completion:^(BOOL finished){
-//            if(finished)
-//            {
-//                NSLog(@"finished");
-//                _scaled = scaled;
-//                [self setNeedsDisplay];
-//            }
-//        }];
-//    }
-//    else
-//    {
+    
+    if(animated)
+    {
+        if(scaled)
+            self.transform = CGAffineTransformMakeScale(1.0f/kTokenFieldCellScaledFactor, 1.0f/kTokenFieldCellScaledFactor);
+        else
+            self.transform = CGAffineTransformMakeScale(kTokenFieldCellScaledFactor, kTokenFieldCellScaledFactor);
+        
+        [UIView animateWithDuration:kTokenFieldCellScaledAnimationDuration delay:0
+                            options:(UIViewAnimationOptionCurveEaseInOut)
+                         animations:^{
+                             self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                         }
+                         completion:^(BOOL finished){
+                             if(finished)
+                                 self.transform = CGAffineTransformIdentity;
+                             self.frame = CGRectMake(floorf(self.frame.origin.x), floorf(self.frame.origin.y), floorf(self.frame.size.width), floorf(self.frame.size.height));
+                         }];
+    }
 }
 
 #pragma mark -
@@ -149,24 +135,29 @@
     if(self.scaled)
     {
         NSString * selectedScaledPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom-selected-scaled" ofType:@"png"];
-        backgroundImage = [[UIImage imageWithContentsOfFile:selectedScaledPath] stretchableImageWithLeftCapWidth:kTokenFieldCellScaledCap topCapHeight:kTokenFieldCellScaledCap];
+        backgroundImage = [[UIImage imageWithContentsOfFile:selectedScaledPath] stretchableImageWithLeftCapWidth:kTokenFieldCellScaledStretchCap topCapHeight:kTokenFieldCellScaledStretchCap];
+       
         textColor = [UIColor whiteColor];
-        textFont = _scaledFont;
+        textFont = [UIFont fontWithName:_font.fontName size:floorf(_font.pointSize*kTokenFieldCellScaledFactor)];
         textPoint = CGPointMake(kTokenFieldCellScaledInsetLeft, kTokenFieldCellScaledInsetTop);
-    }
-    else if(self.selected)
-    {
-        NSString * selectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom-selected" ofType:@"png"];
-        backgroundImage = [[UIImage imageWithContentsOfFile:selectedPath] stretchableImageWithLeftCapWidth:kTokenFieldCellUnscaledCap topCapHeight:kTokenFieldCellUnscaledCap];
-        textColor = [UIColor whiteColor];
-        textFont = _font;
-        textPoint = CGPointMake(kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop);
     }
     else
     {
-        NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom" ofType:@"png"];
-        backgroundImage = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:kTokenFieldCellUnscaledCap topCapHeight:kTokenFieldCellUnscaledCap];
-        textColor = [UIColor blackColor];
+        if(self.selected)
+        {
+            NSString * selectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom-selected" ofType:@"png"];
+            backgroundImage = [[UIImage imageWithContentsOfFile:selectedPath] stretchableImageWithLeftCapWidth:kTokenFieldCellStretchCap topCapHeight:kTokenFieldCellStretchCap];
+            
+            textColor = [UIColor whiteColor];
+        }
+        else
+        {
+            NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom" ofType:@"png"];
+            backgroundImage = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:kTokenFieldCellStretchCap topCapHeight:kTokenFieldCellStretchCap];
+            
+            textColor = [UIColor blackColor];
+        }
+        
         textFont = _font;
         textPoint = CGPointMake(kTokenFieldCellInsetLeft, kTokenFieldCellInsetTop);
     }
@@ -174,7 +165,7 @@
     // Draw background image
     [backgroundImage drawInRect:rect];
     
-    // Draw display string
+    // Draw text
     [textColor setFill];
     [_text drawAtPoint:textPoint withFont:textFont];
 }

@@ -30,6 +30,8 @@
 #define kLATokenFieldDefaultCompletionDelay 0.25
 #define kLATokenFieldDefaultCompletionAnimationDuration 0.4
 
+#define kLATokenFieldLayoutAnimationDuration 0.25
+
 #define kLATokenFieldCompletionCellLabelTag 394932
 
 #pragma mark -
@@ -67,7 +69,9 @@
         
         // Set up long press gesture recognizer
         _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+        _longPressGestureRecognizer.delegate = self;
         [self addGestureRecognizer:_longPressGestureRecognizer];
+        [_longPressGestureRecognizer release];
         
         // Register for keyboard notifications (needed to get keyboard's frame)
         [self registerForKeyboardNotifications];
@@ -83,7 +87,7 @@
     [self unregisterForKeyboardNotifications];
     
     // Release long press gesture recognizer
-    [_longPressGestureRecognizer release];
+    [self removeGestureRecognizer:_longPressGestureRecognizer];
     
     // Release objects
     self.tokenizingCharacterSet = nil;
@@ -147,7 +151,14 @@
     _selectedTokenFieldCell = selectedTokenFieldCell;
     
     if(_selectedTokenFieldCell)
+    {
         _selectedTokenFieldCell.selected = YES;
+        [_selectionView hideCaret];
+    }
+    else
+    {
+        [_selectionView showCaret];
+    }
 }
 
 #pragma mark -
@@ -155,44 +166,45 @@
 
 - (void)layoutSubviews
 {
-    PrettyLog;
-    
-    // Layout token field cells
-    const CGFloat offsetTolerance = _contentView.font.lineHeight*2;
-    CGPoint offset = CGPointMake(_inset.width, _inset.height); // start off with inset
-    CGFloat width = self.bounds.size.width;
-    for(LATokenFieldCell * tokenFieldCell in self.tokenFieldCells)
-    {
-        CGRect tokenFieldCellFrame = tokenFieldCell.frame;
-        CGRect tokenFieldCellBounds = tokenFieldCell.unscaledBounds;
+    [UIView animateWithDuration:kLATokenFieldLayoutAnimationDuration animations:^{
         
-        if(offset.x + tokenFieldCellBounds.size.width + offsetTolerance > width)
+        // Layout token field cells
+        const CGFloat offsetTolerance = _contentView.font.lineHeight*2;
+        CGPoint offset = CGPointMake(_inset.width, _inset.height); // start off with inset
+        CGFloat width = self.bounds.size.width;
+        for(LATokenFieldCell * tokenFieldCell in self.tokenFieldCells)
         {
-            offset.x = _inset.width; // reset left inset
-            offset.y += _contentView.font.lineHeight + _padding.height; // y padding
-        }
+            CGRect tokenFieldCellFrame = tokenFieldCell.frame;
+            
+            if(offset.x + tokenFieldCell.size.width + offsetTolerance > width)
+            {
+                offset.x = _inset.width; // reset left inset
+                offset.y += _contentView.font.lineHeight + _padding.height; // y padding
+            }
 
-        tokenFieldCellFrame.origin.x = offset.x;
-        tokenFieldCellFrame.origin.y = offset.y;
+            tokenFieldCellFrame.origin.x = offset.x;
+            tokenFieldCellFrame.origin.y = offset.y;
+            
+            if(tokenFieldCell.isScaled == NO)
+                tokenFieldCell.frame = tokenFieldCellFrame;
+            
+            offset.x += tokenFieldCell.size.width + _padding.width; // x padding
+        }
         
-        if(tokenFieldCell != _longPressTokenFieldCell)
-            tokenFieldCell.frame = tokenFieldCellFrame;
+        // Calculate content view frame
+        CGRect contentViewFrame = _contentView.frame;
+        contentViewFrame.origin.x = offset.x;
+        contentViewFrame.origin.y = offset.y + 2; // check with cell for insets...
+     
+        // Update content view
+        _contentView.frame = contentViewFrame;
+        //[_contentView updateContentIfNeeded];
         
-        offset.x += tokenFieldCellBounds.size.width + _padding.width; // x padding
-    }
+        // Update selection view
+        _selectionView.frame = _contentView.frame;
+        //[_selectionView updateSelectionIfNeeded];
     
-    // Calculate content view frame
-    CGRect contentViewFrame = _contentView.frame;
-    contentViewFrame.origin.x = offset.x;
-    contentViewFrame.origin.y = offset.y + 2; // check with cell for insets...
- 
-    // Update content view
-    _contentView.frame = contentViewFrame;
-    [_contentView updateContentIfNeeded];
-    
-    // Update selection view
-    _selectionView.frame = _contentView.frame;
-    [_selectionView updateSelectionIfNeeded];
+    }];
 }
 
 #pragma mark -
@@ -401,83 +413,86 @@
     }
 }
 
-- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    // Check long press gesture recognizer
+    if(gestureRecognizer == _longPressGestureRecognizer)
+    {
+        CGPoint longPressGestureLocation = [gestureRecognizer locationInView:self];
+        UIView * longPressGestureHitView = [self hitTest:longPressGestureLocation withEvent:nil];
+        
+        if([longPressGestureHitView isKindOfClass:[LATokenFieldCell class]])
+            return YES;
+    }
+    
+    return NO;
+}
+
+- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     PrettyLog;
     
-    CGPoint longPressLocation = [longPressGesture locationInView:self];
+    CGPoint longPressGestureLocation = [gestureRecognizer locationInView:self];
     
-    switch (longPressGesture.state) {
+    switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         {
-            UIView * longPressView = [self hitTest:longPressLocation withEvent:nil];
+            UIView * longPressGestureHitView = [self hitTest:longPressGestureLocation withEvent:nil];
             
-            if([longPressView isKindOfClass:[LATokenFieldCell class]])
-            {
-                _longPressTokenFieldCell = (LATokenFieldCell *)longPressView;
-                [_longPressTokenFieldCell setScaled:YES animated:YES];
+            self.selectedTokenFieldCell = (LATokenFieldCell *)longPressGestureHitView;
                 
-                [self bringSubviewToFront:_longPressTokenFieldCell];
+            [_selectedTokenFieldCell setScaled:YES animated:YES];
+            [self bringSubviewToFront:_selectedTokenFieldCell];
                 
-                _longPressLocationDelta = CGPointMake(floorf(_longPressTokenFieldCell.center.x - longPressLocation.x), floorf(_longPressTokenFieldCell.center.y - longPressLocation.y));
-            }
+            _longPressGestureHitOffset = CGPointMake(floorf(_selectedTokenFieldCell.center.x - longPressGestureLocation.x), floorf(_selectedTokenFieldCell.center.y - longPressGestureLocation.y));
         }
             break;
         case UIGestureRecognizerStateChanged:
         {
-            CGPoint center = CGPointMake(longPressLocation.x + _longPressLocationDelta.x, longPressLocation.y + _longPressLocationDelta.y);
-           
+            NSUInteger previousIndex = [_tokenFieldCells indexOfObject:_selectedTokenFieldCell];
+            
+            CGPoint center = CGPointMake(longPressGestureLocation.x + _longPressGestureHitOffset.x, longPressGestureLocation.y + _longPressGestureHitOffset.y);
             NSUInteger index = 0;
             
+            // Find the index where the token field cell with the new 'center' is now
             for(LATokenFieldCell * tokenFieldCell in _tokenFieldCells)
             {
-                // Check if _longPressTokenFieldCell is before tokenFieldCell 
+                // is before tokenFieldCell ?
                 if((center.y < tokenFieldCell.frame.origin.y) || (center.y < (tokenFieldCell.frame.origin.y+tokenFieldCell.frame.size.height) && center.x < tokenFieldCell.center.x))
                     break;
                 
                 ++index;
             }
             
-            NSUInteger currentIndex = [_tokenFieldCells indexOfObject:_longPressTokenFieldCell];
-            
-            
-            if(index < currentIndex || index > currentIndex + 1) // only change when needed
+            // Apply changes if the index changed
+            // Move from one index to another
+            if(index < previousIndex || index > previousIndex + 1)
             {
-                [_longPressTokenFieldCell retain];
-                [_tokenFieldCells removeObject:_longPressTokenFieldCell]; // remove before proceeding
+                [_selectedTokenFieldCell retain];
+                [_tokenFieldCells removeObject:_selectedTokenFieldCell]; 
                 
                 if(index < [_tokenFieldCells count])
-                    [_tokenFieldCells insertObject:_longPressTokenFieldCell atIndex:index];
+                    [_tokenFieldCells insertObject:_selectedTokenFieldCell atIndex:index]; // Place in the begining or middle
                 else
-                    [_tokenFieldCells addObject:_longPressTokenFieldCell];
+                    [_tokenFieldCells addObject:_selectedTokenFieldCell]; // Place at the end
                 
-                [_longPressTokenFieldCell release];
+                [_selectedTokenFieldCell release];
                 
-                [UIView animateWithDuration:0.15 animations:^{
-                    [self layoutSubviews];
-                } completion:^(BOOL finished) {
-                    if(finished)
-                    {
-                    }
-                }];
+                [self setNeedsLayout];
             }
             
-            _longPressTokenFieldCell.center = center;
+            // Update center of dragged token field cell
+            _selectedTokenFieldCell.center = center;
+            
+            // Prevent half-pixels (setting UIView center with odd size frame)
+            _selectedTokenFieldCell.frame = CGRectMake(floorf(_selectedTokenFieldCell.frame.origin.x), floorf(_selectedTokenFieldCell.frame.origin.y), _selectedTokenFieldCell.frame.size.width, _selectedTokenFieldCell.frame.size.height);
         }
             break;
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            [_longPressTokenFieldCell setScaled:NO animated:YES];
-            _longPressTokenFieldCell = nil;
-            
-            [UIView animateWithDuration:0.15 animations:^{
-                [self layoutSubviews];
-            } completion:^(BOOL finished) {
-                if(finished)
-                {
-                }
-            }];
+            [_selectedTokenFieldCell setScaled:NO animated:YES];
+            self.selectedTokenFieldCell = nil;
         }
             break;
         default:
