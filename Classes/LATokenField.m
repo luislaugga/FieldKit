@@ -25,7 +25,7 @@
 @dynamic delegate;
 
 #define kLATokenFieldDefaultInset CGSizeMake(4,6)
-#define kLATokenFieldDefaultPadding CGSizeMake(4,4)
+#define kLATokenFieldDefaultPadding CGSizeMake(4,16)
 #define kLATokenFieldDefaultTokenizers [NSCharacterSet characterSetWithCharactersInString:@"\n"]
 #define kLATokenFieldDefaultCompletionDelay 0.25
 #define kLATokenFieldDefaultCompletionAnimationDuration 0.4
@@ -164,8 +164,9 @@
     for(LATokenFieldCell * tokenFieldCell in self.tokenFieldCells)
     {
         CGRect tokenFieldCellFrame = tokenFieldCell.frame;
+        CGRect tokenFieldCellBounds = tokenFieldCell.unscaledBounds;
         
-        if(offset.x + tokenFieldCellFrame.size.width + offsetTolerance > width)
+        if(offset.x + tokenFieldCellBounds.size.width + offsetTolerance > width)
         {
             offset.x = _inset.width; // reset left inset
             offset.y += _contentView.font.lineHeight + _padding.height; // y padding
@@ -177,7 +178,7 @@
         if(tokenFieldCell != _longPressTokenFieldCell)
             tokenFieldCell.frame = tokenFieldCellFrame;
         
-        offset.x += tokenFieldCellFrame.size.width + _padding.width; // x padding
+        offset.x += tokenFieldCellBounds.size.width + _padding.width; // x padding
     }
     
     // Calculate content view frame
@@ -414,7 +415,7 @@
             if([longPressView isKindOfClass:[LATokenFieldCell class]])
             {
                 _longPressTokenFieldCell = (LATokenFieldCell *)longPressView;
-                _longPressTokenFieldCell.layer.opacity = 0.8;
+                [_longPressTokenFieldCell setScaled:YES animated:YES];
                 
                 [self bringSubviewToFront:_longPressTokenFieldCell];
                 
@@ -467,7 +468,7 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            _longPressTokenFieldCell.layer.opacity = 1.0;
+            [_longPressTokenFieldCell setScaled:NO animated:YES];
             _longPressTokenFieldCell = nil;
             
             [UIView animateWithDuration:0.15 animations:^{

@@ -21,13 +21,23 @@ typedef NSUInteger LATokenStyle;
     NSString * _text;
     
     id _representedObject;
+    
+    BOOL _scaled;
+    CGRect _unscaledBounds;
+    CGRect _scaledBounds;
+    UIFont * _scaledFont;
 }
-
-@property(nonatomic, retain) id representedObject;
 
 @property(nonatomic, copy) NSString * text;
 @property(nonatomic, assign) UIFont * font;
 
+@property(nonatomic, retain) id representedObject;
+
+@property(nonatomic, readonly, getter = isScaled) BOOL scaled;
+@property(nonatomic, readonly) CGRect unscaledBounds;
+
 - (id)initWithText:(NSString *)string andFont:(UIFont *)font;
+
+- (void)setScaled:(BOOL)scaled animated:(BOOL)animated;
 
 @end
