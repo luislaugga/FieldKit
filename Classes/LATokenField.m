@@ -65,6 +65,10 @@
         self.completionListView = completionListView;
         [completionListView release];
         
+        // Set up long press gesture recognizer
+        _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+        [self addGestureRecognizer:_longPressGestureRecognizer];
+        
         // Register for keyboard notifications (needed to get keyboard's frame)
         [self registerForKeyboardNotifications];
     }
@@ -77,6 +81,9 @@
     
     // Unregister for keyboard notifications
     [self unregisterForKeyboardNotifications];
+    
+    // Release long press gesture recognizer
+    [_longPressGestureRecognizer release];
     
     // Release objects
     self.tokenizingCharacterSet = nil;
@@ -166,7 +173,9 @@
 
         tokenFieldCellFrame.origin.x = offset.x;
         tokenFieldCellFrame.origin.y = offset.y;
-        tokenFieldCell.frame = tokenFieldCellFrame;
+        
+        if(tokenFieldCell != _longPressTokenFieldCell)
+            tokenFieldCell.frame = tokenFieldCellFrame;
         
         offset.x += tokenFieldCellFrame.size.width + _padding.width; // x padding
     }
@@ -175,9 +184,7 @@
     CGRect contentViewFrame = _contentView.frame;
     contentViewFrame.origin.x = offset.x;
     contentViewFrame.origin.y = offset.y + 2; // check with cell for insets...
-
-    NSLog(@"content view frame %f %f %f %f", contentViewFrame.origin.x, contentViewFrame.origin.y, contentViewFrame.size.width, contentViewFrame.size.height);
-    
+ 
     // Update content view
     _contentView.frame = contentViewFrame;
     [_contentView updateContentIfNeeded];
@@ -391,6 +398,91 @@
         
         self.selectedTokenFieldCell = tokenFieldCell;
     }
+}
+
+- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture
+{
+    PrettyLog;
+    
+    CGPoint longPressLocation = [longPressGesture locationInView:self];
+    
+    switch (longPressGesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            UIView * longPressView = [self hitTest:longPressLocation withEvent:nil];
+            
+            if([longPressView isKindOfClass:[LATokenFieldCell class]])
+            {
+                _longPressTokenFieldCell = (LATokenFieldCell *)longPressView;
+                _longPressTokenFieldCell.layer.opacity = 0.8;
+                
+                [self bringSubviewToFront:_longPressTokenFieldCell];
+                
+                _longPressLocationDelta = CGPointMake(floorf(_longPressTokenFieldCell.center.x - longPressLocation.x), floorf(_longPressTokenFieldCell.center.y - longPressLocation.y));
+            }
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            CGPoint center = CGPointMake(longPressLocation.x + _longPressLocationDelta.x, longPressLocation.y + _longPressLocationDelta.y);
+           
+            NSUInteger index = 0;
+            
+            for(LATokenFieldCell * tokenFieldCell in _tokenFieldCells)
+            {
+                // Check if _longPressTokenFieldCell is before tokenFieldCell 
+                if((center.y < tokenFieldCell.frame.origin.y) || (center.y < (tokenFieldCell.frame.origin.y+tokenFieldCell.frame.size.height) && center.x < tokenFieldCell.center.x))
+                    break;
+                
+                ++index;
+            }
+            
+            NSUInteger currentIndex = [_tokenFieldCells indexOfObject:_longPressTokenFieldCell];
+            
+            
+            if(index < currentIndex || index > currentIndex + 1) // only change when needed
+            {
+                [_longPressTokenFieldCell retain];
+                [_tokenFieldCells removeObject:_longPressTokenFieldCell]; // remove before proceeding
+                
+                if(index < [_tokenFieldCells count])
+                    [_tokenFieldCells insertObject:_longPressTokenFieldCell atIndex:index];
+                else
+                    [_tokenFieldCells addObject:_longPressTokenFieldCell];
+                
+                [_longPressTokenFieldCell release];
+                
+                [UIView animateWithDuration:0.15 animations:^{
+                    [self layoutSubviews];
+                } completion:^(BOOL finished) {
+                    if(finished)
+                    {
+                    }
+                }];
+            }
+            
+            _longPressTokenFieldCell.center = center;
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateCancelled:
+        {
+            _longPressTokenFieldCell.layer.opacity = 1.0;
+            _longPressTokenFieldCell = nil;
+            
+            [UIView animateWithDuration:0.15 animations:^{
+                [self layoutSubviews];
+            } completion:^(BOOL finished) {
+                if(finished)
+                {
+                }
+            }];
+        }
+            break;
+        default:
+            break;
+    }
+
 }
 
 #pragma mark -

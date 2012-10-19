@@ -133,14 +133,12 @@
 
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingString:(NSString *)editingString
 {
-    NSString * object = [[NSString alloc] initWithFormat:@"Represented Object"];
-    return [object autorelease];
+    return editingString;
 }
 
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingDictionary:(NSDictionary *)editingDictionary
 {
-    NSString * object = [[NSString alloc] initWithFormat:@"Represented Object"];
-    return [object autorelease];
+    return [editingDictionary objectForKey:LATokenFieldCompletionDictionaryText];
 }
 
 + (NSArray *)tokenFieldCompletions

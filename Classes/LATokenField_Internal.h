@@ -21,6 +21,10 @@
     UITableView * _completionListView;
     
     LATokenFieldCell * _selectedTokenFieldCell;
+    
+    UILongPressGestureRecognizer * _longPressGestureRecognizer;
+    LATokenFieldCell * _longPressTokenFieldCell;
+    CGPoint _longPressLocationDelta;
 }
 
 @property(nonatomic, retain) NSMutableArray * tokenFieldCells;
