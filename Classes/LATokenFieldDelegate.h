@@ -62,6 +62,15 @@ static const NSString * LATokenFieldCompletionDictionaryDetailText = @"2";
 - (NSString *)tokenField:(LATokenField *)tokenField displayStringForRepresentedObject:(id)representedObject;
 
 /*!
+ Allows the delegate to provide a LATokenFieldCell subclass for a specific represented object.
+ @param tokenField The token field that sent the message.
+ @param representedObject A represented object of the token field.
+ @return The LATokenFieldCell subclass to be used as a proxy for representedObject.
+ @discussion If you return nil or do not implement this method, then LATokenFieldCell will be used.
+ */
+- (LATokenFieldCell *)tokenField:(LATokenField *)tokenField cellForRepresentedObject:(id)representedObject;
+
+/*!
  @group Editing Token
  */
 

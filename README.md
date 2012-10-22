@@ -24,6 +24,8 @@ Requirements
 How to use FieldKit in your project
 -----------------------------------
 
+* Add CoreText.framework
+
 __Import Framework:__
 
 * -ObjC in "Other Linker Flags" (in order to load categories - TEMP)

@@ -115,17 +115,17 @@
 #pragma mark -
 #pragma mark UIControl
 
-- (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
-{
-    [super sendAction:action to:target forEvent:event];
-}
+//- (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
+//{
+//    [super sendAction:action to:target forEvent:event];
+//}
 
 #pragma mark -
 #pragma mark Drawing
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"rect %f %f %f %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    PrettyLog;
     
     UIImage * backgroundImage;
     UIColor * textColor;

@@ -343,7 +343,20 @@
     }
     
     // Create token field cell
-    LATokenFieldCell * tokenFieldCell = [[LATokenFieldCell alloc] initWithText:displayString andFont:_contentView.font];
+    LATokenFieldCell * tokenFieldCell;
+    
+    if(_delegate && [_delegate respondsToSelector:@selector(tokenField:cellForRepresentedObject:)])
+    {
+        tokenFieldCell = [self.delegate tokenField:self cellForRepresentedObject:representedObject];
+        tokenFieldCell.text = displayString;
+        tokenFieldCell.font = _contentView.font;
+    }
+    else
+    {
+        tokenFieldCell = [[LATokenFieldCell alloc] initWithText:displayString andFont:_contentView.font];
+    }
+    
+    // Assign represented object
     tokenFieldCell.representedObject = representedObject;
     
     // Setup token field cell actions

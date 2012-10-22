@@ -548,6 +548,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				VALID_ARCHS = "armv6 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -571,6 +572,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)_Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				VALID_ARCHS = "armv6 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -623,6 +625,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				VALID_ARCHS = "armv7 armv7s i386 armv6";
 			};
 			name = Debug;
 		};
@@ -630,6 +633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				VALID_ARCHS = "armv7 armv7s i386 armv6";
 			};
 			name = Release;
 		};
@@ -690,6 +694,7 @@
 				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -713,6 +718,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

@@ -131,6 +131,8 @@
     return [completionsForSubstring autorelease];
 }
 
+
+
 - (id)tokenField:(LATokenField *)tokenField representedObjectForEditingString:(NSString *)editingString
 {
     return editingString;

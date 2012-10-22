@@ -25,7 +25,6 @@ typedef NSUInteger LATokenStyle;
     BOOL _scaled;
     
     CGSize _size;
-    CGRect _unscaledBounds;
 }
 
 @property(nonatomic, copy) NSString * text;
