@@ -31,5 +31,7 @@
 
 @property(nonatomic, readwrite) BOOL editing;
 
+- (void)showSelectionView:(BOOL)visible;
+
 @end
 

@@ -16,11 +16,15 @@
 @synthesize tokenStyle = _tokenStyle;
 @synthesize tokenFieldCells = _tokenFieldCells;
 @dynamic representedObjects;
+
 @synthesize completionDelay = _completionDelay;
 @synthesize completionTimer = _completionTimer;
 @synthesize completionArray = _completionArray;
 @synthesize completionListView = _completionListView;
 @synthesize completionSuperview = _completionSuperview;
+
+@synthesize needsLayoutAnimated = _needsLayoutAnimated;
+
 @synthesize selectedTokenFieldCell = _selectedTokenFieldCell;
 @dynamic delegate;
 
@@ -145,6 +149,19 @@
 
 - (void)setSelectedTokenFieldCell:(LATokenFieldCell *)selectedTokenFieldCell
 {
+    // Tokenize whatever is left in the field...    
+    if([self.text length] > 0)
+    {
+        // Tokenize current text
+        [self tokenizeEditingString:self.text];
+        
+        // Clear text
+        self.text = @"";
+        
+        // Update completion view visibility
+        [self updateCompletionViewIfNeeded];
+    }
+    
     if(_selectedTokenFieldCell)
         _selectedTokenFieldCell.selected = NO;
     
@@ -153,20 +170,37 @@
     if(_selectedTokenFieldCell)
     {
         _selectedTokenFieldCell.selected = YES;
-        [_selectionView hideCaret];
+        [self showSelectionView:NO];
     }
     else
     {
-        [_selectionView showCaret];
+        [self showSelectionView:YES];
     }
 }
 
 #pragma mark -
 #pragma mark Layout
 
+- (void)setNeedsLayoutAnimated:(BOOL)needsLayoutAnimated
+{
+    // Set needs animated layout flag
+    _needsLayoutAnimated = needsLayoutAnimated;
+    
+    // Set needs layout
+    [self setNeedsLayout];
+}
+
 - (void)layoutSubviews
 {
-    [UIView animateWithDuration:kLATokenFieldLayoutAnimationDuration animations:^{
+    CGFloat layoutAnimationDuration = 0.0f;
+    
+    if(_needsLayoutAnimated)
+    {
+        layoutAnimationDuration = kLATokenFieldLayoutAnimationDuration;
+        self.needsLayoutAnimated = NO;
+    }
+    
+    [UIView animateWithDuration:layoutAnimationDuration animations:^{
         
         // Layout token field cells
         const CGFloat offsetTolerance = _contentView.font.lineHeight*2;
@@ -198,11 +232,9 @@
      
         // Update content view
         _contentView.frame = contentViewFrame;
-        //[_contentView updateContentIfNeeded];
         
         // Update selection view
         _selectionView.frame = _contentView.frame;
-        //[_selectionView updateSelectionIfNeeded];
     
     }];
 }
@@ -212,19 +244,6 @@
 
 - (void)setEditing:(BOOL)editing
 {
-    // Tokenize whatever is left in the field...
-    if([self.text length] > 0)
-    {
-        // Tokenize current text
-        [self tokenizeEditingString:self.text];
-        
-        // Clear text
-        self.text = @"";
-        
-        // Update completion view visibility
-        [self updateCompletionViewIfNeeded];
-    }
-    
     // Unselect any selected token field cell
     self.selectedTokenFieldCell = nil;
     
@@ -428,6 +447,8 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    PrettyLog;
+    
     // Check long press gesture recognizer
     if(gestureRecognizer == _longPressGestureRecognizer)
     {
@@ -491,7 +512,7 @@
                 
                 [_selectedTokenFieldCell release];
                 
-                [self setNeedsLayout];
+                [self setNeedsLayoutAnimated:YES];
             }
             
             // Update center of dragged token field cell

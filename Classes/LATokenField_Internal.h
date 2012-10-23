@@ -24,6 +24,8 @@
     
     UILongPressGestureRecognizer * _longPressGestureRecognizer;
     CGPoint _longPressGestureHitOffset;
+    
+    BOOL _needsLayoutAnimated;
 }
 
 @property(nonatomic, retain) NSMutableArray * tokenFieldCells;
@@ -31,6 +33,13 @@
 @property(nonatomic, retain) NSTimer * completionTimer;
 @property(nonatomic, retain) NSArray * completionArray;
 @property(nonatomic, retain) UITableView * completionListView;
+
+/*!
+ Will set _needsLayoutAnimated flag and wrap the layoutSubviews with UIView animation block
+ @discussion
+ Used for layout changes while dragging tokens
+ */
+@property(nonatomic, assign) BOOL needsLayoutAnimated;
 
 - (LATokenFieldCell *)tokenizeEditingString:(NSString *)editingString;
 - (LATokenFieldCell *)tokenizeEditingDictionary:(NSDictionary *)editingDictionary;

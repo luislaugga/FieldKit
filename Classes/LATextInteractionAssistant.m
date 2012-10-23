@@ -32,7 +32,7 @@
         UITapGestureRecognizer * singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidSingleTap:)];
         singleTapGesture.numberOfTapsRequired = 1;
         singleTapGesture.delegate = self;
-        [_selectingContainer.textContentView addGestureRecognizer:singleTapGesture];
+        [_selectingContainer addGestureRecognizer:singleTapGesture];
         self.singleTapGesture = singleTapGesture;
         [singleTapGesture release];
         
@@ -68,8 +68,7 @@
     if([_selectingContainer.responder isEditable])
     {
         // Make container's responder the first responder
-        if([_selectingContainer.responder isFirstResponder] == NO)
-            [_selectingContainer.responder becomeFirstResponder];
+        [_selectingContainer.responder becomeFirstResponder];
     
         // Send tap to selection view
         [_selectingContainer.textSelectionView setCaretSelectionForPoint:[singleTapGesture locationInView:_selectingContainer.textSelectionView]];
@@ -92,6 +91,8 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    PrettyLog;
+    
     if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
         return NO; // Only accept double-tap while editing
         
@@ -100,6 +101,11 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    PrettyLog;
+    
+    if([_selectingContainer.textContentView hitTest:[touch locationInView:_selectingContainer.textContentView] withEvent:nil] == NO)
+        return NO;
+    
     if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
         return NO; // Only accept double-tap while editing
     
@@ -108,6 +114,8 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+    PrettyLog;
+    
     return NO;
 }
 

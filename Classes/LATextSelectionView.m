@@ -59,7 +59,6 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
     PrettyLog;
     
     [self showCaret];
-    [self startCaretBlinkIfNeeded];
     
     _visible = YES;
 }
@@ -125,7 +124,6 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
         {
             [self hideRange];
             [self showCaret];
-            [self startCaretBlinkIfNeeded];
         }
         else
         {
@@ -318,8 +316,8 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
         [self setNeedsDisplay];            
     }
     
-    // Set caret view visible
-    _caretView.hidden = NO;
+    // Start blinking
+    [self startCaretBlinkIfNeeded];
 }
 
 - (void)hideCaret

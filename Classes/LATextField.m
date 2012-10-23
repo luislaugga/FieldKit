@@ -100,6 +100,17 @@
     _contentView.font = font;
 }
 
+- (void)showSelectionView:(BOOL)visible
+{
+    if(visible)
+    {
+        [self insertSubview:_selectionView aboveSubview:_contentView];
+        [_selectionView updateSelectionIfNeeded];
+    }
+    else
+        [_selectionView removeFromSuperview];
+}
+
 - (void)setEditing:(BOOL)editing
 {
     PrettyLog;
@@ -107,11 +118,7 @@
     if(_editing != editing)
     {    
         _editing = editing;
-        
-        if(_editing)
-            [self insertSubview:_selectionView aboveSubview:_contentView];
-        else
-            [_selectionView removeFromSuperview];
+        [self showSelectionView:YES];
     }
 }
 
