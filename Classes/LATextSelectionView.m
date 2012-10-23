@@ -56,7 +56,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 
 - (void)willMoveToSuperview:(UIView *)superview
 {
-    PrettyLog;
+    
     
     [self showCaret];
     
@@ -80,7 +80,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 
 - (void)setSelectionRange:(NSRange)selectionRange
 {
-    PrettyLog;
+    
     
     // Update if different
     if(_selectionRange.location != selectionRange.location || _selectionRange.length != selectionRange.length)
@@ -139,7 +139,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 
 - (void)setCaretSelectionForPoint:(CGPoint)point
 {
-    PrettyLog;
+    
     
     // Set selection location based on index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
@@ -148,7 +148,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 
 - (void)setWordSelectionForPoint:(CGPoint)point
 {
-    PrettyLog;
+    
     
     // Set selection location+length based on word that contains index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
@@ -243,7 +243,7 @@ static const NSTimeInterval LATextSelectionCaretBlinkRate = 0.5;
 
 - (void)replaceTextInRange:(NSRange)replacementRange withText:(NSString *)replacementText
 {
-    PrettyLog;
+    
     
     // Check replacementRange location against text boundaries
     if (replacementRange.location > [_selectingContainer.textContentView.text length])

@@ -22,7 +22,7 @@
     self = [super init];
     if(self)
     {
-        PrettyLog;
+        
         self.backgroundColor = [UIColor clearColor];
     }
     
@@ -81,7 +81,7 @@
 
 - (void)setRepresentedObject:(id)representedObject
 {
-    PrettyLog;
+    
     
     super.representedObject = representedObject;
     

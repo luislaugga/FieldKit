@@ -85,7 +85,7 @@
 
 - (void)dealloc
 {
-    PrettyLog;
+    
     
     // Unregister for keyboard notifications
     [self unregisterForKeyboardNotifications];
@@ -434,7 +434,7 @@
 
 - (void)tokenFieldCellDidTouchUpInside:(LATokenFieldCell *)tokenFieldCell
 {
-    PrettyLog;
+    
     
     if(self.isEditable)
     {
@@ -447,7 +447,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    PrettyLog;
+    
     
     // Check long press gesture recognizer
     if(gestureRecognizer == _longPressGestureRecognizer)
@@ -464,7 +464,7 @@
 
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    PrettyLog;
+    
     
     CGPoint longPressGestureLocation = [gestureRecognizer locationInView:self];
     

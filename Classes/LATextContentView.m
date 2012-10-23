@@ -57,7 +57,7 @@
 
 - (void)setText:(NSString *)text
 {
-    PrettyLog;
+    
     
     if (_text == text) 
         return;
@@ -128,7 +128,7 @@
 
 - (void)updateContentIfNeeded
 {
-    PrettyLog;
+    
       
     [self clearPreviouslyCachedInformation];
     

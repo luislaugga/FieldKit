@@ -54,7 +54,7 @@
 
 - (void)dealloc
 {
-    PrettyLog;
+    
     
     // Clean up
     [_interactionAssistant release];
@@ -113,7 +113,7 @@
 
 - (void)setEditing:(BOOL)editing
 {
-    PrettyLog;
+    
     
     if(_editing != editing)
     {    
@@ -124,7 +124,7 @@
 
 - (void)setEditable:(BOOL)editable
 {
-    PrettyLog;
+    
     
     _editable = editable;
     
@@ -144,7 +144,7 @@
 
 - (BOOL)resignFirstResponder
 {
-    PrettyLog;
+    
     
     self.editing = NO;
     
@@ -154,7 +154,7 @@
 
 - (BOOL)becomeFirstResponder
 {
-    PrettyLog;
+    
     
     self.editing = YES;
     
@@ -181,7 +181,7 @@
 
 - (void)layoutSubviews
 {
-    PrettyLog;
+    
     
     // Update content view
     [_contentView setFrame:self.bounds];

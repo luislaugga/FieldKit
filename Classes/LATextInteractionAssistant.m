@@ -62,7 +62,7 @@
 
 - (void)userDidSingleTap:(UITapGestureRecognizer *)singleTapGesture
 {
-    PrettyLog;
+    
     
     // Proceed if responder is editable
     if([_selectingContainer.responder isEditable])
@@ -80,7 +80,7 @@
 
 - (void)userDidDoubleTap:(UITapGestureRecognizer *)doubleTapGesture
 {
-    PrettyLog;
+    
         
     // Send tap to selection view
     [_selectingContainer.textSelectionView setWordSelectionForPoint:[doubleTapGesture locationInView:_selectingContainer.textSelectionView]];
@@ -91,7 +91,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    PrettyLog;
+    
     
     if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
         return NO; // Only accept double-tap while editing
@@ -101,7 +101,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    PrettyLog;
+    
     
     if([_selectingContainer.textContentView hitTest:[touch locationInView:_selectingContainer.textContentView] withEvent:nil] == NO)
         return NO;
@@ -114,7 +114,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    PrettyLog;
+    
     
     return NO;
 }

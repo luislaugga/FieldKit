@@ -125,7 +125,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    PrettyLog;
+    
     
     UIImage * backgroundImage;
     UIColor * textColor;
