@@ -81,6 +81,10 @@ __FieldKit Overview:__
 
 A FieldKit overview example with all fields presented in a UIScrollView.
 
+__Colors:__
+
+A TokenField example, using UIColor instances as represented objects. The provided TokenFieldCell is subclassed. The background color and display string are derived from the UIColor...
+
 __Message Composer:__
 
 __Mail Composer:__

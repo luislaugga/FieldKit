@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LATextField.h"
-#import "LATokenField.h"
-#import "LAScrollField.h"
+#import "FKTextField.h"
+#import "FKTokenField.h"
+#import "FKScrollField.h"
 
-@interface ViewController : UIViewController <LATextFieldDelegate, LATokenFieldDelegate>
+@interface ViewController : UIViewController <FKTextFieldDelegate, FKTokenFieldDelegate>
 {
-    LATextField * _textField;
+    FKTextField * _textField;
     UITextView * _textView;
-    LATokenField * _tokenField;
+    FKTokenField * _tokenField;
     
     
     // Sample of names for token field

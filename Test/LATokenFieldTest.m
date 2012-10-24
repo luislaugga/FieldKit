@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Luis Laugga. All rights reserved.
 //
 
-#import "LATokenFieldTest.h"
+#import "FKTokenFieldTest.h"
 
 @implementation Test
 
@@ -14,7 +14,7 @@
 {
     [super setUp];
     
-    tokenField = [[LATokenField alloc] initWithFrame:CGRectZero];
+    tokenField = [[FKTokenField alloc] initWithFrame:CGRectZero];
 }
 
 - (void)tearDown

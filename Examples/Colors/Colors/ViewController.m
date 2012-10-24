@@ -16,7 +16,7 @@
 {
     [super viewDidLoad];
 
-    tokenField = [[LATokenField alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    tokenField = [[FKTokenField alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     tokenField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
     tokenField.font = [UIFont systemFontOfSize:15.0f];
     tokenField.completionSuperview = self.view;
@@ -32,9 +32,9 @@
 }
 
 #pragma mark -
-#pragma mark LATokenField delegate
+#pragma mark FKTokenField delegate
 
-- (id)tokenField:(LATokenField *)tokenField representedObjectForEditingString:(NSString *)editingString
+- (id)tokenField:(FKTokenField *)tokenField representedObjectForEditingString:(NSString *)editingString
 {
     SEL colorMethod = NSSelectorFromString([NSString stringWithFormat:@"%@Color", editingString]);
     
@@ -44,7 +44,7 @@
     return [UIColor clearColor];
 }
 
-- (LATokenFieldCell *)tokenField:(LATokenField *)tokenField cellForRepresentedObject:(id)representedObject
+- (FKTokenFieldCell *)tokenField:(FKTokenField *)tokenField cellForRepresentedObject:(id)representedObject
 {
     return [[UIColorTokenFieldCell alloc] init];
 }

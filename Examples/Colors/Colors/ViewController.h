@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LATokenField.h"
+#import "FKTokenField.h"
 
-@interface ViewController : UIViewController <LATokenFieldDelegate>
+@interface ViewController : UIViewController <FKTokenFieldDelegate>
 {
-    LATokenField * tokenField;
+    FKTokenField * tokenField;
 }
 
 @end

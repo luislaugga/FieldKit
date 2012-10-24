@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'LauggaKit' target in the 'LauggaKit' project
+// Prefix header for all source files of the 'FieldKit' target in the 'FieldKit' project
 //
 
 #import <Availability.h>

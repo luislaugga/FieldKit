@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Luis Laugga. All rights reserved.
 //
 
-#import "LATokenFieldCell.h"
+#import "FKTokenFieldCell.h"
 
-@interface UIColorTokenFieldCell : LATokenFieldCell
+@interface UIColorTokenFieldCell : FKTokenFieldCell
 {
     UIColor * _lighterColor;
     UIColor * _darkerColor;

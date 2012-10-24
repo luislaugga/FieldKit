@@ -8,10 +8,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "LATokenField.h"
+#import "FKTokenField.h"
 
-@interface Test : SenTestCase <LATokenFieldDelegate>
+@interface Test : SenTestCase <FKTokenFieldDelegate>
 {
-    LATokenField * tokenField;
+    FKTokenField * tokenField;
 }
 @end
