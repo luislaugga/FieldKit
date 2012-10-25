@@ -24,7 +24,7 @@
 
 /* Begin PBXBuildFile section */
 		A01C02C01620E286003DA76F /* FieldKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A01C02BF1620E286003DA76F /* FieldKit-Info.plist */; };
-		A01C02C71620E7A5003DA76F /* LATokenFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */; };
+		A01C02C71620E7A5003DA76F /* FKTokenFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C02C61620E7A5003DA76F /* FKTokenFieldTest.m */; };
 		A01C02C81620E7E7003DA76F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB6A160A0FF300E20441 /* CoreText.framework */; };
 		A01C02C91620E7E7003DA76F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */; };
 		A01C02CA1620E7E7003DA76F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01C02411620D9BA003DA76F /* CoreFoundation.framework */; };
@@ -95,8 +95,8 @@
 		A01C02411620D9BA003DA76F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A01C02941620E015003DA76F /* FieldKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FieldKit-Prefix.pch"; path = "Support/FieldKit-Prefix.pch"; sourceTree = "<group>"; };
 		A01C02BF1620E286003DA76F /* FieldKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FieldKit-Info.plist"; path = "Support/FieldKit-Info.plist"; sourceTree = "<group>"; };
-		A01C02C51620E7A5003DA76F /* LATokenFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LATokenFieldTest.h; sourceTree = "<group>"; };
-		A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LATokenFieldTest.m; sourceTree = "<group>"; };
+		A01C02C51620E7A5003DA76F /* FKTokenFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenFieldTest.h; sourceTree = "<group>"; };
+		A01C02C61620E7A5003DA76F /* FKTokenFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTokenFieldTest.m; sourceTree = "<group>"; };
 		A039A768161F8C08009E4C10 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A039A769161F8C08009E4C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		A06ACB291608B2C300E20441 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -172,8 +172,8 @@
 		A039A76D161F8C08009E4C10 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				A01C02C51620E7A5003DA76F /* LATokenFieldTest.h */,
-				A01C02C61620E7A5003DA76F /* LATokenFieldTest.m */,
+				A01C02C51620E7A5003DA76F /* FKTokenFieldTest.h */,
+				A01C02C61620E7A5003DA76F /* FKTokenFieldTest.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -500,7 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A01C02C71620E7A5003DA76F /* LATokenFieldTest.m in Sources */,
+				A01C02C71620E7A5003DA76F /* FKTokenFieldTest.m in Sources */,
 				A0F0BE2616388E050017AEC3 /* FKScrollField.m in Sources */,
 				A0F0BE2716388E050017AEC3 /* FKTextAppearance.m in Sources */,
 				A0F0BE2816388E050017AEC3 /* FKTextContentView.m in Sources */,

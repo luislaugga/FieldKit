@@ -1,6 +1,6 @@
 /*
  
- FKScrollField_Internal.h
+ FKTokenFieldTest.m
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -20,16 +20,27 @@
  
 */
 
-#import "FKScrollField.h"
+#import "FKTokenFieldTest.h"
 
-@interface FKScrollField () <UITextFieldDelegate, UITextViewDelegate>
+@implementation Test
 
-@property(nonatomic, readwrite,getter=isEditing) BOOL editing;
+- (void)setUp
+{
+    [super setUp];
+    
+    tokenField = [[FKTokenField alloc] initWithFrame:CGRectZero];
+}
 
-- (void)showTextView:(NSString *)text;
-- (void)showTextField:(NSString *)text;
+- (void)tearDown
+{   
+    [tokenField release];
+    
+    [super tearDown];
+}
 
-- (void)changeHeight:(CGFloat)height;
-- (void)didChangeHeight:(CGFloat)height;
+- (void)testSetRepresentedObjects
+{
+    STFail(@"Unit tests are not implemented yet in Test");
+}
 
 @end

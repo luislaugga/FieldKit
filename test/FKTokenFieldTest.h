@@ -1,6 +1,6 @@
 /*
  
- FKScrollField_Internal.h
+ FKTokenFieldTest.h
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -20,16 +20,12 @@
  
 */
 
-#import "FKScrollField.h"
+#import <SenTestingKit/SenTestingKit.h>
 
-@interface FKScrollField () <UITextFieldDelegate, UITextViewDelegate>
+#import "FKTokenField.h"
 
-@property(nonatomic, readwrite,getter=isEditing) BOOL editing;
-
-- (void)showTextView:(NSString *)text;
-- (void)showTextField:(NSString *)text;
-
-- (void)changeHeight:(CGFloat)height;
-- (void)didChangeHeight:(CGFloat)height;
-
+@interface Test : SenTestCase <FKTokenFieldDelegate>
+{
+    FKTokenField * tokenField;
+}
 @end
