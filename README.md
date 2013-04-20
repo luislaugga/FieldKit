@@ -6,9 +6,9 @@ Introduction
 
 FieldKit contains a set of custom text fields for iOS:
 
-* *LATextField* is similar to UITextField
-* *LATokenField* is similar to NSTokenField in AppKit but adapted to iOS/Touch Interaction
-* *LAScrollField* adds multiple lines and scrolling to *LATextField*
+* *FKTextField* is similar to UITextField
+* *FKTokenField* is similar to NSTokenField in AppKit but adapted to iOS/Touch Interaction
+* *FKScrollField* adds multiple lines and scrolling to *FKTextField*
 
 Requirements
 -------------
@@ -42,19 +42,19 @@ Overview
 
 FieldKit doesn't subclass the text fields provided by UIKit. The text input, selection and manipulation is implemented from scratch. They conform to UITextInput...
 
-__LATextField:__
+__FKTextField:__
 
 * Prefix label (optional)
 * Placeholder (optional)
 * Single line
 
-__LATokenField:__
+__FKTokenField:__
 
 * Token view cells (UIControl)
 * Object <-> token representation
 * Possible applications: Could be used to pick values from predefined list (ie. address book, tags, keywords, email adresses, ...)
 
-__LAScrollField:__
+__FKScrollField:__
 
 * Multiple lines
 * Ability to expand frame beyond initial frame

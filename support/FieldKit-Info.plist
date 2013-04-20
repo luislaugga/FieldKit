@@ -17,10 +17,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>fieldkit-0.0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.1-16-gb0e05c9 (Debug)</string>
+	<string>fieldkit-0.0.1-1-gfb6728e (Debug)</string>
 </dict>
 </plist>
