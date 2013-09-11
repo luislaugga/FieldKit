@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A07AD46817E07E9900A3F735 /* libFieldKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A07AD46317E07E2700A3F735 /* libFieldKit.a */; };
 		A08F68BC1635F83A00130C8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F68BB1635F83A00130C8C /* UIKit.framework */; };
 		A08F68BE1635F83A00130C8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F68BD1635F83A00130C8C /* Foundation.framework */; };
 		A08F68C01635F83A00130C8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F68BF1635F83A00130C8C /* CoreGraphics.framework */; };
@@ -21,18 +22,41 @@
 		A08F68DB1635F83B00130C8C /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08F68D91635F83B00130C8C /* ViewController_iPad.xib */; };
 		A08F690E1635F9BD00130C8C /* UIColorTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A08F690D1635F9BD00130C8C /* UIColorTokenFieldCell.m */; };
 		A08F69101635FCF700130C8C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F690F1635FCF700130C8C /* CoreText.framework */; };
-		A0F30462163895C200D8F09D /* FKScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F30445163895C200D8F09D /* FKScrollField.m */; };
-		A0F30463163895C200D8F09D /* FKTextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F3044A163895C200D8F09D /* FKTextAppearance.m */; };
-		A0F30464163895C200D8F09D /* FKTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F3044C163895C200D8F09D /* FKTextContentView.m */; };
-		A0F30465163895C200D8F09D /* FKTextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F3044F163895C200D8F09D /* FKTextField+UITextInput.m */; };
-		A0F30466163895C200D8F09D /* FKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F30451163895C200D8F09D /* FKTextField.m */; };
-		A0F30467163895C200D8F09D /* FKTextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F30455163895C200D8F09D /* FKTextInteractionAssistant.m */; };
-		A0F30468163895C200D8F09D /* FKTextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F30459163895C200D8F09D /* FKTextSelectionView.m */; };
-		A0F30469163895C200D8F09D /* FKTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F3045D163895C200D8F09D /* FKTokenField.m */; };
-		A0F3046A163895C200D8F09D /* FKTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F30460163895C200D8F09D /* FKTokenFieldCell.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A07AD46017E07E2700A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A039A768161F8C08009E4C10;
+			remoteInfo = Test;
+		};
+		A07AD46217E07E2700A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A01C02121620D8B4003DA76F;
+			remoteInfo = "Static Library";
+		};
+		A07AD46417E07E2700A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A01C02401620D9BA003DA76F;
+			remoteInfo = "Resources Bundle";
+		};
+		A07AD46617E07E3200A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A01C02111620D8B4003DA76F;
+			remoteInfo = "Static Library";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FieldKit.xcodeproj; path = ../../../FieldKit.xcodeproj; sourceTree = "<group>"; };
 		A08F68B71635F83A00130C8C /* Colors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A08F68BB1635F83A00130C8C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A08F68BD1635F83A00130C8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,34 +77,6 @@
 		A08F690C1635F9BD00130C8C /* UIColorTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorTokenFieldCell.h; sourceTree = "<group>"; };
 		A08F690D1635F9BD00130C8C /* UIColorTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTokenFieldCell.m; sourceTree = "<group>"; };
 		A08F690F1635FCF700130C8C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		A0F30444163895C200D8F09D /* FKScrollField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollField.h; sourceTree = "<group>"; };
-		A0F30445163895C200D8F09D /* FKScrollField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKScrollField.m; sourceTree = "<group>"; };
-		A0F30446163895C200D8F09D /* FKScrollField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollField_Internal.h; sourceTree = "<group>"; };
-		A0F30447163895C200D8F09D /* FKScrollFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollFieldDelegate.h; sourceTree = "<group>"; };
-		A0F30449163895C200D8F09D /* FKTextAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextAppearance.h; sourceTree = "<group>"; };
-		A0F3044A163895C200D8F09D /* FKTextAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextAppearance.m; sourceTree = "<group>"; };
-		A0F3044B163895C200D8F09D /* FKTextContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextContentView.h; sourceTree = "<group>"; };
-		A0F3044C163895C200D8F09D /* FKTextContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextContentView.m; sourceTree = "<group>"; };
-		A0F3044D163895C200D8F09D /* FKTextContentView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextContentView_Internal.h; sourceTree = "<group>"; };
-		A0F3044E163895C200D8F09D /* FKTextField+UITextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FKTextField+UITextInput.h"; sourceTree = "<group>"; };
-		A0F3044F163895C200D8F09D /* FKTextField+UITextInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FKTextField+UITextInput.m"; sourceTree = "<group>"; };
-		A0F30450163895C200D8F09D /* FKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextField.h; sourceTree = "<group>"; };
-		A0F30451163895C200D8F09D /* FKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextField.m; sourceTree = "<group>"; };
-		A0F30452163895C200D8F09D /* FKTextField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextField_Internal.h; sourceTree = "<group>"; };
-		A0F30453163895C200D8F09D /* FKTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextFieldDelegate.h; sourceTree = "<group>"; };
-		A0F30454163895C200D8F09D /* FKTextInteractionAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextInteractionAssistant.h; sourceTree = "<group>"; };
-		A0F30455163895C200D8F09D /* FKTextInteractionAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextInteractionAssistant.m; sourceTree = "<group>"; };
-		A0F30456163895C200D8F09D /* FKTextInteractionAssistant_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextInteractionAssistant_Internal.h; sourceTree = "<group>"; };
-		A0F30457163895C200D8F09D /* FKTextSelecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextSelecting.h; sourceTree = "<group>"; };
-		A0F30458163895C200D8F09D /* FKTextSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextSelectionView.h; sourceTree = "<group>"; };
-		A0F30459163895C200D8F09D /* FKTextSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextSelectionView.m; sourceTree = "<group>"; };
-		A0F3045A163895C200D8F09D /* FKTextSelectionView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextSelectionView_Internal.h; sourceTree = "<group>"; };
-		A0F3045C163895C200D8F09D /* FKTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenField.h; sourceTree = "<group>"; };
-		A0F3045D163895C200D8F09D /* FKTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTokenField.m; sourceTree = "<group>"; };
-		A0F3045E163895C200D8F09D /* FKTokenField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenField_Internal.h; sourceTree = "<group>"; };
-		A0F3045F163895C200D8F09D /* FKTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenFieldCell.h; sourceTree = "<group>"; };
-		A0F30460163895C200D8F09D /* FKTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTokenFieldCell.m; sourceTree = "<group>"; };
-		A0F30461163895C200D8F09D /* FKTokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenFieldDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07AD46817E07E9900A3F735 /* libFieldKit.a in Frameworks */,
 				A08F69101635FCF700130C8C /* CoreText.framework in Frameworks */,
 				A08F68BC1635F83A00130C8C /* UIKit.framework in Frameworks */,
 				A08F68BE1635F83A00130C8C /* Foundation.framework in Frameworks */,
@@ -98,11 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A07AD45A17E07E2700A3F735 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A07AD46117E07E2700A3F735 /* Test.octest */,
+				A07AD46317E07E2700A3F735 /* libFieldKit.a */,
+				A07AD46517E07E2700A3F735 /* FieldKit.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A08F68AC1635F83A00130C8C = {
 			isa = PBXGroup;
 			children = (
 				A08F68C11635F83A00130C8C /* Colors */,
-				A08F68E51635F8BF00130C8C /* FieldKit */,
+				A08F68E51635F8BF00130C8C /* Dependencies */,
 				A08F68BA1635F83A00130C8C /* Frameworks */,
 				A08F68B81635F83A00130C8C /* Products */,
 			);
@@ -157,67 +164,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A08F68E51635F8BF00130C8C /* FieldKit */ = {
+		A08F68E51635F8BF00130C8C /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				A0F30443163895C200D8F09D /* FKScrollField */,
-				A0F30448163895C200D8F09D /* FKTextField */,
-				A0F3045B163895C200D8F09D /* FKTokenField */,
+				A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */,
 			);
-			name = FieldKit;
+			name = Dependencies;
 			path = Colors;
-			sourceTree = "<group>";
-		};
-		A0F30443163895C200D8F09D /* FKScrollField */ = {
-			isa = PBXGroup;
-			children = (
-				A0F30444163895C200D8F09D /* FKScrollField.h */,
-				A0F30445163895C200D8F09D /* FKScrollField.m */,
-				A0F30446163895C200D8F09D /* FKScrollField_Internal.h */,
-				A0F30447163895C200D8F09D /* FKScrollFieldDelegate.h */,
-			);
-			name = FKScrollField;
-			path = ../../../src/FKScrollField;
-			sourceTree = "<group>";
-		};
-		A0F30448163895C200D8F09D /* FKTextField */ = {
-			isa = PBXGroup;
-			children = (
-				A0F30449163895C200D8F09D /* FKTextAppearance.h */,
-				A0F3044A163895C200D8F09D /* FKTextAppearance.m */,
-				A0F3044B163895C200D8F09D /* FKTextContentView.h */,
-				A0F3044C163895C200D8F09D /* FKTextContentView.m */,
-				A0F3044D163895C200D8F09D /* FKTextContentView_Internal.h */,
-				A0F3044E163895C200D8F09D /* FKTextField+UITextInput.h */,
-				A0F3044F163895C200D8F09D /* FKTextField+UITextInput.m */,
-				A0F30450163895C200D8F09D /* FKTextField.h */,
-				A0F30451163895C200D8F09D /* FKTextField.m */,
-				A0F30452163895C200D8F09D /* FKTextField_Internal.h */,
-				A0F30453163895C200D8F09D /* FKTextFieldDelegate.h */,
-				A0F30454163895C200D8F09D /* FKTextInteractionAssistant.h */,
-				A0F30455163895C200D8F09D /* FKTextInteractionAssistant.m */,
-				A0F30456163895C200D8F09D /* FKTextInteractionAssistant_Internal.h */,
-				A0F30457163895C200D8F09D /* FKTextSelecting.h */,
-				A0F30458163895C200D8F09D /* FKTextSelectionView.h */,
-				A0F30459163895C200D8F09D /* FKTextSelectionView.m */,
-				A0F3045A163895C200D8F09D /* FKTextSelectionView_Internal.h */,
-			);
-			name = FKTextField;
-			path = ../../../src/FKTextField;
-			sourceTree = "<group>";
-		};
-		A0F3045B163895C200D8F09D /* FKTokenField */ = {
-			isa = PBXGroup;
-			children = (
-				A0F3045C163895C200D8F09D /* FKTokenField.h */,
-				A0F3045D163895C200D8F09D /* FKTokenField.m */,
-				A0F3045E163895C200D8F09D /* FKTokenField_Internal.h */,
-				A0F3045F163895C200D8F09D /* FKTokenFieldCell.h */,
-				A0F30460163895C200D8F09D /* FKTokenFieldCell.m */,
-				A0F30461163895C200D8F09D /* FKTokenFieldDelegate.h */,
-			);
-			name = FKTokenField;
-			path = ../../../src/FKTokenField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +187,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A07AD46717E07E3200A3F735 /* PBXTargetDependency */,
 			);
 			name = Colors;
 			productName = Colors;
@@ -259,12 +213,42 @@
 			mainGroup = A08F68AC1635F83A00130C8C;
 			productRefGroup = A08F68B81635F83A00130C8C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A07AD45A17E07E2700A3F735 /* Products */;
+					ProjectRef = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A08F68B61635F83A00130C8C /* Colors */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A07AD46117E07E2700A3F735 /* Test.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Test.octest;
+			remoteRef = A07AD46017E07E2700A3F735 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07AD46317E07E2700A3F735 /* libFieldKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFieldKit.a;
+			remoteRef = A07AD46217E07E2700A3F735 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07AD46517E07E2700A3F735 /* FieldKit.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FieldKit.bundle;
+			remoteRef = A07AD46417E07E2700A3F735 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A08F68B51635F83A00130C8C /* Resources */ = {
@@ -291,19 +275,18 @@
 				A08F68CC1635F83B00130C8C /* AppDelegate.m in Sources */,
 				A08F68D51635F83B00130C8C /* ViewController.m in Sources */,
 				A08F690E1635F9BD00130C8C /* UIColorTokenFieldCell.m in Sources */,
-				A0F30462163895C200D8F09D /* FKScrollField.m in Sources */,
-				A0F30463163895C200D8F09D /* FKTextAppearance.m in Sources */,
-				A0F30464163895C200D8F09D /* FKTextContentView.m in Sources */,
-				A0F30465163895C200D8F09D /* FKTextField+UITextInput.m in Sources */,
-				A0F30466163895C200D8F09D /* FKTextField.m in Sources */,
-				A0F30467163895C200D8F09D /* FKTextInteractionAssistant.m in Sources */,
-				A0F30468163895C200D8F09D /* FKTextSelectionView.m in Sources */,
-				A0F30469163895C200D8F09D /* FKTokenField.m in Sources */,
-				A0F3046A163895C200D8F09D /* FKTokenFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A07AD46717E07E3200A3F735 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Static Library";
+			targetProxy = A07AD46617E07E3200A3F735 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A08F68C41635F83B00130C8C /* InfoPlist.strings */ = {

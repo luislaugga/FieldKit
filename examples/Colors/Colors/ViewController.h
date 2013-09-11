@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FKTokenField.h"
+#import <FieldKit/FieldKit.h>
 
 @interface ViewController : UIViewController <FKTokenFieldDelegate>
 {

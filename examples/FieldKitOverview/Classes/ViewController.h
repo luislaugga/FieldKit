@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FKTextField.h"
-#import "FKTokenField.h"
-#import "FKScrollField.h"
+#import <FieldKit/FieldKit.h>
 
 @interface ViewController : UIViewController <FKTextFieldDelegate, FKTokenFieldDelegate>
 {

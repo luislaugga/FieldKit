@@ -11,23 +11,53 @@
 		A06ACB2C1608B2C300E20441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2B1608B2C300E20441 /* Foundation.framework */; };
 		A06ACB2E1608B2C300E20441 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */; };
 		A06ACB6B160A0FF300E20441 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06ACB6A160A0FF300E20441 /* CoreText.framework */; };
+		A07AD48517E07FC400A3F735 /* libFieldKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A07AD47E17E07FA600A3F735 /* libFieldKit.a */; };
+		A07AD48617E07FE400A3F735 /* FieldKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A07AD48017E07FA600A3F735 /* FieldKit.bundle */; };
 		A0F1A4FB16302EFC002E6BE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F1A4F816302EFC002E6BE5 /* AppDelegate.m */; };
 		A0F1A4FC16302EFC002E6BE5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F1A4FA16302EFC002E6BE5 /* ViewController.m */; };
 		A0F1A4FF16302F12002E6BE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F1A4FD16302F12002E6BE5 /* main.m */; };
 		A0F1A50816302F3B002E6BE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0F1A50216302F3B002E6BE5 /* InfoPlist.strings */; };
 		A0F1A50916302F3B002E6BE5 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0F1A50416302F3B002E6BE5 /* ViewController_iPad.xib */; };
 		A0F1A50A16302F3B002E6BE5 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0F1A50616302F3B002E6BE5 /* ViewController_iPhone.xib */; };
-		A0F1A5641630302D002E6BE5 /* FieldKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A0F1A5631630302D002E6BE5 /* FieldKit.bundle */; };
-		A0F304BA1638984500D8F09D /* FKScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F3049D1638984500D8F09D /* FKScrollField.m */; };
-		A0F304BB1638984500D8F09D /* FKTextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304A21638984500D8F09D /* FKTextAppearance.m */; };
-		A0F304BC1638984500D8F09D /* FKTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304A41638984500D8F09D /* FKTextContentView.m */; };
-		A0F304BD1638984500D8F09D /* FKTextField+UITextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304A71638984500D8F09D /* FKTextField+UITextInput.m */; };
-		A0F304BE1638984500D8F09D /* FKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304A91638984500D8F09D /* FKTextField.m */; };
-		A0F304BF1638984500D8F09D /* FKTextInteractionAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304AD1638984500D8F09D /* FKTextInteractionAssistant.m */; };
-		A0F304C01638984500D8F09D /* FKTextSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304B11638984500D8F09D /* FKTextSelectionView.m */; };
-		A0F304C11638984500D8F09D /* FKTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304B51638984500D8F09D /* FKTokenField.m */; };
-		A0F304C21638984500D8F09D /* FKTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F304B81638984500D8F09D /* FKTokenFieldCell.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A07AD47B17E07FA600A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A039A768161F8C08009E4C10;
+			remoteInfo = Test;
+		};
+		A07AD47D17E07FA600A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A01C02121620D8B4003DA76F;
+			remoteInfo = "Static Library";
+		};
+		A07AD47F17E07FA600A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A01C02401620D9BA003DA76F;
+			remoteInfo = "Resources Bundle";
+		};
+		A07AD48117E07FBB00A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A01C02111620D8B4003DA76F;
+			remoteInfo = "Static Library";
+		};
+		A07AD48317E07FBE00A3F735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A01C023F1620D9BA003DA76F;
+			remoteInfo = "Resources Bundle";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A01C02411620D9BA003DA76F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -37,7 +67,7 @@
 		A06ACB2B1608B2C300E20441 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A06ACB2D1608B2C300E20441 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A06ACB6A160A0FF300E20441 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		A0F1A4A6163001DC002E6BE5 /* FieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FieldKit.framework; sourceTree = "<group>"; };
+		A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FieldKit.xcodeproj; path = ../../FieldKit.xcodeproj; sourceTree = "<group>"; };
 		A0F1A4F716302EFC002E6BE5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		A0F1A4F816302EFC002E6BE5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		A0F1A4F916302EFC002E6BE5 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Classes/ViewController.h; sourceTree = SOURCE_ROOT; };
@@ -46,37 +76,8 @@
 		A0F1A50316302F3B002E6BE5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		A0F1A50516302F3B002E6BE5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = SOURCE_ROOT; };
 		A0F1A50716302F3B002E6BE5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
-		A0F1A5631630302D002E6BE5 /* FieldKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FieldKit.bundle; path = ../../Resources/FieldKit.bundle; sourceTree = SOURCE_ROOT; };
 		A0F1A56516303A75002E6BE5 /* FieldKitOverview-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FieldKitOverview-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A0F1A56616303A75002E6BE5 /* FieldKitOverview-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FieldKitOverview-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		A0F3049C1638984500D8F09D /* FKScrollField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollField.h; sourceTree = "<group>"; };
-		A0F3049D1638984500D8F09D /* FKScrollField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKScrollField.m; sourceTree = "<group>"; };
-		A0F3049E1638984500D8F09D /* FKScrollField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollField_Internal.h; sourceTree = "<group>"; };
-		A0F3049F1638984500D8F09D /* FKScrollFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollFieldDelegate.h; sourceTree = "<group>"; };
-		A0F304A11638984500D8F09D /* FKTextAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextAppearance.h; sourceTree = "<group>"; };
-		A0F304A21638984500D8F09D /* FKTextAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextAppearance.m; sourceTree = "<group>"; };
-		A0F304A31638984500D8F09D /* FKTextContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextContentView.h; sourceTree = "<group>"; };
-		A0F304A41638984500D8F09D /* FKTextContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextContentView.m; sourceTree = "<group>"; };
-		A0F304A51638984500D8F09D /* FKTextContentView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextContentView_Internal.h; sourceTree = "<group>"; };
-		A0F304A61638984500D8F09D /* FKTextField+UITextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FKTextField+UITextInput.h"; sourceTree = "<group>"; };
-		A0F304A71638984500D8F09D /* FKTextField+UITextInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FKTextField+UITextInput.m"; sourceTree = "<group>"; };
-		A0F304A81638984500D8F09D /* FKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextField.h; sourceTree = "<group>"; };
-		A0F304A91638984500D8F09D /* FKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextField.m; sourceTree = "<group>"; };
-		A0F304AA1638984500D8F09D /* FKTextField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextField_Internal.h; sourceTree = "<group>"; };
-		A0F304AB1638984500D8F09D /* FKTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextFieldDelegate.h; sourceTree = "<group>"; };
-		A0F304AC1638984500D8F09D /* FKTextInteractionAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextInteractionAssistant.h; sourceTree = "<group>"; };
-		A0F304AD1638984500D8F09D /* FKTextInteractionAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextInteractionAssistant.m; sourceTree = "<group>"; };
-		A0F304AE1638984500D8F09D /* FKTextInteractionAssistant_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextInteractionAssistant_Internal.h; sourceTree = "<group>"; };
-		A0F304AF1638984500D8F09D /* FKTextSelecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextSelecting.h; sourceTree = "<group>"; };
-		A0F304B01638984500D8F09D /* FKTextSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextSelectionView.h; sourceTree = "<group>"; };
-		A0F304B11638984500D8F09D /* FKTextSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextSelectionView.m; sourceTree = "<group>"; };
-		A0F304B21638984500D8F09D /* FKTextSelectionView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextSelectionView_Internal.h; sourceTree = "<group>"; };
-		A0F304B41638984500D8F09D /* FKTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenField.h; sourceTree = "<group>"; };
-		A0F304B51638984500D8F09D /* FKTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTokenField.m; sourceTree = "<group>"; };
-		A0F304B61638984500D8F09D /* FKTokenField_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenField_Internal.h; sourceTree = "<group>"; };
-		A0F304B71638984500D8F09D /* FKTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenFieldCell.h; sourceTree = "<group>"; };
-		A0F304B81638984500D8F09D /* FKTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTokenFieldCell.m; sourceTree = "<group>"; };
-		A0F304B91638984500D8F09D /* FKTokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTokenFieldDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07AD48517E07FC400A3F735 /* libFieldKit.a in Frameworks */,
 				A06ACB6B160A0FF300E20441 /* CoreText.framework in Frameworks */,
 				A06ACB2A1608B2C300E20441 /* UIKit.framework in Frameworks */,
 				A06ACB2C1608B2C300E20441 /* Foundation.framework in Frameworks */,
@@ -100,6 +102,7 @@
 				A0F1A4F416302EC1002E6BE5 /* Classes */,
 				A0F1A4F516302ECA002E6BE5 /* Other Sources */,
 				A0F1A4F616302EE4002E6BE5 /* Resources */,
+				A07AD46917E07F1900A3F735 /* Dependencies */,
 				A06ACB281608B2C300E20441 /* Frameworks */,
 				A06ACB261608B2C300E20441 /* Products */,
 			);
@@ -116,7 +119,6 @@
 		A06ACB281608B2C300E20441 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0F1A4A6163001DC002E6BE5 /* FieldKit.framework */,
 				A06ACB6A160A0FF300E20441 /* CoreText.framework */,
 				A06ACB291608B2C300E20441 /* UIKit.framework */,
 				A06ACB2B1608B2C300E20441 /* Foundation.framework */,
@@ -127,6 +129,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A07AD46917E07F1900A3F735 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		A07AD47517E07FA600A3F735 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A07AD47C17E07FA600A3F735 /* Test.octest */,
+				A07AD47E17E07FA600A3F735 /* libFieldKit.a */,
+				A07AD48017E07FA600A3F735 /* FieldKit.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A0F1A4F416302EC1002E6BE5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +154,6 @@
 				A0F1A4F816302EFC002E6BE5 /* AppDelegate.m */,
 				A0F1A4F916302EFC002E6BE5 /* ViewController.h */,
 				A0F1A4FA16302EFC002E6BE5 /* ViewController.m */,
-				A0F304991638984500D8F09D /* FieldKit */,
 			);
 			name = Classes;
 			path = FieldKit;
@@ -157,71 +176,10 @@
 				A0F1A50216302F3B002E6BE5 /* InfoPlist.strings */,
 				A0F1A50416302F3B002E6BE5 /* ViewController_iPad.xib */,
 				A0F1A50616302F3B002E6BE5 /* ViewController_iPhone.xib */,
-				A0F1A5631630302D002E6BE5 /* FieldKit.bundle */,
 			);
 			name = Resources;
 			path = FieldKit;
 			sourceTree = SOURCE_ROOT;
-		};
-		A0F304991638984500D8F09D /* FieldKit */ = {
-			isa = PBXGroup;
-			children = (
-				A0F3049B1638984500D8F09D /* FKScrollField */,
-				A0F304A01638984500D8F09D /* FKTextField */,
-				A0F304B31638984500D8F09D /* FKTokenField */,
-			);
-			name = FieldKit;
-			path = ../../src;
-			sourceTree = SOURCE_ROOT;
-		};
-		A0F3049B1638984500D8F09D /* FKScrollField */ = {
-			isa = PBXGroup;
-			children = (
-				A0F3049C1638984500D8F09D /* FKScrollField.h */,
-				A0F3049D1638984500D8F09D /* FKScrollField.m */,
-				A0F3049E1638984500D8F09D /* FKScrollField_Internal.h */,
-				A0F3049F1638984500D8F09D /* FKScrollFieldDelegate.h */,
-			);
-			path = FKScrollField;
-			sourceTree = "<group>";
-		};
-		A0F304A01638984500D8F09D /* FKTextField */ = {
-			isa = PBXGroup;
-			children = (
-				A0F304A11638984500D8F09D /* FKTextAppearance.h */,
-				A0F304A21638984500D8F09D /* FKTextAppearance.m */,
-				A0F304A31638984500D8F09D /* FKTextContentView.h */,
-				A0F304A41638984500D8F09D /* FKTextContentView.m */,
-				A0F304A51638984500D8F09D /* FKTextContentView_Internal.h */,
-				A0F304A61638984500D8F09D /* FKTextField+UITextInput.h */,
-				A0F304A71638984500D8F09D /* FKTextField+UITextInput.m */,
-				A0F304A81638984500D8F09D /* FKTextField.h */,
-				A0F304A91638984500D8F09D /* FKTextField.m */,
-				A0F304AA1638984500D8F09D /* FKTextField_Internal.h */,
-				A0F304AB1638984500D8F09D /* FKTextFieldDelegate.h */,
-				A0F304AC1638984500D8F09D /* FKTextInteractionAssistant.h */,
-				A0F304AD1638984500D8F09D /* FKTextInteractionAssistant.m */,
-				A0F304AE1638984500D8F09D /* FKTextInteractionAssistant_Internal.h */,
-				A0F304AF1638984500D8F09D /* FKTextSelecting.h */,
-				A0F304B01638984500D8F09D /* FKTextSelectionView.h */,
-				A0F304B11638984500D8F09D /* FKTextSelectionView.m */,
-				A0F304B21638984500D8F09D /* FKTextSelectionView_Internal.h */,
-			);
-			path = FKTextField;
-			sourceTree = "<group>";
-		};
-		A0F304B31638984500D8F09D /* FKTokenField */ = {
-			isa = PBXGroup;
-			children = (
-				A0F304B41638984500D8F09D /* FKTokenField.h */,
-				A0F304B51638984500D8F09D /* FKTokenField.m */,
-				A0F304B61638984500D8F09D /* FKTokenField_Internal.h */,
-				A0F304B71638984500D8F09D /* FKTokenFieldCell.h */,
-				A0F304B81638984500D8F09D /* FKTokenFieldCell.m */,
-				A0F304B91638984500D8F09D /* FKTokenFieldDelegate.h */,
-			);
-			path = FKTokenField;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -237,6 +195,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				A07AD48417E07FBE00A3F735 /* PBXTargetDependency */,
+				A07AD48217E07FBB00A3F735 /* PBXTargetDependency */,
 			);
 			name = FieldKitOverview;
 			productName = LauggaKit;
@@ -262,6 +222,12 @@
 			mainGroup = A06ACB1A1608B2C200E20441;
 			productRefGroup = A06ACB261608B2C300E20441 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A07AD47517E07FA600A3F735 /* Products */;
+					ProjectRef = A07AD47417E07FA600A3F735 /* FieldKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A06ACB241608B2C300E20441 /* FieldKitOverview */,
@@ -269,15 +235,39 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		A07AD47C17E07FA600A3F735 /* Test.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Test.octest;
+			remoteRef = A07AD47B17E07FA600A3F735 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07AD47E17E07FA600A3F735 /* libFieldKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFieldKit.a;
+			remoteRef = A07AD47D17E07FA600A3F735 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07AD48017E07FA600A3F735 /* FieldKit.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FieldKit.bundle;
+			remoteRef = A07AD47F17E07FA600A3F735 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		A06ACB231608B2C300E20441 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07AD48617E07FE400A3F735 /* FieldKit.bundle in Resources */,
 				A0F1A50816302F3B002E6BE5 /* InfoPlist.strings in Resources */,
 				A0F1A50916302F3B002E6BE5 /* ViewController_iPad.xib in Resources */,
 				A0F1A50A16302F3B002E6BE5 /* ViewController_iPhone.xib in Resources */,
-				A0F1A5641630302D002E6BE5 /* FieldKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,19 +281,23 @@
 				A0F1A4FB16302EFC002E6BE5 /* AppDelegate.m in Sources */,
 				A0F1A4FC16302EFC002E6BE5 /* ViewController.m in Sources */,
 				A0F1A4FF16302F12002E6BE5 /* main.m in Sources */,
-				A0F304BA1638984500D8F09D /* FKScrollField.m in Sources */,
-				A0F304BB1638984500D8F09D /* FKTextAppearance.m in Sources */,
-				A0F304BC1638984500D8F09D /* FKTextContentView.m in Sources */,
-				A0F304BD1638984500D8F09D /* FKTextField+UITextInput.m in Sources */,
-				A0F304BE1638984500D8F09D /* FKTextField.m in Sources */,
-				A0F304BF1638984500D8F09D /* FKTextInteractionAssistant.m in Sources */,
-				A0F304C01638984500D8F09D /* FKTextSelectionView.m in Sources */,
-				A0F304C11638984500D8F09D /* FKTokenField.m in Sources */,
-				A0F304C21638984500D8F09D /* FKTokenFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A07AD48217E07FBB00A3F735 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Static Library";
+			targetProxy = A07AD48117E07FBB00A3F735 /* PBXContainerItemProxy */;
+		};
+		A07AD48417E07FBE00A3F735 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Resources Bundle";
+			targetProxy = A07AD48317E07FBE00A3F735 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A0F1A50216302F3B002E6BE5 /* InfoPlist.strings */ = {
