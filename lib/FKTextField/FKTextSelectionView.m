@@ -75,8 +75,6 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
 
 - (void)willMoveToSuperview:(UIView *)superview
 {
-    
-    
     [self showCaret];
     
     _visible = YES;
@@ -99,8 +97,6 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
 
 - (void)setSelectionRange:(NSRange)selectionRange
 {
-    
-    
     // Update if different
     if(_selectionRange.location != selectionRange.location || _selectionRange.length != selectionRange.length)
     {
@@ -158,17 +154,27 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
 
 - (void)setCaretSelectionForPoint:(CGPoint)point
 {
-    
-    
     // Set selection location based on index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     self.selectionRange = NSMakeRange(index, 0); // set location
 }
 
+- (void)setCaretSelectionForPoint:(CGPoint)point showMagnifier:(BOOL)showMagnifier
+{
+    // Set selection location based on index closest to point
+    NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
+    self.selectionRange = NSMakeRange(index, 0); // set location
+    
+    _magnify = showMagnifier;
+    
+    if(_magnify == NO)
+        [self hideLoupeMagnifier];
+    else
+        [self showLoupeMagnifier];
+}
+
 - (void)setWordSelectionForPoint:(CGPoint)point
 {
-    
-    
     // Set selection location+length based on word that contains index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     NSRange range = [_selectingContainer.textContentView textWordRangeForIndex:index]; // word range for closest index
@@ -262,8 +268,6 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
 
 - (void)replaceTextInRange:(NSRange)replacementRange withText:(NSString *)replacementText
 {
-    
-    
     // Check replacementRange location against text boundaries
     if (replacementRange.location > [_selectingContainer.textContentView.text length])
         return;
@@ -335,6 +339,9 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
         [self setNeedsDisplay];            
     }
     
+    // Add loupe magnifier view
+    [self showLoupeMagnifier];
+    
     // Start blinking
     [self startCaretBlinkIfNeeded];
 }
@@ -344,6 +351,9 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     // Remove caret view
     [_caretView removeFromSuperview];
     [self setNeedsDisplay];
+    
+    // Hide loupe magnifier view
+    [self hideLoupeMagnifier];
 }
 
 - (void)updateCaret
@@ -351,6 +361,9 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     // Update caret view frame
     CGRect textRect = [_selectingContainer.textContentView textOffsetRectForIndex:_selectionRange.location];
     _caretView.frame = [FKTextAppearance selectionCaretFrameForTextRect:textRect];
+    
+    // Update loupe magnifier view
+    [self updateLoupeMagnifier];
 }
 
 - (void)startCaretBlinkIfNeeded // setup caret timer
@@ -424,6 +437,50 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     if(_rangeView != nil)
     {
         _rangeView.rects = [_selectingContainer.textContentView textRectsForRange:_selectionRange];
+    }
+}
+
+#pragma mark -
+#pragma mark Loupe Magnifier view
+
+- (void)showLoupeMagnifier
+{
+    if(_loupeMagnifierView == nil)
+    {
+        _loupeMagnifierView = [[FKTextLoupeMagnifierView alloc] init];
+        UIWindow * window = [[[UIApplication sharedApplication] windows] firstObject];
+        if(window)
+            [window addSubview:_loupeMagnifierView];
+        else
+            [self addSubview:_loupeMagnifierView];
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)hideLoupeMagnifier
+{
+    if(_loupeMagnifierView != nil)
+    {
+        [_loupeMagnifierView removeFromSuperview];
+        [_loupeMagnifierView release];
+        _loupeMagnifierView = nil;
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)updateLoupeMagnifier
+{
+    if(_loupeMagnifierView != nil)
+    {
+        if(_magnify)
+        {
+            _loupeMagnifierView.hidden = NO;
+            _loupeMagnifierView.position = _caretView.frame.origin;
+        }
+        else
+        {
+            _loupeMagnifierView.hidden = YES;
+        }
     }
 }
 

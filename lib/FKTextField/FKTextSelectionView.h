@@ -29,6 +29,8 @@
 
 #import "FKTextSelecting.h"
 
+#import "FKTextLoupeMagnifierView.h"
+
 @class FKTextRangeView;
 
 /*!
@@ -45,9 +47,11 @@
     UIView * _caretView;
     
     FKTextRangeView * _rangeView;
+    FKTextLoupeMagnifierView * _loupeMagnifierView;
     
     BOOL _caretBlinks;
     BOOL _visible;
+    BOOL _magnify;
 }
 
 @property(nonatomic, assign) NSRange selectionRange;
@@ -64,11 +68,15 @@
  */
 - (void)updateSelectionIfNeeded;
 
-
 /*!
  Modify selection: move caret view to index closest to a given point
  */
 - (void)setCaretSelectionForPoint:(CGPoint)point;
+
+/*!
+ Modify selection: move caret view to index closest to a given point and show or hide magnifier view
+ */
+- (void)setCaretSelectionForPoint:(CGPoint)point showMagnifier:(BOOL)showMagnifier;
 
 /*!
  Modify selection: set range view to word closest to a given point

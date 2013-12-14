@@ -62,6 +62,12 @@
         [_selectingContainer addGestureRecognizer:doubleTapGesture];
         self.doubleTapGesture = doubleTapGesture;
         [doubleTapGesture release];
+        
+        // Set up long press gesture recognizer
+        UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(userDidLongPress:)];
+        longPressGesture.delegate = self;
+        [_selectingContainer addGestureRecognizer:longPressGesture];
+        [longPressGesture release];
     }
     return self;
 }
@@ -99,10 +105,43 @@
 
 - (void)userDidDoubleTap:(UITapGestureRecognizer *)doubleTapGesture
 {
-    
-        
     // Send tap to selection view
     [_selectingContainer.textSelectionView setWordSelectionForPoint:[doubleTapGesture locationInView:_selectingContainer.textSelectionView]];
+}
+
+#pragma mark -
+#pragma mark Long Press
+
+- (void)userDidLongPress:(UILongPressGestureRecognizer *)longPressGesture
+{
+    NSLog(@"userDidLongPress");
+    
+    CGPoint longPressGestureLocation = [longPressGesture locationInView:_selectingContainer];
+    
+    switch (longPressGesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            // Send long press location to selection view
+            [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:YES];
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            // Send long press location to selection view
+            [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:YES];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateCancelled:
+        {
+            // Send long press location to selection view
+            [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:NO];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 #pragma mark -
@@ -110,8 +149,6 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    
-    
     if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
         return NO; // Only accept double-tap while editing
         
@@ -120,8 +157,6 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    
-    
     if([_selectingContainer.textContentView hitTest:[touch locationInView:_selectingContainer.textContentView] withEvent:nil] == NO)
         return NO;
     
@@ -133,8 +168,6 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    
-    
     return NO;
 }
 

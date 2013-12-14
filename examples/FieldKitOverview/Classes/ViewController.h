@@ -12,6 +12,8 @@
 
 @interface ViewController : UIViewController <FKTextFieldDelegate, FKTokenFieldDelegate>
 {
+    IBOutlet UIScrollView * _scrollView;
+    
     FKTextField * _textField;
     UITextView * _textView;
     FKTokenField * _tokenField;

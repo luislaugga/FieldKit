@@ -90,16 +90,3 @@ __Message Composer:__
 __Mail Composer:__
 
 __Keywords:__
-
-References
-----------
-
-__Implementation:__
-
-* Apple SimpleCoreTextView (link to sample)
-* Link to UITextInput references ...
-
-__Other Projects:__
-
-* EGOTextView (link to github repository)
-* UIKit artwork extractor (linke to github repository)

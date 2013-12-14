@@ -36,18 +36,14 @@
     
     NSString * text = @"Classes that adopt the UITextInput protocol (and conform with inherited protocols) interact with the text input system and thus acquire features such as autocorrection and multistage text input for their documents. (Multistage text input is required when the language is ideographic and the keyboard is phonetic.)";
     
-    UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height*2);
-    scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
-	
     _textField = [[FKTextField alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
     _textField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-    [scrollView addSubview:_textField];
+    [_scrollView addSubview:_textField];
     
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2 + 1, self.view.bounds.size.width+10, self.view.bounds.size.height/2-1)];
     _textView.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
     _textView.contentInset = UIEdgeInsetsMake(0, -8, 0, 0);
-    [scrollView addSubview:_textView];
+    [_scrollView addSubview:_textView];
     
     _tokenField = [[FKTokenField alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height+1, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
     _tokenField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
@@ -55,13 +51,12 @@
     _tokenField.completionSuperview = self.view;
     _tokenField.delegate = self;
     _tokenField.representedObjects = [NSArray arrayWithObjects:@"Janet Canady", @"Albert Deltoro", @"Luis Laugga", @"Maria", @"Yellow", @"Super Store", @"Very Looonngg Name", nil];
-    [scrollView addSubview:_tokenField];
+    [_scrollView addSubview:_tokenField];
+    
+    [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, self.view.bounds.size.height*2)];
     
     _textField.text = text;
     _textView.text = text;
-    
-    [self.view addSubview:scrollView];
-    [scrollView release];
 }
 
 - (void)viewDidUnload

@@ -73,8 +73,6 @@
 
 - (void)dealloc
 {
-    
-    
     // Clean up
     [_interactionAssistant release];
     [_selectionView removeFromSuperview];

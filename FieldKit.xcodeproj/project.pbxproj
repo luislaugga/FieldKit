@@ -55,6 +55,9 @@
 		A07AD4B417E0818200A3F735 /* token-atom-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AD49C17E0818200A3F735 /* token-atom-selected@2x.png */; };
 		A07AD4B517E0818200A3F735 /* token-atom.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AD49D17E0818200A3F735 /* token-atom.png */; };
 		A07AD4B617E0818200A3F735 /* token-atom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AD49E17E0818200A3F735 /* token-atom@2x.png */; };
+		A0CD3169185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h in Headers */ = {isa = PBXBuildFile; fileRef = A0CD3167185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h */; };
+		A0CD316A185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */; };
+		A0CD316B185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */; };
 		A0F0BE2616388E050017AEC3 /* FKScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F0BE0916388E050017AEC3 /* FKScrollField.m */; };
 		A0F0BE2716388E050017AEC3 /* FKTextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F0BE0E16388E050017AEC3 /* FKTextAppearance.m */; };
 		A0F0BE2816388E050017AEC3 /* FKTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F0BE1016388E050017AEC3 /* FKTextContentView.m */; };
@@ -150,6 +153,8 @@
 		A07AD49C17E0818200A3F735 /* token-atom-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "token-atom-selected@2x.png"; path = "resources/token-atom-selected@2x.png"; sourceTree = "<group>"; };
 		A07AD49D17E0818200A3F735 /* token-atom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "token-atom.png"; path = "resources/token-atom.png"; sourceTree = "<group>"; };
 		A07AD49E17E0818200A3F735 /* token-atom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "token-atom@2x.png"; path = "resources/token-atom@2x.png"; sourceTree = "<group>"; };
+		A0CD3167185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextLoupeMagnifierView.h; sourceTree = "<group>"; };
+		A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextLoupeMagnifierView.m; sourceTree = "<group>"; };
 		A0F0BE0616388E050017AEC3 /* FieldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldKit.h; sourceTree = "<group>"; };
 		A0F0BE0816388E050017AEC3 /* FKScrollField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollField.h; sourceTree = "<group>"; };
 		A0F0BE0916388E050017AEC3 /* FKScrollField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKScrollField.m; sourceTree = "<group>"; };
@@ -326,6 +331,8 @@
 				A0F0BE1C16388E050017AEC3 /* FKTextSelectionView.h */,
 				A0F0BE1D16388E050017AEC3 /* FKTextSelectionView.m */,
 				A0F0BE1E16388E050017AEC3 /* FKTextSelectionView_Internal.h */,
+				A0CD3167185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h */,
+				A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */,
 			);
 			path = FKTextField;
 			sourceTree = "<group>";
@@ -357,6 +364,7 @@
 				A0F304361638914800D8F09D /* FKTokenFieldCell.h in Headers */,
 				A0F304371638914800D8F09D /* FKTokenFieldDelegate.h in Headers */,
 				A0F30425163890F400D8F09D /* FKScrollField.h in Headers */,
+				A0CD3169185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h in Headers */,
 				A0F30426163890F600D8F09D /* FKScrollFieldDelegate.h in Headers */,
 				A0F30427163890FB00D8F09D /* FKScrollField_Internal.h in Headers */,
 				A0F304281638911B00D8F09D /* FKTextAppearance.h in Headers */,
@@ -583,6 +591,7 @@
 				A0F0BE4916388FE90017AEC3 /* FKTextField.m in Sources */,
 				A0F0BE4B16388FE90017AEC3 /* FKTextSelectionView.m in Sources */,
 				A0F0BE4C16388FE90017AEC3 /* FKTokenField.m in Sources */,
+				A0CD316B185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */,
 				A0F0BE4D16388FE90017AEC3 /* FKTokenFieldCell.m in Sources */,
 				A0F3043E1638944900D8F09D /* FKTextInteractionAssistant.m in Sources */,
 			);
@@ -596,6 +605,7 @@
 				A0F0BE2616388E050017AEC3 /* FKScrollField.m in Sources */,
 				A0F0BE2716388E050017AEC3 /* FKTextAppearance.m in Sources */,
 				A0F0BE2816388E050017AEC3 /* FKTextContentView.m in Sources */,
+				A0CD316A185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */,
 				A0F0BE2916388E050017AEC3 /* FKTextField+UITextInput.m in Sources */,
 				A0F0BE2A16388E050017AEC3 /* FKTextField.m in Sources */,
 				A0F0BE2C16388E050017AEC3 /* FKTextSelectionView.m in Sources */,

@@ -78,6 +78,13 @@
  */
 - (void)hideRange;
 
+/*!
+ Show loupe magnifier view
+ */
+- (void)showLoupeMagnifier;
+- (void)hideLoupeMagnifier;
+- (void)updateLoupeMagnifier;
+
 @end
 
 #pragma mark -
