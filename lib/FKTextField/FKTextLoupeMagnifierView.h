@@ -36,6 +36,10 @@
 @interface FKTextLoupeMagnifierView : UIView
 {
     //UIImage * _contentImage;
+    UIImage * _loupeLow;
+    UIImage * _loupeMask;
+    UIImage * _loupeHigh;
+    
     CGPoint _position;
 }
 @property (nonatomic, readwrite) CGPoint position;

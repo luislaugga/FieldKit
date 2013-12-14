@@ -31,7 +31,10 @@
 
 - (void)dealloc
 {
-    //[_contentImage release], _contentImage=nil;
+    [_loupeLow release];
+    [_loupeMask release];
+    [_loupeHigh release];
+    
     [super dealloc];
 }
 
@@ -41,25 +44,31 @@
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
+        
+        NSBundle * bundle = [NSBundle bundleForClass:[self class]];
+        _loupeLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-lo" ofType:@"png"]] retain];
+        _loupeMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-mask" ofType:@"png"]] retain];
+        _loupeHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-hi" ofType:@"png"]] retain];
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    UIImage * contentImage = [[self contentImage] retain];
     
-    //[[UIImage imageNamed:@"kb-loupe-lo.png"] drawInRect:rect];
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
-    //if (_contentImage!=nil)
-    //{
-        CGContextSaveGState(ctx);
-        //CGContextClipToMask(ctx, rect, [UIImage imageNamed:@"kb-loupe-mask.png"].CGImage);
-        [[self contentImage] drawInRect:rect];
-        CGContextRestoreGState(ctx);
-    //}
+    [_loupeLow drawInRect:rect];
     
-    //[[UIImage imageNamed:@"kb-loupe-hi.png"] drawInRect:rect];
+    CGContextSaveGState(context);
+    CGContextClipToMask(context, rect, _loupeMask.CGImage);
+    [contentImage drawInRect:rect];
+    CGContextRestoreGState(context);
+    
+    [_loupeHigh drawInRect:rect];
+    
+    [contentImage release];
 }
 
 - (UIImage *)contentImage
