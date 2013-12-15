@@ -30,9 +30,9 @@
 #import "FKTextSelecting.h"
 
 #import "FKTextCaretView.h"
+#import "FKTextRangeView.h"
 #import "FKTextLoupeMagnifierView.h"
 
-@class FKTextRangeView;
 
 /*!
  @abstract Text Selection View
@@ -61,7 +61,6 @@
  */
 - (id)initWithSelectingContainer:(UIView<FKTextSelectingContainer> *)selectingContainer;
 
-
 /*!
  Updates displayed selection
  */
@@ -81,7 +80,6 @@
  Modify selection: set range view to word closest to a given point
  */
 - (void)setWordSelectionForPoint:(CGPoint)point;
-
 
 /*!
  Modify text: append after selection or replace current selection range

@@ -38,6 +38,7 @@
     
     _textField = [[FKTextField alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
     _textField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+    _textField.font = [UIFont systemFontOfSize:18.0f];
     [_scrollView addSubview:_textField];
     
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2 + 1, self.view.bounds.size.width+10, self.view.bounds.size.height/2-1)];
