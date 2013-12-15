@@ -56,8 +56,10 @@
         _rectViews = [[NSMutableArray alloc] init];
         
         self.startGrabber = [[FKSelectionGrabber alloc] init];
+        _startGrabber.grabberType = FKSelectionStartGrabber;
         [self addSubview:_startGrabber];
         self.endGrabber = [[FKSelectionGrabber alloc] init];
+        _endGrabber.grabberType = FKSelectionEndGrabber;
         [self addSubview:_endGrabber];
     }
     return self;

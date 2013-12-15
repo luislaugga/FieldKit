@@ -30,6 +30,15 @@
 @class FKTextRangeView;
 //@class UISelectionGrabberDot, UITextRangeView;
 
+/*!
+ @abstract Selection Grabber Type
+ @discussion
+ */
+typedef enum {
+    FKSelectionStartGrabber,
+    FKSelectionEndGrabber
+} FKSelectionGrabberType;
+
 @interface FKSelectionGrabber : UIView
 {
     int _applicationDeactivationReason;
@@ -37,9 +46,12 @@
     BOOL m_alertFlattened;
     BOOL m_animating;
     //UISelectionGrabberDot *m_dotView;
+    UIImageView * _dotView;
     //BOOL m_isDotted;
     BOOL m_navigationTransitionFlattened;
     int m_orientation;
+    
+    FKSelectionGrabberType _grabberType;
 }
 
 @property BOOL activeFlattened;
@@ -49,6 +61,8 @@
 @property BOOL isDotted;
 @property BOOL navigationTransitionFlattened;
 @property int orientation;
+
+@property (nonatomic) FKSelectionGrabberType grabberType;
 
 //+ (id)_grabberDot;
 //

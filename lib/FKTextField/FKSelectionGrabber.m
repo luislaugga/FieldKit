@@ -45,6 +45,11 @@
     if(self)
     {
         self.backgroundColor = [FKTextAppearance defaultSelectionGrabberColor];
+        
+        NSBundle * bundle = [NSBundle bundleForClass:[self class]];
+        UIImage * dotImage = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-drag-dot" ofType:@"png"]];
+        _dotView = [[UIImageView alloc] initWithImage:dotImage];
+        [self addSubview:_dotView];
     }
     return self;
 }
@@ -56,6 +61,40 @@
 {
     CGRect dragRect = CGRectMake(self.frame.origin.x-20, self.frame.origin.y-10, self.frame.size.width+40, self.frame.size.height+20);
     return CGRectContainsPoint(dragRect, point);
+}
+
+#pragma mark -
+#pragma mark Frame
+
+- (void)setFrame:(CGRect)frame
+{
+    if(_grabberType == FKSelectionStartGrabber)
+    {
+        _dotView.frame = CGRectMake(-_dotView.frame.size.width/2+1, -_dotView.frame.size.height/2+1, _dotView.frame.size.width, _dotView.frame.size.height);
+    }
+    else if(_grabberType == FKSelectionEndGrabber)
+    {
+        _dotView.frame = CGRectMake(-_dotView.frame.size.width/2+2, frame.size.height-4, _dotView.frame.size.width, _dotView.frame.size.height);
+    }
+    
+    [super setFrame:frame];
+}
+
+#pragma mark -
+#pragma mark Dot
+
+- (void)setGrabberType:(FKSelectionGrabberType)grabberType
+{
+    if(grabberType == FKSelectionStartGrabber)
+    {
+        _dotView.frame = CGRectMake(self.frame.origin.x-_dotView.frame.size.width/2+1, self.frame.origin.y-_dotView.frame.size.height/2+1, _dotView.frame.size.width, _dotView.frame.size.height);
+    }
+    else if(grabberType == FKSelectionEndGrabber)
+    {
+        _dotView.frame = CGRectMake(self.frame.origin.x-_dotView.frame.size.width/2+1, self.frame.origin.y+self.frame.size.height, _dotView.frame.size.width, _dotView.frame.size.height);
+    }
+    
+    _grabberType = grabberType;
 }
 
 @end
