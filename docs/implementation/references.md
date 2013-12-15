@@ -2,7 +2,6 @@
 
 __Implementation:__
 
-* Apple SimpleCoreTextView (link to sample)
 * Apple UITextInput Protocol Reference ([https://developer.apple.com/library/iOs/documentation/UIKit/Reference/UITextInput_Protocol/Reference/Reference.html])
 
 __Helpful projects:__
