@@ -40,6 +40,7 @@
     UITapGestureRecognizer * _singleTapGesture;
     UITapGestureRecognizer * _doubleTapGesture;
     UIPanGestureRecognizer * _dragGesture;
+    UILongPressGestureRecognizer * _longPressureGesture;
 }
 
 /*!

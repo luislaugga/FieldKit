@@ -29,6 +29,11 @@
 
 #import "FKTextAppearance.h"
 
+@interface FKTextRangeView (Private)
+@property(readwrite) CGRect startEdge;
+@property(readwrite) CGRect endEdge;
+@end
+
 #pragma mark -
 #pragma mark FKTextRangeView implementation
 
@@ -38,6 +43,9 @@
 @synthesize rectViews = _rectViews;
 @dynamic startEdge, endEdge;
 @synthesize startGrabber = _startGrabber, endGrabber = _endGrabber;
+
+#pragma mark -
+#pragma mark Initialization
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -65,6 +73,9 @@
     
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Single-line or Multi-line
 
 - (void)setRects:(NSArray *)rects
 {
@@ -126,6 +137,16 @@
 
 #pragma mark -
 #pragma mark Edges
+
+- (CGRect)startEdge
+{
+    return _startEdge;
+}
+
+- (CGRect)endEdge
+{
+    return _endEdge;
+}
 
 - (void)setStartEdge:(CGRect)startEdge
 {

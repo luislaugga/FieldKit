@@ -64,9 +64,9 @@
     //    BOOL m_rotating;
     //    BOOL m_inputViewIsChanging;
 }
-@property struct CGRect startEdge;
+@property(readonly) CGRect startEdge;
 @property(retain) FKSelectionGrabber * startGrabber;
-@property struct CGRect endEdge;
+@property(readonly) CGRect endEdge;
 @property(retain) FKSelectionGrabber * endGrabber;
 @property(nonatomic, copy) NSArray * rects;
 @property(nonatomic, retain) NSMutableArray * rectViews;

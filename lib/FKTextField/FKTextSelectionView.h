@@ -45,6 +45,9 @@
     
     NSRange _selectionRange;
     
+    CGPoint _selectionChangeStartPoint;
+    int _selectionChangeType;
+    
     FKTextCaretView * _caretView;
     FKTextRangeView * _rangeView;
     FKTextLoupeMagnifierView * _loupeMagnifierView;
@@ -75,6 +78,14 @@
  Modify selection: move caret view to index closest to a given point and show or hide magnifier view
  */
 - (void)setCaretSelectionForPoint:(CGPoint)point showMagnifier:(BOOL)showMagnifier;
+
+/*!
+ Drag hit test
+ */
+- (BOOL)pointInsideDraggableArea:(CGPoint)point; // FIXME
+- (void)startSelectionChangeAtPoint:(CGPoint)startPoint;
+- (void)changeSelectionForOffsetPoint:(CGPoint)offsetPoint;
+- (void)stopSelectionChangeForOffsetPoint:(CGPoint)offsetPoint;
 
 /*!
  Modify selection: set range view to word closest to a given point

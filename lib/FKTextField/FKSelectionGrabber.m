@@ -49,4 +49,14 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark UIView
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    NSLog(@"selectionGrabber pointInside %f %f", point.x, point.y);
+    CGRect hitRect = CGRectMake(self.frame.origin.x-20, self.frame.origin.y-20, self.frame.size.width+40, self.frame.size.height+40);
+    return CGRectContainsPoint(hitRect, point);
+}
+
 @end

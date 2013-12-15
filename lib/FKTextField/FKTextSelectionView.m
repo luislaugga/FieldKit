@@ -89,6 +89,111 @@
 }
 
 #pragma mark -
+#pragma mark Geometry (hit testing)
+
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    
+//}
+
+- (BOOL)pointInsideDraggableArea:(CGPoint)point
+{
+    if(_selectionRange.length > 0) // going into range
+    {
+        UIView * hitView = [_rangeView hitTest:point withEvent:nil];
+        return (hitView != nil);
+    }
+    else
+    {
+        return [_caretView pointInside:point withEvent:nil];
+    }
+}
+
+- (void)startSelectionChangeAtPoint:(CGPoint)startPoint
+{
+    if(_selectionRange.length > 0) // going into range
+    {
+//        UIView * hitView = [_rangeView hitTest:point withEvent:nil];
+//        return (hitView != nil);
+        
+        if([_rangeView.startGrabber pointInside:startPoint withEvent:nil])
+        {
+            _selectionChangeStartPoint = _rangeView.startEdge.origin;
+            _selectionChangeType = 1;
+        }
+        else
+        {
+            _selectionChangeStartPoint = _rangeView.endEdge.origin;
+            _selectionChangeType = 2;
+        }
+    }
+    else
+    {
+        _selectionChangeStartPoint = _caretView.frame.origin;
+        _selectionChangeType = 0;
+        _magnify = YES;
+        [self showLoupeMagnifier];
+    }
+}
+
+- (void)changeSelectionForOffsetPoint:(CGPoint)offsetPoint
+{
+    if(_selectionChangeType == 0)
+    {
+        CGPoint point = CGPointMake(_selectionChangeStartPoint.x+offsetPoint.x, _selectionChangeStartPoint.y+offsetPoint.y);
+        // Set selection location based on index closest to point
+        NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
+        self.selectionRange = NSMakeRange(index, 0); // set location
+
+        [self updateLoupeMagnifier:point];
+    }
+    else
+    {
+        CGPoint point = CGPointMake(_selectionChangeStartPoint.x+offsetPoint.x, _selectionChangeStartPoint.y+offsetPoint.y);
+        // Set selection location+length based on word that contains index closest to point
+        NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
+        
+        if(_selectionChangeType == 1)
+        {
+            // start
+            //NSUInteger start = self.selectionRange.location;
+            NSUInteger end = self.selectionRange.location+self.selectionRange.length;
+            NSUInteger loc = index < end ? index : end-1;
+            NSUInteger length = end-loc;
+            self.selectionRange = NSMakeRange(loc, length); // set word range
+
+        }
+        else
+        {
+            // end
+            NSUInteger start = self.selectionRange.location;
+            //NSUInteger end = self.selectionRange.location+self.selectionRange.length;
+            NSUInteger loc = start;
+            NSUInteger length = index > start ? index-start : 1;
+            self.selectionRange = NSMakeRange(loc, length); // set word range
+        }
+    }
+}
+
+- (void)stopSelectionChangeForOffsetPoint:(CGPoint)offsetPoint
+{
+    if(_selectionChangeType == 0)
+    {
+        CGPoint point = CGPointMake(_selectionChangeStartPoint.x+offsetPoint.x, _selectionChangeStartPoint.y+offsetPoint.y);
+        // Set selection location based on index closest to point
+        NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
+        self.selectionRange = NSMakeRange(index, 0); // set location
+        
+        [self hideLoupeMagnifier];
+        _magnify = NO;
+    }
+    else
+    {
+        
+    }
+}
+
+#pragma mark -
 #pragma mark Properties
 
 - (void)setSelectionRange:(NSRange)selectionRange
