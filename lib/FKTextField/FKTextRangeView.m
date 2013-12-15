@@ -75,6 +75,14 @@
 }
 
 #pragma mark -
+#pragma mark User Interaction
+
+- (BOOL)pointCanDrag:(CGPoint)point
+{
+    return ([_startGrabber pointCanDrag:point] || [_endGrabber pointCanDrag:point]);
+}
+
+#pragma mark -
 #pragma mark Single-line or Multi-line
 
 - (void)setRects:(NSArray *)rects

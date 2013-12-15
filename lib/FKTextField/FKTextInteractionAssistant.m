@@ -127,24 +127,24 @@
 
 - (void)userDidDrag:(UIPanGestureRecognizer *)dragGesture
 {
-    NSLog(@"userDidDrag");
-    
     switch (dragGesture.state) {
         case UIGestureRecognizerStateBegan:
         {
-            CGPoint dragGestureLocation = [dragGesture locationInView:_selectingContainer];
-            [_selectingContainer.textSelectionView startSelectionChangeAtPoint:dragGestureLocation];
+            // Begin selection change, send drag location to selection view
+            [_selectingContainer.textSelectionView beginSelectionChangeForPoint:[dragGesture locationInView:_selectingContainer]];
         }
             break;
         case UIGestureRecognizerStateChanged:
         {
-            [_selectingContainer.textSelectionView changeSelectionForOffsetPoint:[dragGesture translationInView:_selectingContainer.textSelectionView]];
+            // Send translation point to selection view
+            [_selectingContainer.textSelectionView changeSelectionForTranslationPoint:[dragGesture translationInView:_selectingContainer.textSelectionView]];
         }
             break;
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            [_selectingContainer.textSelectionView stopSelectionChangeForOffsetPoint:[dragGesture translationInView:_selectingContainer.textSelectionView]];
+            // End selection change
+            [_selectingContainer.textSelectionView endSelectionChange];
         }
             break;
         default:
@@ -157,29 +157,21 @@
 
 - (void)userDidLongPress:(UILongPressGestureRecognizer *)longPressGesture
 {
-    NSLog(@"userDidLongPress");
-    
-    CGPoint longPressGestureLocation = [longPressGesture locationInView:_selectingContainer];
-    
     switch (longPressGesture.state) {
         case UIGestureRecognizerStateBegan:
         {
-            // Send long press location to selection view
-            [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:YES];
+            // Begin selection change, send long press location to selection view
+            [_selectingContainer.textSelectionView beginSelectionChangeForPoint:[longPressGesture locationInView:_selectingContainer]];
         }
             break;
         case UIGestureRecognizerStateChanged:
-        {
-             NSLog(@"UIGestureRecognizerStateChanged");
-            // Send long press location to selection view
-            [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:YES];
-        }
+            // ignore (check userDidDrag:)
             break;
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            // Send long press location to selection view
-            [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:NO];
+            // End selection change
+            [_selectingContainer.textSelectionView endSelectionChange];
         }
             break;
         default:
@@ -192,23 +184,19 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    if(gestureRecognizer == self.singleTapGesture)
-        return YES; // Always accept single-tap
+    if(gestureRecognizer == self.singleTapGesture) // Always accept single-tap
+        return YES;
     
     if(_selectingContainer.responder.isEditing)
     {
-        if(gestureRecognizer == self.doubleTapGesture)
-            return YES; // Only accept double-tap while editing
-        
-        if(gestureRecognizer == self.longPressureGesture)
-            return YES; // Only accept long-press while editing
+        if(gestureRecognizer == self.doubleTapGesture) // Only accept double-tap while editing
+            return YES;
+
+        if(gestureRecognizer == self.longPressureGesture) // Only accept long-press while editing, check with selection view first
+            return [_selectingContainer.textSelectionView shouldBeginSelectionChangeForPoint:[gestureRecognizer locationInView:_selectingContainer.textSelectionView]];
     
-        if(gestureRecognizer == self.dragGesture) // dragging is allowed for caret and selection grabbers
-        {
-            // hit test
-            CGPoint dragGestureLocation = [gestureRecognizer locationInView:_selectingContainer.textSelectionView];
-            return [_selectingContainer.textSelectionView pointInsideDraggableArea:dragGestureLocation];
-        }
+        if(gestureRecognizer == self.dragGesture) // Only accept dragging while editing, check with selection view first
+            return [_selectingContainer.textSelectionView shouldBeginSelectionChangeForPoint:[gestureRecognizer locationInView:_selectingContainer.textSelectionView]];
     }
     
     return NO;
@@ -227,6 +215,9 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+    if(gestureRecognizer == self.dragGesture && otherGestureRecognizer == self.longPressureGesture)
+        return YES; // Accept both long-press and dragging (selection change state)
+    
     return NO;
 }
 

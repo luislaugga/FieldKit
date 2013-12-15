@@ -53,6 +53,6 @@
  */
 - (void)showLoupeMagnifier;
 - (void)hideLoupeMagnifier;
-- (void)updateLoupeMagnifier;
+- (void)updateLoupeMagnifier:(CGPoint)position;
 
 @end

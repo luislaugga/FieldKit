@@ -34,6 +34,8 @@ static const NSTimeInterval FKTextCaretBlinkRate = 0.5;
 
 @implementation FKTextCaretView
 
+@synthesize blink = _blink;
+
 #pragma mark -
 #pragma mark Initialization
 
@@ -63,13 +65,12 @@ static const NSTimeInterval FKTextCaretBlinkRate = 0.5;
 }
 
 #pragma mark -
-#pragma mark UIView
+#pragma mark User Interaction
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+- (BOOL)pointCanDrag:(CGPoint)point
 {
-    NSLog(@"pointInside %f %f", point.x, point.y);
-    CGRect hitRect = CGRectMake(self.frame.origin.x-20, self.frame.origin.y-20, self.frame.size.width+40, self.frame.size.height+40);
-    return CGRectContainsPoint(hitRect, point);
+    CGRect dragRect = CGRectMake(self.frame.origin.x-20, self.frame.origin.y-20, self.frame.size.width+40, self.frame.size.height+40);
+    return CGRectContainsPoint(dragRect, point);
 }
 
 #pragma mark -
@@ -106,6 +107,16 @@ static const NSTimeInterval FKTextCaretBlinkRate = 0.5;
 
 #pragma mark -
 #pragma mark Blink
+
+- (void)setBlink:(BOOL)blink
+{
+    _blink = blink;
+    
+    if(_blink)
+        [self blinkIfNeeded];
+    else
+        [self clearBlinkTimer];
+}
 
 - (void)blinkTimerFired:(id)info // caret timer action
 {

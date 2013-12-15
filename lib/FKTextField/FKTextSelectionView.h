@@ -33,6 +33,20 @@
 #import "FKTextRangeView.h"
 #import "FKTextLoupeMagnifierView.h"
 
+/*!
+ @abstract Text Selection Change Type
+ @discussion
+ The selection change is an operation initiated by a user interaction. 
+ At the beginning of the operation the selection view will test which
+ type of selection change should be performed. The type is stored and
+ used until the selection change operation ends.
+ */
+typedef enum {
+    FKTextSelectionChangeNone,
+    FKTextSelectionChangeCaret, // caret selection change
+    FKTextSelectionChangeStartGrabber, // range selection change
+    FKTextSelectionChangeEndGrabber // range selection change
+} FKTextSelectionChange;
 
 /*!
  @abstract Text Selection View
@@ -43,17 +57,16 @@
 {
     UIView<FKTextSelectingContainer> * _selectingContainer;
     
-    NSRange _selectionRange;
+    NSRange _selectionRange; // current selection range (caret if length is 0)
     
-    CGPoint _selectionChangeStartPoint;
-    int _selectionChangeType;
+    FKTextSelectionChange _selectionChange; // current selection change type
+    CGPoint _selectionChangeBeginPoint; // current selection change begin point
     
-    FKTextCaretView * _caretView;
-    FKTextRangeView * _rangeView;
-    FKTextLoupeMagnifierView * _loupeMagnifierView;
+    FKTextCaretView * _caretView; // caret view
+    FKTextRangeView * _rangeView; // range view
+    FKTextLoupeMagnifierView * _loupeMagnifierView; // used with caret
     
-    BOOL _visible;
-    BOOL _magnify;
+    BOOL _visible; // the selection view is only visible if this flag is YES
 }
 
 @property(nonatomic, assign) NSRange selectionRange;
@@ -75,20 +88,36 @@
 - (void)setCaretSelectionForPoint:(CGPoint)point;
 
 /*!
- Modify selection: move caret view to index closest to a given point and show or hide magnifier view
+ Modify selection: change current selection (caret or range)
+ @param point The point to test if a selection change is possible.
+ @return YES if the selection change is possible.
  */
-- (void)setCaretSelectionForPoint:(CGPoint)point showMagnifier:(BOOL)showMagnifier;
+- (BOOL)shouldBeginSelectionChangeForPoint:(CGPoint)point;
 
 /*!
- Drag hit test
+ Begins a selection change operation at a given point.
+ @param point The point that initiated the selection change.
  */
-- (BOOL)pointInsideDraggableArea:(CGPoint)point; // FIXME
-- (void)startSelectionChangeAtPoint:(CGPoint)startPoint;
-- (void)changeSelectionForOffsetPoint:(CGPoint)offsetPoint;
-- (void)stopSelectionChangeForOffsetPoint:(CGPoint)offsetPoint;
+- (void)beginSelectionChangeForPoint:(CGPoint)point;
+
+/*!
+ Changes the selection assuming beginSelectionChangeForPoint: was called
+ first with a valid point.
+ @param translationPoint A translation CGPoint that represents the translation
+ around the point given to beginSelectionChangeForPoint: method.
+ */
+- (void)changeSelectionForTranslationPoint:(CGPoint)translationPoint;
+
+/*!
+ Ends a selection change operation.
+ @discussion
+ This method will clean up any selection change views or state.
+ */
+- (void)endSelectionChange;
 
 /*!
  Modify selection: set range view to word closest to a given point
+ @param point The point used to find the closest word to select.
  */
 - (void)setWordSelectionForPoint:(CGPoint)point;
 

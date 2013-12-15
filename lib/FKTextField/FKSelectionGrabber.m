@@ -50,13 +50,12 @@
 }
 
 #pragma mark -
-#pragma mark UIView
+#pragma mark User Interaction
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+- (BOOL)pointCanDrag:(CGPoint)point
 {
-    NSLog(@"selectionGrabber pointInside %f %f", point.x, point.y);
-    CGRect hitRect = CGRectMake(self.frame.origin.x-20, self.frame.origin.y-20, self.frame.size.width+40, self.frame.size.height+40);
-    return CGRectContainsPoint(hitRect, point);
+    CGRect dragRect = CGRectMake(self.frame.origin.x-20, self.frame.origin.y-10, self.frame.size.width+40, self.frame.size.height+20);
+    return CGRectContainsPoint(dragRect, point);
 }
 
 @end

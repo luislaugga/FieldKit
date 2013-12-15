@@ -76,5 +76,16 @@
  */
 + (UIView *)defaultRangeViewForRect:(CGRect)rect;
 
+/*!
+ Tests if a given point is inside the caret draggable area
+ rectangle
+ @discussion
+ The draggable rectangle size is an area
+ around the caret view frame.
+ @param point The point to test.
+ @return YES if the draggable rectangle contains the point (CGRectContainsPoint).
+ */
+- (BOOL)pointCanDrag:(CGPoint)point;
+
 @end
 

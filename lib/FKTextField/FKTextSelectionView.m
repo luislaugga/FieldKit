@@ -59,6 +59,9 @@
         // Set up view
         self.backgroundColor = [UIColor clearColor];
         
+        // Set up state
+        _selectionChange = FKTextSelectionChangeNone;
+        
         // Set up caret view
         self.caretView = [FKTextCaretView defaultCaretView];
         [self addSubview:_caretView];
@@ -86,111 +89,6 @@
     [_caretView hide];
     
     _visible = NO;
-}
-
-#pragma mark -
-#pragma mark Geometry (hit testing)
-
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    
-//}
-
-- (BOOL)pointInsideDraggableArea:(CGPoint)point
-{
-    if(_selectionRange.length > 0) // going into range
-    {
-        UIView * hitView = [_rangeView hitTest:point withEvent:nil];
-        return (hitView != nil);
-    }
-    else
-    {
-        return [_caretView pointInside:point withEvent:nil];
-    }
-}
-
-- (void)startSelectionChangeAtPoint:(CGPoint)startPoint
-{
-    if(_selectionRange.length > 0) // going into range
-    {
-//        UIView * hitView = [_rangeView hitTest:point withEvent:nil];
-//        return (hitView != nil);
-        
-        if([_rangeView.startGrabber pointInside:startPoint withEvent:nil])
-        {
-            _selectionChangeStartPoint = _rangeView.startEdge.origin;
-            _selectionChangeType = 1;
-        }
-        else
-        {
-            _selectionChangeStartPoint = _rangeView.endEdge.origin;
-            _selectionChangeType = 2;
-        }
-    }
-    else
-    {
-        _selectionChangeStartPoint = _caretView.frame.origin;
-        _selectionChangeType = 0;
-        _magnify = YES;
-        [self showLoupeMagnifier];
-    }
-}
-
-- (void)changeSelectionForOffsetPoint:(CGPoint)offsetPoint
-{
-    if(_selectionChangeType == 0)
-    {
-        CGPoint point = CGPointMake(_selectionChangeStartPoint.x+offsetPoint.x, _selectionChangeStartPoint.y+offsetPoint.y);
-        // Set selection location based on index closest to point
-        NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
-        self.selectionRange = NSMakeRange(index, 0); // set location
-
-        [self updateLoupeMagnifier:point];
-    }
-    else
-    {
-        CGPoint point = CGPointMake(_selectionChangeStartPoint.x+offsetPoint.x, _selectionChangeStartPoint.y+offsetPoint.y);
-        // Set selection location+length based on word that contains index closest to point
-        NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
-        
-        if(_selectionChangeType == 1)
-        {
-            // start
-            //NSUInteger start = self.selectionRange.location;
-            NSUInteger end = self.selectionRange.location+self.selectionRange.length;
-            NSUInteger loc = index < end ? index : end-1;
-            NSUInteger length = end-loc;
-            self.selectionRange = NSMakeRange(loc, length); // set word range
-
-        }
-        else
-        {
-            // end
-            NSUInteger start = self.selectionRange.location;
-            //NSUInteger end = self.selectionRange.location+self.selectionRange.length;
-            NSUInteger loc = start;
-            NSUInteger length = index > start ? index-start : 1;
-            self.selectionRange = NSMakeRange(loc, length); // set word range
-        }
-    }
-}
-
-- (void)stopSelectionChangeForOffsetPoint:(CGPoint)offsetPoint
-{
-    if(_selectionChangeType == 0)
-    {
-        CGPoint point = CGPointMake(_selectionChangeStartPoint.x+offsetPoint.x, _selectionChangeStartPoint.y+offsetPoint.y);
-        // Set selection location based on index closest to point
-        NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
-        self.selectionRange = NSMakeRange(index, 0); // set location
-        
-        [self hideLoupeMagnifier];
-        _magnify = NO;
-    }
-    else
-    {
-        
-    }
 }
 
 #pragma mark -
@@ -259,29 +157,99 @@
     [_caretView touch];
 }
 
-- (void)setCaretSelectionForPoint:(CGPoint)point showMagnifier:(BOOL)showMagnifier
-{
-    // Set selection location based on index closest to point
-    NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
-    self.selectionRange = NSMakeRange(index, 0); // set location
-    
-    _magnify = showMagnifier;
-    
-    if(_magnify == NO)
-        [self hideLoupeMagnifier];
-    else
-    {
-        [self showLoupeMagnifier];
-        [self updateLoupeMagnifier:point];
-    }
-}
-
 - (void)setWordSelectionForPoint:(CGPoint)point
 {
     // Set selection location+length based on word that contains index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     NSRange range = [_selectingContainer.textContentView textWordRangeForIndex:index]; // word range for closest index
     self.selectionRange = range; // set word range
+}
+
+#pragma mark -
+#pragma mark Selection change mode
+
+- (BOOL)shouldBeginSelectionChangeForPoint:(CGPoint)point
+{
+    if(_selectionRange.length > 0)
+        return [_rangeView pointCanDrag:point]; // range test
+    else
+        return [_caretView pointCanDrag:point]; // caret test
+}
+
+- (void)beginSelectionChangeForPoint:(CGPoint)point
+{
+    if(_selectionRange.length > 0) // going into range
+    {
+        if([_rangeView.startGrabber pointCanDrag:point])
+        {
+            _selectionChange = FKTextSelectionChangeStartGrabber;
+            _selectionChangeBeginPoint = _rangeView.startEdge.origin;
+        }
+        else
+        {
+            _selectionChange = FKTextSelectionChangeEndGrabber;
+            _selectionChangeBeginPoint = _rangeView.endEdge.origin;
+        }
+    }
+    else
+    {
+        _selectionChange = FKTextSelectionChangeCaret;
+        _selectionChangeBeginPoint = _caretView.frame.origin;
+
+        _caretView.blink = NO;
+        [self showLoupeMagnifier];
+        [self updateLoupeMagnifier:point];
+    }
+}
+
+- (void)changeSelectionForTranslationPoint:(CGPoint)translationPoint
+{
+    // Calculate absolute point
+    CGPoint point = CGPointMake(_selectionChangeBeginPoint.x+translationPoint.x, _selectionChangeBeginPoint.y+translationPoint.y);
+    
+    // Set selection location based on index closest to point
+    NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
+    
+    if(_selectionChange == FKTextSelectionChangeCaret)
+    {
+        [self updateLoupeMagnifier:point]; // update magnifier
+        self.selectionRange = NSMakeRange(index, 0); // set caret location
+    }
+    else
+    {
+        if(_selectionChange == FKTextSelectionChangeStartGrabber)
+        {
+            // start grabber
+            NSUInteger end = self.selectionRange.location+self.selectionRange.length;
+            NSUInteger loc = index < end ? index : end-1;
+            NSUInteger length = end-loc;
+            self.selectionRange = NSMakeRange(loc, length); // set word range
+            
+        }
+        else
+        {
+            // end grabber
+            NSUInteger start = self.selectionRange.location;
+            NSUInteger loc = start;
+            NSUInteger length = index > start ? index-start : 1;
+            self.selectionRange = NSMakeRange(loc, length); // set word range
+        }
+    }
+}
+
+- (void)endSelectionChange
+{
+    if(_selectionChange == FKTextSelectionChangeCaret)
+    {
+        [self hideLoupeMagnifier];
+        _caretView.blink = YES;
+    }
+    else
+    {
+        // hide grabber magnifier
+    }
+    
+    _selectionChange = FKTextSelectionChangeNone; // change to none
 }
 
 #pragma mark -
@@ -486,15 +454,7 @@
 {
     if(_loupeMagnifierView != nil)
     {
-        if(_magnify)
-        {
-            _loupeMagnifierView.hidden = NO;
-            _loupeMagnifierView.position = position;
-        }
-        else
-        {
-            _loupeMagnifierView.hidden = YES;
-        }
+        _loupeMagnifierView.position = position;
     }
 }
 

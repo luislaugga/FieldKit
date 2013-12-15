@@ -39,12 +39,24 @@
     BOOL _blink;
 }
 @property (nonatomic, retain) NSTimer * blinkTimer;
+@property (nonatomic) BOOL blink;
 
 /*!
  Default caret view factory helper
  @return FKTextCaretView instance, initialized with pre-defined values from FKTextAppearance.
  */
 + (FKTextCaretView *)defaultCaretView;
+
+/*!
+ Tests if a given point is inside the caret draggable area
+ rectangle
+ @discussion
+ The draggable rectangle size is an area
+ around the caret view frame.
+ @param point The point to test.
+ @return YES if the draggable rectangle contains the point (CGRectContainsPoint).
+ */
+- (BOOL)pointCanDrag:(CGPoint)point;
 
 /*!
  Shows the caret view.
