@@ -1,16 +1,13 @@
-FieldKit Features
-=================
+# FieldKit Features
 
-Text Field
-----------
+## Text Field
 
-* Single line
+* Single or multi line
 * Prefix label (ie. "To:")
 * Placeholder
 * Action button 
 
-Scroll Field
-------------
+## Scroll Field 
 
 * Multiple lines
 * Scroll view
@@ -18,8 +15,7 @@ Scroll Field
 * Placeholder
 * Prefix label
 
-Token Field
------------
+## Token Field
 
 * Tokenize text based on token character set
 * Tokens with custom appearance and button-like behavior

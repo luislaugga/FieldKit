@@ -1,46 +1,36 @@
-FieldKit
-========
+# FieldKit
 
-Introduction
-------------
+## Introduction
 
-FieldKit contains a set of custom text fields for iOS:
+FieldKit is a UI library of custom text fields for iOS:
 
 * *FKTextField* is similar to UITextField
 * *FKTokenField* is similar to NSTokenField in AppKit but adapted to iOS/Touch Interaction
 * *FKScrollField* adds multiple lines and scrolling to *FKTextField*
 
-Requirements
--------------
+## Requirements
 
-* The iOS 5.0 SDK is needed to build. It can however run on iOS 4.3 or higher (iPhone/iPad universal app compatible).
+* The iOS 5.0 SDK is needed to build. It can however run on iOS 4.1 or higher (iPhone/iPad universal app compatible).
 
-* Devices: iPhone/iPad (*)
-* Minimum iOS: 4.3
+* Suported devices: iPhone/iPad (*)
+* Minimum iOS: 4.1
 * Required Frameworks:
    * CoreText.framework
    * UIKit.framework
 
-How to use FieldKit in your project
------------------------------------
+## How to use FieldKit in your project
 
-* Add CoreText.framework
+In Xcode:
 
-__Import Framework:__
+1. Add CoreText.framework dependency
+2. Import the FieldKit.framework to your project
+  2.1. Add '-ObjC' to "Other Linker Flags" (in order to load categories)
+  2.2. Add FieldKit.framework
+  2.3. Add FieldKit.bundle
+  
+## Overview
 
-* -ObjC in "Other Linker Flags" (in order to load categories - TEMP)
-* Add FieldKit.framework
-* Add FieldKit.bundle
-
-__Copy Files:__
-
-* All FieldKit
-* FieldKit.bundle
-
-Overview
---------
-
-FieldKit doesn't subclass the text fields provided by UIKit. The text input, selection and manipulation is implemented from scratch. They conform to UITextInput...
+FieldKit doesn't subclass the text fields provided by UIKit. The text input, selection and manipulation is implemented from scratch. It conforms to UITextInput like UITextField.
 
 __FKTextField:__
 
@@ -61,21 +51,7 @@ __FKScrollField:__
 * Delegate is notified about changes and can control growing behaviour
 * Will enable scrolling if content doesn't fit frame
 
-Roadmap
--------
-
-__Not Implemented:__
-
-* iPad support (not tested)
-* Selection Magnifier and Loupe views
-* Selection change
-* Spelling
-
-Known Bugs
-----------
-
-Examples
---------
+# Examples
 
 __FieldKit Overview:__
 
@@ -87,6 +63,20 @@ A TokenField example, using UIColor instances as represented objects. The provid
 
 __Message Composer:__
 
+TODO
+
 __Mail Composer:__
 
+TODO
+
 __Keywords:__
+
+TODO
+
+## Roadmap
+
+* Full iPad support (not tested)
+* Spelling
+* Copy/Paste (clipboard)
+* ARC support
+* iOS 7 UI
