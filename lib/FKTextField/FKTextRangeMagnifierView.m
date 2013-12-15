@@ -1,6 +1,6 @@
 /*
  
- FKTextLoupeMagnifierView.m
+ FKTextRangeMagnifierView.m
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -25,30 +25,30 @@
  
 */
 
-#import "FKTextLoupeMagnifierView.h"
+#import "FKTextRangeMagnifierView.h"
 
-@implementation FKTextLoupeMagnifierView
+@implementation FKTextRangeMagnifierView
 
 - (void)dealloc
 {
-    [_loupeLow release];
-    [_loupeMask release];
-    [_loupeHigh release];
+    [_magnifierRangedLow release];
+    [_magnifierRangedMask release];
+    [_magnifierRangedHigh release];
     
     [super dealloc];
 }
 
 - (id)init
 {
-    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 127.0f, 127.0f)];
+    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 145.0f, 59.0f)];
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
         
         NSBundle * bundle = [NSBundle bundleForClass:[self class]];
-        _loupeLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-lo" ofType:@"png"]] retain];
-        _loupeMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-mask" ofType:@"png"]] retain];
-        _loupeHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-hi" ofType:@"png"]] retain];
+        _magnifierRangedLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-lo" ofType:@"png"]] retain];
+        _magnifierRangedMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-mask" ofType:@"png"]] retain];
+        _magnifierRangedHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-hi" ofType:@"png"]] retain];
     }
     return self;
 }
@@ -59,14 +59,14 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    [_loupeLow drawInRect:rect];
+    [_magnifierRangedLow drawInRect:rect];
     
     CGContextSaveGState(context);
-    CGContextClipToMask(context, rect, _loupeMask.CGImage);
+    CGContextClipToMask(context, rect, _magnifierRangedMask.CGImage);
     [contentImage drawInRect:rect];
     CGContextRestoreGState(context);
     
-    [_loupeHigh drawInRect:rect];
+    [_magnifierRangedHigh drawInRect:rect];
     
     [contentImage release];
 }
@@ -76,7 +76,7 @@
     // Create a graphics context with the target size
     // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
     // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
-    CGSize imageSize = CGSizeMake(100.0f, 100.0f);//[[UIScreen mainScreen] bounds].size;
+    CGSize imageSize = CGSizeMake(145.0f, 59.0f);//[[UIScreen mainScreen] bounds].size;
     if (NULL != UIGraphicsBeginImageContextWithOptions)
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     else
@@ -86,7 +86,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     // Translate context to the loupe magnifier position
-    CGContextTranslateCTM(context, -_position.x+50.0f, -_position.y+30.0f);
+    CGContextTranslateCTM(context, -_position.x+50.0f, -_position.y-10.0f);
     
     // Iterate over every window from back to front
     for (UIWindow *window in [[UIApplication sharedApplication] windows])
@@ -109,7 +109,7 @@
 - (void)setPosition:(CGPoint)position
 {
     _position = position;
-    self.frame = CGRectMake(position.x-63.0f, position.y-127.0f, 127.0f, 127.0f);
+    self.frame = CGRectMake(position.x-73.0f, position.y-40.0f, 145.0f, 59.0f);
     [self setNeedsDisplay];
 }
 

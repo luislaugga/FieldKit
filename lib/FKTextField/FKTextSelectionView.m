@@ -197,9 +197,11 @@
         _selectionChangeBeginPoint = _caretView.frame.origin;
 
         _caretView.blink = NO;
-        [self showLoupeMagnifier];
-        [self updateLoupeMagnifier:point];
     }
+    
+    // Magnifier
+    [self showMagnifier];
+    [self updateMagnifier:point];
 }
 
 - (void)changeSelectionForTranslationPoint:(CGPoint)translationPoint
@@ -212,7 +214,6 @@
     
     if(_selectionChange == FKTextSelectionChangeCaret)
     {
-        [self updateLoupeMagnifier:point]; // update magnifier
         self.selectionRange = NSMakeRange(index, 0); // set caret location
     }
     else
@@ -235,19 +236,20 @@
             self.selectionRange = NSMakeRange(loc, length); // set word range
         }
     }
+    
+    // Magnifier
+    [self updateMagnifier:point];
 }
 
 - (void)endSelectionChange
 {
     if(_selectionChange == FKTextSelectionChangeCaret)
     {
-        [self hideLoupeMagnifier];
         _caretView.blink = YES;
     }
-    else
-    {
-        // hide grabber magnifier
-    }
+    
+    // Magnifier
+    [self hideMagnifier];
     
     _selectionChange = FKTextSelectionChangeNone; // change to none
 }
@@ -425,36 +427,82 @@
 #pragma mark -
 #pragma mark Loupe Magnifier view
 
-- (void)showLoupeMagnifier
+- (void)showMagnifier
 {
-    if(_loupeMagnifierView == nil)
+    if(_selectionChange == FKTextSelectionChangeCaret)
     {
-        _loupeMagnifierView = [[FKTextLoupeMagnifierView alloc] init];
-        UIWindow * window = [[[UIApplication sharedApplication] windows] firstObject];
-        if(window)
-            [window addSubview:_loupeMagnifierView];
-        else
-            [self addSubview:_loupeMagnifierView];
-        [self setNeedsDisplay];
+        if(_loupeMagnifierView == nil)
+        {
+            _loupeMagnifierView = [[FKTextLoupeMagnifierView alloc] init];
+            UIWindow * window = [[[UIApplication sharedApplication] windows] firstObject];
+            if(window)
+                [window addSubview:_loupeMagnifierView];
+            else
+                [self addSubview:_loupeMagnifierView];
+            [self setNeedsDisplay];
+        }
+    }
+    else if(_selectionChange == FKTextSelectionChangeStartGrabber || _selectionChange == FKTextSelectionChangeEndGrabber)
+    {
+        if(_rangeMagnifierView == nil)
+        {
+            _rangeMagnifierView = [[FKTextRangeMagnifierView alloc] init];
+            UIWindow * window = [[[UIApplication sharedApplication] windows] firstObject];
+            if(window)
+                [window addSubview:_rangeMagnifierView];
+            else
+                [self addSubview:_rangeMagnifierView];
+            [self setNeedsDisplay];
+        }
     }
 }
 
-- (void)hideLoupeMagnifier
+- (void)hideMagnifier
 {
-    if(_loupeMagnifierView != nil)
+    if(_selectionChange == FKTextSelectionChangeCaret)
     {
-        [_loupeMagnifierView removeFromSuperview];
-        [_loupeMagnifierView release];
-        _loupeMagnifierView = nil;
-        [self setNeedsDisplay];
+        if(_loupeMagnifierView != nil)
+        {
+            [_loupeMagnifierView removeFromSuperview];
+            [_loupeMagnifierView release];
+            _loupeMagnifierView = nil;
+            [self setNeedsDisplay];
+        }
+    }
+    else if(_selectionChange == FKTextSelectionChangeStartGrabber || _selectionChange == FKTextSelectionChangeEndGrabber)
+    {
+        if(_rangeMagnifierView != nil)
+        {
+            [_rangeMagnifierView removeFromSuperview];
+            [_rangeMagnifierView release];
+            _rangeMagnifierView = nil;
+            [self setNeedsDisplay];
+        }
     }
 }
 
-- (void)updateLoupeMagnifier:(CGPoint)position
+- (void)updateMagnifier:(CGPoint)position
 {
-    if(_loupeMagnifierView != nil)
+    if(_selectionChange == FKTextSelectionChangeCaret)
     {
-        _loupeMagnifierView.position = position;
+        if(_loupeMagnifierView != nil)
+        {
+            _loupeMagnifierView.position = position;
+        }
+    }
+    else if(_selectionChange == FKTextSelectionChangeStartGrabber)
+    {
+        if(_rangeMagnifierView != nil)
+        {
+            _rangeMagnifierView.position =  _rangeView.startEdge.origin;
+        }
+    }
+    else if(_selectionChange == FKTextSelectionChangeEndGrabber)
+    {
+        if(_rangeMagnifierView != nil)
+        {
+            _rangeMagnifierView.position = _rangeView.endEdge.origin;
+        }
     }
 }
 

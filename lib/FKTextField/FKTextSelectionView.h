@@ -32,6 +32,7 @@
 #import "FKTextCaretView.h"
 #import "FKTextRangeView.h"
 #import "FKTextLoupeMagnifierView.h"
+#import "FKTextRangeMagnifierView.h"
 
 /*!
  @abstract Text Selection Change Type
@@ -65,6 +66,7 @@ typedef enum {
     FKTextCaretView * _caretView; // caret view
     FKTextRangeView * _rangeView; // range view
     FKTextLoupeMagnifierView * _loupeMagnifierView; // used with caret
+    FKTextRangeMagnifierView * _rangeMagnifierView; // used with range
     
     BOOL _visible; // the selection view is only visible if this flag is YES
 }

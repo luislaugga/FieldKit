@@ -1,6 +1,6 @@
 /*
  
- FKTextSelectionView_Internal.h
+ FKTextRangeMagnifierView.h
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -25,34 +25,22 @@
  
 */
 
-#import "FKTextSelectionView.h"
-
-#pragma mark -
-#pragma mark FKTextSelectionView internal class extension
+#import <UIKit/UIKit.h>
 
 /*!
- @category FKTextSelectionView internal extension
+ @abstract Text Range Magnifier View
+ @discussion 
+ View responsible for rendering a scaled-up (magnified) 
+ region of text in a rectangle.
  */
-@interface FKTextSelectionView ()
-
-@property(nonatomic, assign) UIView<FKTextSelectingContainer> * selectingContainer;
-@property(nonatomic, retain) UIView * caretView;
-
-/*!
- Shows range view
- */
-- (void)showRange;
-
-/*!
- Hides range view
- */
-- (void)hideRange;
-
-/*!
- Show loupe magnifier view
- */
-- (void)showMagnifier;
-- (void)hideMagnifier;
-- (void)updateMagnifier:(CGPoint)position;
+@interface FKTextRangeMagnifierView : UIView
+{
+    UIImage * _magnifierRangedLow;
+    UIImage * _magnifierRangedMask;
+    UIImage * _magnifierRangedHigh;
+    
+    CGPoint _position;
+}
+@property (nonatomic, readwrite) CGPoint position;
 
 @end
