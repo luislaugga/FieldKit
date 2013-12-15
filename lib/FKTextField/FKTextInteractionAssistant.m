@@ -87,8 +87,6 @@
 
 - (void)userDidSingleTap:(UITapGestureRecognizer *)singleTapGesture
 {
-    
-    
     // Proceed if responder is editable
     if([_selectingContainer.responder isEditable])
     {

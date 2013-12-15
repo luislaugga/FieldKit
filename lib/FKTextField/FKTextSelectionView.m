@@ -30,9 +30,6 @@
 
 #import "FKTextAppearance.h"
 
-static const NSTimeInterval FKTextSelectionCaretBlinkDelay = 0.7;
-static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
-
 @implementation FKTextSelectionView
 
 @synthesize selectionRange = _selectionRange;
@@ -41,6 +38,15 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
 
 #pragma mark -
 #pragma mark Initialization
+
+- (void)dealloc
+{
+    // Clean up
+    self.selectingContainer = nil;
+    self.caretView = nil;
+    
+    [super dealloc];
+}
 
 - (id)initWithSelectingContainer:(UIView<FKTextSelectingContainer> *)selectingContainer
 {
@@ -54,20 +60,12 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
         self.backgroundColor = [UIColor clearColor];
         
         // Set up caret view
-        _caretTimer = nil;
-        self.caretView = [FKTextSelectionView defaultCaretView];
+        self.caretView = [FKTextCaretView defaultCaretView];
+        [self addSubview:_caretView];
+        
         _selectionRange = NSMakeRange(0, 0);
     }
     return self;
-}
-
-- (void)dealloc
-{
-    // Clean up
-    self.selectingContainer = nil;
-    self.caretView = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -
@@ -75,7 +73,7 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
 
 - (void)willMoveToSuperview:(UIView *)superview
 {
-    [self showCaret];
+    [_caretView show];
     
     _visible = YES;
 }
@@ -85,12 +83,10 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     [super removeFromSuperview];
     
     [self hideRange];
-    [self clearCaretBlinkTimer];
-    [self hideCaret];
+    [_caretView hide];
     
     _visible = NO;
 }
-
 
 #pragma mark -
 #pragma mark Properties
@@ -126,8 +122,7 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     {
         if(_rangeView == nil) // previous was caret
         {
-            [self hideCaret];
-            [self clearCaretBlinkTimer];
+            [_caretView hide];
             [self showRange];
         }
 
@@ -138,14 +133,11 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
         if(_rangeView != nil) // previous was range
         {
             [self hideRange];
-            [self showCaret];
-        }
-        else
-        {
-            [self touchCaretBlinkTimer];
+            [_caretView show];
         }
 
-        [self updateCaret];
+        // Update caret view position
+        [_caretView update:[_selectingContainer.textContentView textOffsetRectForIndex:_selectionRange.location]];
     }
 }
 
@@ -157,6 +149,9 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     // Set selection location based on index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     self.selectionRange = NSMakeRange(index, 0); // set location
+    
+    // Touch the caret view
+    [_caretView touch];
 }
 
 - (void)setCaretSelectionForPoint:(CGPoint)point showMagnifier:(BOOL)showMagnifier
@@ -317,95 +312,6 @@ static const NSTimeInterval FKTextSelectionCaretBlinkRate = 0.5;
     
     // Clean up
     [mutableText release];
-}
-
-#pragma mark -
-#pragma mark Caret view
-
-+ (UIView *)defaultCaretView
-{
-    // Create and set caret view using default values
-    UIView * caretView = [[UIView alloc] initWithFrame:CGRectZero];
-    caretView.backgroundColor = [FKTextAppearance defaultSelectionCaretColor];
-    return [caretView autorelease];
-}
-
-- (void)showCaret
-{
-    // Add caret view
-    if (!_caretView.superview)
-    {
-        [self addSubview:_caretView];
-        [self setNeedsDisplay];            
-    }
-    
-    // Add loupe magnifier view
-    [self showLoupeMagnifier];
-    
-    // Start blinking
-    [self startCaretBlinkIfNeeded];
-}
-
-- (void)hideCaret
-{
-    // Remove caret view
-    [_caretView removeFromSuperview];
-    [self setNeedsDisplay];
-    
-    // Hide loupe magnifier view
-    [self hideLoupeMagnifier];
-}
-
-- (void)updateCaret
-{
-    // Update caret view frame
-    CGRect textRect = [_selectingContainer.textContentView textOffsetRectForIndex:_selectionRange.location];
-    _caretView.frame = [FKTextAppearance selectionCaretFrameForTextRect:textRect];
-    
-    // Update loupe magnifier view
-    [self updateLoupeMagnifier];
-}
-
-- (void)startCaretBlinkIfNeeded // setup caret timer
-{
-    // Set up caret timer
-    if(_caretTimer == nil)
-        _caretTimer = [[NSTimer scheduledTimerWithTimeInterval:FKTextSelectionCaretBlinkRate target:self selector:@selector(caretBlinkTimerFired:) userInfo:nil repeats:YES] retain];
-    
-    // Set caret view visible
-    _caretView.hidden = NO;
-    
-    // Set caret blinks flag
-    _caretBlinks = YES;
-}
-
-- (void)touchCaretBlinkTimer // reset caret timer fire date
-{
-    // Update caret timer
-    [_caretTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:FKTextSelectionCaretBlinkDelay]];   
-    
-    // Set caret view visible
-    _caretView.hidden = NO;
-}
-
-- (void)clearCaretBlinkTimer // invalidate caret timer
-{
-    // Release caret timer
-    [_caretTimer invalidate];
-    [_caretTimer release];
-    _caretTimer = nil; 
-    
-    // Set caret view visible
-    _caretView.hidden = NO;
-    
-    // Mark caret blinks flag
-    _caretBlinks = NO;
-}
-
-- (void)caretBlinkTimerFired:(id)info // caret timer action
-{
-    // Toggle caret view visibility
-    _caretView.hidden = !_caretView.hidden;
 }
 
 #pragma mark -

@@ -39,36 +39,6 @@
 @property(nonatomic, retain) UIView * caretView;
 
 /*!
- Default caret view factory helper
- */
-+ (UIView *)defaultCaretView;
-
-/*!
- Start caret blinking
- */
-- (void)startCaretBlinkIfNeeded; // setup caret timer
-- (void)touchCaretBlinkTimer; // reset caret timer fire date
-- (void)clearCaretBlinkTimer; // invalidate caret timer
-- (void)showCaret; // show
-- (void)hideCaret; // hide
-- (void)updateCaret; // release caret
-
-/*!
- Caret NSTimer action method
- */
-- (void)caretBlinkTimerFired:(id)info;
-
-/*!
- Shows caret view
- */
-- (void)showCaret;
-
-/*!
- Hides caret view
- */
-- (void)hideCaret;
-
-/*!
  Shows range view
  */
 - (void)showRange;

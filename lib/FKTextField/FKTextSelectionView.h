@@ -29,6 +29,7 @@
 
 #import "FKTextSelecting.h"
 
+#import "FKTextCaretView.h"
 #import "FKTextLoupeMagnifierView.h"
 
 @class FKTextRangeView;
@@ -43,13 +44,11 @@
     UIView<FKTextSelectingContainer> * _selectingContainer;
     
     NSRange _selectionRange;
-    NSTimer * _caretTimer;
-    UIView * _caretView;
     
+    FKTextCaretView * _caretView;
     FKTextRangeView * _rangeView;
     FKTextLoupeMagnifierView * _loupeMagnifierView;
     
-    BOOL _caretBlinks;
     BOOL _visible;
     BOOL _magnify;
 }
