@@ -35,6 +35,7 @@
 @synthesize selectingContainer = _selectingContainer;
 @synthesize singleTapGesture = _singleTapGesture;
 @synthesize doubleTapGesture = _doubleTapGesture;
+@synthesize dragGesture = _dragGesture;
 
 #pragma mark -
 #pragma Initialization
@@ -62,6 +63,15 @@
         [_selectingContainer addGestureRecognizer:doubleTapGesture];
         self.doubleTapGesture = doubleTapGesture;
         [doubleTapGesture release];
+
+        // Set up drag gesture recognizer
+        UIPanGestureRecognizer * dragGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(userDidDrag:)];
+        dragGesture.minimumNumberOfTouches = 1;
+        dragGesture.maximumNumberOfTouches = 1;
+        dragGesture.delegate = self;
+        [_selectingContainer addGestureRecognizer:dragGesture];
+        self.dragGesture = dragGesture;
+        [dragGesture release];
         
         // Set up long press gesture recognizer
         UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(userDidLongPress:)];
@@ -77,6 +87,7 @@
     // Clean up
     self.singleTapGesture = nil;
     self.doubleTapGesture = nil;
+    self.dragGesture = nil;
     self.selectingContainer = nil;
     
     [super dealloc];
@@ -108,6 +119,14 @@
 }
 
 #pragma mark -
+#pragma mark Drag
+
+- (void)userDidDrag:(UIPanGestureRecognizer *)dragGesture
+{
+    
+}
+
+#pragma mark -
 #pragma mark Long Press
 
 - (void)userDidLongPress:(UILongPressGestureRecognizer *)longPressGesture
@@ -125,6 +144,7 @@
             break;
         case UIGestureRecognizerStateChanged:
         {
+             NSLog(@"UIGestureRecognizerStateChanged");
             // Send long press location to selection view
             [_selectingContainer.textSelectionView setCaretSelectionForPoint:longPressGestureLocation showMagnifier:YES];
         }
@@ -147,9 +167,22 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)
-        return NO; // Only accept double-tap while editing
-        
+    if(_selectingContainer.responder.isEditing == NO)
+    {
+        if(gestureRecognizer == self.doubleTapGesture)
+            return NO; // Only accept double-tap while editing
+    
+        if(gestureRecognizer == self.dragGesture)
+            return NO; // Only accept dragging while editing
+    }
+    else
+    {
+        if(gestureRecognizer == self.dragGesture) // dragging is allowed for caret and selection grabbers
+        {
+            // hit test
+        }
+    }
+    
     return YES;
 }
 

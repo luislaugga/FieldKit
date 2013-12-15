@@ -1,6 +1,6 @@
 /*
  
- FKTextInteractionAssistant.h
+ FKSelectionGrabber.m
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -25,27 +25,28 @@
  
 */
 
-#import <Foundation/Foundation.h>
+#import "FKSelectionGrabber.h"
 
-#import "FKTextSelecting.h"
+#import "FKTextAppearance.h"
 
-/*!
- @abstract Text Interaction Assistant
- @discussion 
- Object responsible for handling all user interactions and forwarding to the appropriate FKTextSelectingContainer views
- */
-@interface FKTextInteractionAssistant : NSObject <UIGestureRecognizerDelegate>
+@implementation FKSelectionGrabber
+
+#pragma mark -
+#pragma mark Initialization
+
+- (void)dealloc
 {
-    UIView<FKTextSelectingContainer> * _selectingContainer;
-    UITapGestureRecognizer * _singleTapGesture;
-    UITapGestureRecognizer * _doubleTapGesture;
-    UIPanGestureRecognizer * _dragGesture;
+    [super dealloc];
 }
 
-/*!
- Required initialization method
- Initialize with a given selecting container
- */
-- (id)initWithSelectingContainer:(UIView<FKTextSelectingContainer> *)selectingContainer;
+- (id)init
+{
+    self = [super initWithFrame:CGRectZero];
+    if(self)
+    {
+        self.backgroundColor = [FKTextAppearance defaultSelectionGrabberColor];
+    }
+    return self;
+}
 
 @end

@@ -27,6 +27,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FKSelectionGrabber.h"
+
 /*!
  @abstract Text Range View
  @discussion 
@@ -41,8 +43,8 @@
     NSArray * _rects;
     NSMutableArray * _rectViews;
     //    UITouch *m_activeTouch;
-    //    struct CGRect m_startEdge;
-    //    struct CGRect m_endEdge;
+    CGRect _startEdge;
+    CGRect _endEdge;
     //    struct CGPoint m_basePoint;
     //    struct CGPoint m_extentPoint;
     //    struct CGPoint m_initialBasePoint;
@@ -50,8 +52,8 @@
     //    float m_initialDistance;
     //    struct CGPoint m_touchOffset;
     //    double m_firstMovedTime;
-    //    UISelectionGrabber *m_startGrabber;
-    //    UISelectionGrabber *m_endGrabber;
+    FKSelectionGrabber * _startGrabber;
+    FKSelectionGrabber * _endGrabber;
     //    BOOL m_animateUpdate;
     //    BOOL m_baseIsStart;
     //    BOOL m_commandsWereShowing;
@@ -62,6 +64,10 @@
     //    BOOL m_rotating;
     //    BOOL m_inputViewIsChanging;
 }
+@property struct CGRect startEdge;
+@property(retain) FKSelectionGrabber * startGrabber;
+@property struct CGRect endEdge;
+@property(retain) FKSelectionGrabber * endGrabber;
 @property(nonatomic, copy) NSArray * rects;
 @property(nonatomic, retain) NSMutableArray * rectViews;
 
@@ -70,20 +76,5 @@
  */
 + (UIView *)defaultRangeViewForRect:(CGRect)rect;
 
-@end
-
-#pragma mark -
-#pragma mark FKSelectionGrabber
-
-@interface FKSelectionGrabber : UIView
-{
-    //    UISelectionGrabberDot *m_dotView;
-    //    BOOL m_isDotted;
-    //    BOOL m_isStart;
-    //    BOOL m_activeFlattened;
-    //    BOOL m_alertFlattened;
-    //    BOOL m_navigationTransitionFlattened;
-    //    BOOL m_animating;
-}
 @end
 

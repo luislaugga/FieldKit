@@ -36,6 +36,8 @@
 
 @synthesize rects = _rects;
 @synthesize rectViews = _rectViews;
+@dynamic startEdge, endEdge;
+@synthesize startGrabber = _startGrabber, endGrabber = _endGrabber;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,6 +46,11 @@
     {
         _rects = nil;
         _rectViews = [[NSMutableArray alloc] init];
+        
+        self.startGrabber = [[FKSelectionGrabber alloc] init];
+        [self addSubview:_startGrabber];
+        self.endGrabber = [[FKSelectionGrabber alloc] init];
+        [self addSubview:_endGrabber];
     }
     return self;
 }
@@ -52,6 +59,9 @@
 {
     self.rects = nil;
     self.rectViews = nil;
+    
+    self.startGrabber = nil;
+    self.endGrabber = nil;
     
     [super dealloc];
 }
@@ -75,15 +85,19 @@
         if([_rects count] == 1) // one rect only, draw according to its origin and size
         {
             CGRect rect = [[_rects objectAtIndex:0] CGRectValue];
+            self.startEdge = CGRectMake(rect.origin.x, rect.origin.y, 0, rect.size.height);
+            self.endEdge = CGRectMake(rect.origin.x+rect.size.width, rect.origin.y, 0, rect.size.height);
             [_rectViews addObject:[FKTextRangeView defaultRangeViewForRect:rect]];
         }
         else if([_rects count] > 1) // 2 or more rects, draw first, last and middle rect but align to content view boundaries
         {
             CGRect firstRect = [[_rects objectAtIndex:0] CGRectValue];
+            self.startEdge = CGRectMake(firstRect.origin.x, firstRect.origin.y, 0, firstRect.size.height);
             firstRect.size.width = self.bounds.size.width - firstRect.origin.x; // match right edge
             [_rectViews addObject:[FKTextRangeView defaultRangeViewForRect:firstRect]];
             
             CGRect lastRect = [[_rects lastObject] CGRectValue];
+            self.endEdge = CGRectMake(lastRect.origin.x+lastRect.size.width, lastRect.origin.y, 0, lastRect.size.height);
             lastRect.size.width += lastRect.origin.x; // match left edge
             lastRect.origin.x = 0; // match left edge
             [_rectViews addObject:[FKTextRangeView defaultRangeViewForRect:lastRect]];
@@ -108,6 +122,21 @@
     UIView * rangeView = [[UIView alloc] initWithFrame:rect];
     [rangeView setBackgroundColor:[FKTextAppearance defaultSelectionRangeColor]];
     return [rangeView autorelease];
+}
+
+#pragma mark -
+#pragma mark Edges
+
+- (void)setStartEdge:(CGRect)startEdge
+{
+    _startEdge = startEdge;
+    _startGrabber.frame = [FKTextAppearance startSelectionGrabberFrameForTextRect:startEdge];
+}
+
+- (void)setEndEdge:(CGRect)endEdge
+{
+    _endEdge = endEdge;
+    _endGrabber.frame = [FKTextAppearance endSelectionGrabberFrameForTextRect:endEdge];
 }
 
 @end

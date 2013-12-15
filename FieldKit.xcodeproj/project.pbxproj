@@ -64,6 +64,9 @@
 		A0CD3173185DD30E00EB93B2 /* FKTextRangeView.h in Headers */ = {isa = PBXBuildFile; fileRef = A0CD3171185DD30E00EB93B2 /* FKTextRangeView.h */; };
 		A0CD3174185DD30E00EB93B2 /* FKTextRangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3172185DD30E00EB93B2 /* FKTextRangeView.m */; };
 		A0CD3175185DD30E00EB93B2 /* FKTextRangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3172185DD30E00EB93B2 /* FKTextRangeView.m */; };
+		A0CD3178185DEC8F00EB93B2 /* FKSelectionGrabber.h in Headers */ = {isa = PBXBuildFile; fileRef = A0CD3176185DEC8F00EB93B2 /* FKSelectionGrabber.h */; };
+		A0CD3179185DEC8F00EB93B2 /* FKSelectionGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3177185DEC8F00EB93B2 /* FKSelectionGrabber.m */; };
+		A0CD317A185DEC8F00EB93B2 /* FKSelectionGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3177185DEC8F00EB93B2 /* FKSelectionGrabber.m */; };
 		A0F0BE2616388E050017AEC3 /* FKScrollField.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F0BE0916388E050017AEC3 /* FKScrollField.m */; };
 		A0F0BE2716388E050017AEC3 /* FKTextAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F0BE0E16388E050017AEC3 /* FKTextAppearance.m */; };
 		A0F0BE2816388E050017AEC3 /* FKTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F0BE1016388E050017AEC3 /* FKTextContentView.m */; };
@@ -165,6 +168,8 @@
 		A0CD316D185DC6C000EB93B2 /* FKTextCaretView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextCaretView.m; sourceTree = "<group>"; };
 		A0CD3171185DD30E00EB93B2 /* FKTextRangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextRangeView.h; sourceTree = "<group>"; };
 		A0CD3172185DD30E00EB93B2 /* FKTextRangeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextRangeView.m; sourceTree = "<group>"; };
+		A0CD3176185DEC8F00EB93B2 /* FKSelectionGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKSelectionGrabber.h; sourceTree = "<group>"; };
+		A0CD3177185DEC8F00EB93B2 /* FKSelectionGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKSelectionGrabber.m; sourceTree = "<group>"; };
 		A0F0BE0616388E050017AEC3 /* FieldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldKit.h; sourceTree = "<group>"; };
 		A0F0BE0816388E050017AEC3 /* FKScrollField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKScrollField.h; sourceTree = "<group>"; };
 		A0F0BE0916388E050017AEC3 /* FKScrollField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKScrollField.m; sourceTree = "<group>"; };
@@ -347,6 +352,8 @@
 				A0CD3172185DD30E00EB93B2 /* FKTextRangeView.m */,
 				A0CD3167185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h */,
 				A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */,
+				A0CD3176185DEC8F00EB93B2 /* FKSelectionGrabber.h */,
+				A0CD3177185DEC8F00EB93B2 /* FKSelectionGrabber.m */,
 			);
 			path = FKTextField;
 			sourceTree = "<group>";
@@ -377,6 +384,7 @@
 				A0F304341638914800D8F09D /* FKTokenField.h in Headers */,
 				A0F304361638914800D8F09D /* FKTokenFieldCell.h in Headers */,
 				A0F304371638914800D8F09D /* FKTokenFieldDelegate.h in Headers */,
+				A0CD3178185DEC8F00EB93B2 /* FKSelectionGrabber.h in Headers */,
 				A0F30425163890F400D8F09D /* FKScrollField.h in Headers */,
 				A0CD3169185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h in Headers */,
 				A0CD316E185DC6C000EB93B2 /* FKTextCaretView.h in Headers */,
@@ -601,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0F0BE4516388FE90017AEC3 /* FKScrollField.m in Sources */,
+				A0CD317A185DEC8F00EB93B2 /* FKSelectionGrabber.m in Sources */,
 				A0CD3170185DC6C000EB93B2 /* FKTextCaretView.m in Sources */,
 				A0CD3175185DD30E00EB93B2 /* FKTextRangeView.m in Sources */,
 				A0F0BE4616388FE90017AEC3 /* FKTextAppearance.m in Sources */,
@@ -630,6 +639,7 @@
 				A0F0BE2A16388E050017AEC3 /* FKTextField.m in Sources */,
 				A0F0BE2C16388E050017AEC3 /* FKTextSelectionView.m in Sources */,
 				A0F0BE2D16388E050017AEC3 /* FKTokenField.m in Sources */,
+				A0CD3179185DEC8F00EB93B2 /* FKSelectionGrabber.m in Sources */,
 				A0F0BE2E16388E050017AEC3 /* FKTokenFieldCell.m in Sources */,
 				A0F3043D1638944900D8F09D /* FKTextInteractionAssistant.m in Sources */,
 			);

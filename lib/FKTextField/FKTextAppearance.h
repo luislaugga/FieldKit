@@ -64,4 +64,14 @@
  */
 + (CGRect)selectionCaretFrameForTextRect:(CGRect)textRect;
 
+/*!
+ Default start selection grabber rect frame
+ */
++ (CGRect)startSelectionGrabberFrameForTextRect:(CGRect)textRect;
+
+/*!
+ Default end selection grabber rect frame
+ */
++ (CGRect)endSelectionGrabberFrameForTextRect:(CGRect)textRect;
+
 @end

@@ -38,6 +38,7 @@
 @property(nonatomic, assign) UIView<FKTextSelectingContainer> * selectingContainer;
 @property(nonatomic, retain) UITapGestureRecognizer * singleTapGesture; // @synthesize singleTapGesture = _singleTapGesture;
 @property(nonatomic, retain) UITapGestureRecognizer * doubleTapGesture; // @synthesize doubleTapGesture = _doubleTapGesture;
+@property(nonatomic, retain) UIPanGestureRecognizer * dragGesture; // @synthesize doubleTapGesture = _doubleTapGesture;
 
 /*! 
  Action method for single-tap UITapGestureRecognizer

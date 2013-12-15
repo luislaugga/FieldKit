@@ -406,7 +406,7 @@
 
 - (CGRect)convertRectToUIViewDefaultCoordinateSystem:(CGRect)rect
 {
-    return CGRectMake(rect.origin.x, self.bounds.size.height-rect.origin.y-rect.size.height, rect.size.width, rect.size.height);
+    return CGRectMake((int)(rect.origin.x), (int)(self.bounds.size.height-rect.origin.y-rect.size.height), (int)(rect.size.width), (int)(rect.size.height));
 }
 
 - (CGPoint)convertPointFromUIViewDefaultCoordinateSystem:(CGPoint)point

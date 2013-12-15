@@ -69,7 +69,7 @@
 {
     static UIColor *color = nil;
     if (color == nil) {
-        color = [[UIColor alloc] initWithRed:0.20 green:0.36 blue:0.65 alpha:0.20];    
+        color = [[UIColor alloc] initWithRed:0.20 green:0.37 blue:0.95 alpha:0.95];
     }    
     return color;
 }
@@ -77,11 +77,24 @@
 #pragma mark -
 #pragma mark Frames
 
-#define kFKTextAppearanceCaretWidth 3
+#define kFKTextAppearanceSelectionCaretWidth 3
 
 + (CGRect)selectionCaretFrameForTextRect:(CGRect)textRect
 {
-    return CGRectMake(textRect.origin.x, textRect.origin.y, kFKTextAppearanceCaretWidth, textRect.size.height);
+    return CGRectMake(textRect.origin.x, textRect.origin.y, kFKTextAppearanceSelectionCaretWidth, textRect.size.height);
+}
+
+#define kFKTextAppearanceSelectionGrabberWidth 3
+#define kFKTextAppearanceSelectionGrabberHeightOffset 10
+
++ (CGRect)startSelectionGrabberFrameForTextRect:(CGRect)textRect
+{
+    return CGRectMake(textRect.origin.x-kFKTextAppearanceSelectionGrabberWidth, textRect.origin.y-kFKTextAppearanceSelectionGrabberHeightOffset, kFKTextAppearanceSelectionGrabberWidth, textRect.size.height+kFKTextAppearanceSelectionGrabberHeightOffset);
+}
+
++ (CGRect)endSelectionGrabberFrameForTextRect:(CGRect)textRect
+{
+    return CGRectMake(textRect.origin.x, textRect.origin.y, kFKTextAppearanceSelectionGrabberWidth, textRect.size.height+kFKTextAppearanceSelectionGrabberHeightOffset);
 }
 
 @end

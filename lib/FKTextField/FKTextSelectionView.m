@@ -165,7 +165,10 @@
     if(_magnify == NO)
         [self hideLoupeMagnifier];
     else
+    {
         [self showLoupeMagnifier];
+        [self updateLoupeMagnifier:point];
+    }
 }
 
 - (void)setWordSelectionForPoint:(CGPoint)point
@@ -374,14 +377,14 @@
     }
 }
 
-- (void)updateLoupeMagnifier
+- (void)updateLoupeMagnifier:(CGPoint)position
 {
     if(_loupeMagnifierView != nil)
     {
         if(_magnify)
         {
             _loupeMagnifierView.hidden = NO;
-            _loupeMagnifierView.position = _caretView.frame.origin;
+            _loupeMagnifierView.position = position;
         }
         else
         {
