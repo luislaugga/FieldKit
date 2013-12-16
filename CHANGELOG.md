@@ -1,3 +1,21 @@
+## 0.1.1
+
+Features:
+ 
+  - Text selection change with drag gesture
+  - Text loupe magnifier for caret selection
+  - Text range magnifier for range selection
+  - FKTextRangeView UI with selection grabbers (FKSelectionGrabber)
+  
+Bugfixes:
+
+  - fix double-tap user interaction when text field is not in editing mode  
+
+Documentation:
+  
+  - Architecture diagram
+  - UX diagram
+   
 ## 0.1.0
 
 Features:
