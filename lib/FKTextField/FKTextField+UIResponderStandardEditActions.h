@@ -1,6 +1,6 @@
 /*
  
- FKTextSelectionView_Internal.h
+ FKTextField+UIResponderStandardEditActions.h
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -25,40 +25,51 @@
  
 */
 
-#import "FKTextSelectionView.h"
+#import "FKTextField.h"
+#import "FKTextField_Internal.h"
+
+#import <UIKit/UIKit.h>
 
 #pragma mark -
-#pragma mark FKTextSelectionView internal class extension
+#pragma mark FKTextField (UIResponderStandardEditActions)
 
 /*!
- @category FKTextSelectionView internal extension
+ @abstract FKTextField UIResponderStandardEditActions informal protocol addition category
+ @discussion 
+ The UIResponderStandardEditActions informal protocol declares methods that responder classes 
+ should override to handle common editing commands invoked in the user interface, such as Copy, Paste, and Select.
  */
-@interface FKTextSelectionView ()
+@interface FKTextField (UIResponderStandardEditActions) // UIResponderStandardEditActions is an informal protocol
 
-@property(nonatomic, assign) UIView<FKTextSelectingContainer> * selectingContainer;
-@property(nonatomic, retain) UIView * caretView;
-
-/*!
- Shows range view
- */
-- (void)showRange;
+#pragma mark -
+#pragma mark Handling Copy, Cut, Delete, and Paste Commands
 
 /*!
- Hides range view
+ Copy the selection to the pasteboard.
  */
-- (void)hideRange;
+- (void)copy:(id)sender;
 
 /*!
- Show loupe magnifier view
+ Remove the selection from the user interface and write it to the pasteboard.
  */
-- (void)showMagnifier;
-- (void)hideMagnifier;
-- (void)updateMagnifier:(CGPoint)position;
+- (void)cut:(id)sender;
 
 /*!
- Toggle the visibility of the selection menu.
+ Read data from the pasteboard and copy into the current text selection.
  */
-- (void)toggleSelectionMenu;
-- (void)hideSelectionMenu;
+- (void)paste:(id)sender;
+
+#pragma mark -
+#pragma mark Handling Selection Commands
+
+/*!
+ Select the next object the user taps.
+ */
+- (void)select:(id)sender;
+
+/*!
+ Select all objects in the current view.
+ */
+- (void)selectAll:(id)sender;
 
 @end

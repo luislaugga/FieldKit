@@ -68,7 +68,8 @@ typedef enum {
     FKTextLoupeMagnifierView * _loupeMagnifierView; // used with caret
     FKTextRangeMagnifierView * _rangeMagnifierView; // used with range
     
-    BOOL _visible; // the selection view is only visible if this flag is YES
+    BOOL _visible; // the selection view is only visible if this flag is set to YES
+    BOOL _isSelectionMenuVisible; // when the selection menu is visible this flag is set to YES
 }
 
 @property(nonatomic, assign) NSRange selectionRange;

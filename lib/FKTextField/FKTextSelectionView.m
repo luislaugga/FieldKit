@@ -151,10 +151,30 @@
 {
     // Set selection location based on index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
-    self.selectionRange = NSMakeRange(index, 0); // set location
     
-    // Touch the caret view
-    [_caretView touch];
+    // Caret selection
+    if(self.selectionRange.length == 0) // Previous is caret selection
+    {
+        if(self.selectionRange.location == index) // same location
+        {
+            [self toggleSelectionMenu]; // toggle selection menu
+        }
+        else
+        {
+            [self hideSelectionMenu]; // hide selection menu
+            self.selectionRange = NSMakeRange(index, 0); // set location
+        }
+        
+        // Touch the caret view
+        [_caretView touch];
+    }
+    else // Previous selection is range selection
+    {
+        self.selectionRange = NSMakeRange(index, 0); // set location
+        
+        // Hide selection menu
+        [self toggleSelectionMenu];
+    }
 }
 
 - (void)setWordSelectionForPoint:(CGPoint)point
@@ -163,6 +183,9 @@
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     NSRange range = [_selectingContainer.textContentView textWordRangeForIndex:index]; // word range for closest index
     self.selectionRange = range; // set word range
+    
+    // Show selection menu
+    [self toggleSelectionMenu];
 }
 
 #pragma mark -
@@ -180,6 +203,9 @@
 {
     if(_selectionRange.length > 0) // going into range
     {
+        // Hide selection menu
+        [self toggleSelectionMenu];
+        
         if([_rangeView.startGrabber pointCanDrag:point])
         {
             _selectionChange = FKTextSelectionChangeStartGrabber;
@@ -246,6 +272,10 @@
     if(_selectionChange == FKTextSelectionChangeCaret)
     {
         _caretView.blink = YES;
+    }
+    else
+    {
+        [self toggleSelectionMenu];
     }
     
     // Magnifier
@@ -503,6 +533,56 @@
         {
             _rangeMagnifierView.position = _rangeView.endEdge.origin;
         }
+    }
+}
+
+#pragma mark -
+#pragma mark Selection Menu
+
+- (void)toggleSelectionMenu
+{
+    if(_isSelectionMenuVisible)
+    {
+        // Unset flag
+        _isSelectionMenuVisible = NO;
+        
+        // Hide UIMenuController
+        [[UIMenuController sharedMenuController] setMenuVisible:NO];
+    }
+    else
+    {
+        // Set flag
+        _isSelectionMenuVisible = YES;
+        
+        // Show UIMenuController for current selection
+        UIMenuController * menuController = [UIMenuController sharedMenuController];
+
+        // Calculate selection CGRect
+        CGRect selectionRect;
+        if(_selectionRange.length)
+        {
+            selectionRect = CGRectMake(_rangeView.startEdge.origin.x, _rangeView.startEdge.origin.y, _rangeView.endEdge.origin.x-_rangeView.startEdge.origin.x, _rangeView.startEdge.size.height + _rangeView.endEdge.origin.y-_rangeView.startEdge.origin.y);
+        }
+        else
+        {
+            selectionRect = _caretView.frame;
+        }
+        
+        // Set menu controller selection CGRect and set visible
+        [menuController setTargetRect:selectionRect inView:self];
+        [menuController setMenuVisible:YES animated:YES];
+    }
+}
+
+- (void)hideSelectionMenu
+{
+    if(_isSelectionMenuVisible)
+    {
+        // Unset flag
+        _isSelectionMenuVisible = NO;
+        
+        // Hide UIMenuController
+        [[UIMenuController sharedMenuController] setMenuVisible:NO];
     }
 }
 
