@@ -1,6 +1,6 @@
 /*
  
- FKTextAppearance.h
+ FKTextField+UITextInputTraits.m
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -25,58 +25,27 @@
  
 */
 
-#import <Foundation/Foundation.h>
+#import "FKTextField+UITextInputTraits.h"
 
-@interface FKTextAppearance : NSObject
+@implementation FKTextField (UITextInputTraits)
 
-/*!
- Default text font
- */
-+ (UIFont *)defaultFont;
+@dynamic spellCheckingType;
+@dynamic autocorrectionType;
+@dynamic autocapitalizationType;
 
-/*!
- Default text color
- */
-+ (UIColor *)defaultTextColor;
+- (UITextSpellCheckingType)spellCheckingType
+{
+    return UITextSpellCheckingTypeDefault; // FIXME
+}
 
-/*!
- Default background color
- */
-+ (UIColor *)defaultBackgroundColor;
+- (UITextAutocorrectionType)autocorrectionType
+{
+    return UITextAutocorrectionTypeDefault; // FIXME
+}
 
-/*!
- Default selection caret color
- */
-+ (UIColor *)defaultSelectionCaretColor;
-
-/*!
- Default selection range color
- */
-+ (UIColor *)defaultSelectionRangeColor;
-
-/*!
- Default marked selection range color
- */
-+ (UIColor *)defaultMarkedSelectionRangeColor;
-
-/*!
- Default selection grabber color
- */
-+ (UIColor *)defaultSelectionGrabberColor;
-
-/*!
- Default selection caret rect frame
- */
-+ (CGRect)selectionCaretFrameForTextRect:(CGRect)textRect;
-
-/*!
- Default start selection grabber rect frame
- */
-+ (CGRect)startSelectionGrabberFrameForTextRect:(CGRect)textRect;
-
-/*!
- Default end selection grabber rect frame
- */
-+ (CGRect)endSelectionGrabberFrameForTextRect:(CGRect)textRect;
+- (UITextAutocapitalizationType)autocapitalizationType
+{
+    return UITextAutocapitalizationTypeSentences;
+}
 
 @end

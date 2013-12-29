@@ -37,6 +37,9 @@
  Check UITextInput protocol for the required methods and properties
  */
 @interface FKTextField (UITextInput) <UITextInput>
+
+//@property (nonatomic, assign) id<UITextInputDelegate> inputDelegate;
+
 @end
 
 #pragma mark -
@@ -82,6 +85,6 @@
  Class method to create an instance with a given NSRange range
  @return Returns FKTextRange autoreleased instance
  */ 
-+ (FKTextRange *)textRangeWithRange:(NSRange)range;
++ (FKTextRange *)textRangeWithNSRange:(NSRange)range;
 
 @end

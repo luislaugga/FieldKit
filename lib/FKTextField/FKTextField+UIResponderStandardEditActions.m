@@ -39,7 +39,7 @@
 - (void)copy:(id)sender
 {
     // Grab the selected text string
-    NSString * selectedText = [self textInRange:[FKTextRange textRangeWithRange:_selectionView.selectionRange]];
+    NSString * selectedText = [self textInRange:[FKTextRange textRangeWithNSRange:_selectionView.selectionRange]];
     if(selectedText)
     {
         // Set the selected text string to the general UIPasteboard
@@ -53,7 +53,7 @@
 - (void)cut:(id)sender
 {
     // Grab the current selection
-    FKTextRange * textSelection = [FKTextRange textRangeWithRange:_selectionView.selectionRange];
+    FKTextRange * textSelection = [FKTextRange textRangeWithNSRange:_selectionView.selectionRange];
 
 #if !__has_feature(objc_arc)
     [textSelection retain];
@@ -81,14 +81,20 @@
  */
 - (void)paste:(id)sender
 {
+    // Notify text will change to container's responder input delegate
+    [_inputDelegate textWillChange:self];
+
     // Grab the selected text string from the general UIPasteboard
     NSString * pasteString = [[UIPasteboard generalPasteboard] string];
     if(pasteString)
     {
         // Replace the selected text by the paste string
-        //[self replaceRange:[FKTextRange textRangeWithRange:_selectionView.selectionRange] withText:pasteString];
+        //[self replaceRange:[FKTextRange textRangeWithNSRange_selectionView.selectionRange] withText:pasteString];
         [_selectionView insertTextIntoSelection:pasteString];
     }
+    
+    // Notify text did change to container's responder input delegate
+    [_inputDelegate textDidChange:self];
 }
 
 #pragma mark -
@@ -99,11 +105,17 @@
  */
 - (void)select:(id)sender
 {
+    // Notify selection will change to container's responder input delegate
+    [_inputDelegate selectionWillChange:self];
+    
     // Find selection range for current selection
     NSRange selectRange = [_contentView textWordRangeForIndex:_selectionView.selectionRange.location];
     
     // Select
     _selectionView.selectionRange = selectRange;
+    
+    // Notify selection did change to container's responder input delegate
+    [_inputDelegate selectionDidChange:self];
 }
 
 /*!
@@ -111,8 +123,14 @@
  */
 - (void)selectAll:(id)sender
 {
+    // Notify selection will change to container's responder input delegate
+    [_inputDelegate selectionWillChange:self];
+    
     // Select from start to end
     _selectionView.selectionRange = NSMakeRange(0, _contentView.text.length);
+    
+    // Notify selection did change to container's responder input delegate
+    [_inputDelegate selectionDidChange:self];
 }
 
 #pragma mark -

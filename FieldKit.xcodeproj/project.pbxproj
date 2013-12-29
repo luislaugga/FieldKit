@@ -58,6 +58,9 @@
 		A0A97488186F352B004468AC /* FKTextField+UIResponderStandardEditActions.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A97486186F352B004468AC /* FKTextField+UIResponderStandardEditActions.h */; };
 		A0A97489186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A97487186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m */; };
 		A0A9748A186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A97487186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m */; };
+		A0A974A5186F75B0004468AC /* FKTextField+UITextInputTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A974A3186F75B0004468AC /* FKTextField+UITextInputTraits.h */; };
+		A0A974A6186F75B0004468AC /* FKTextField+UITextInputTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A974A4186F75B0004468AC /* FKTextField+UITextInputTraits.m */; };
+		A0A974A7186F75B0004468AC /* FKTextField+UITextInputTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A974A4186F75B0004468AC /* FKTextField+UITextInputTraits.m */; };
 		A0CD3169185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h in Headers */ = {isa = PBXBuildFile; fileRef = A0CD3167185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h */; };
 		A0CD316A185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */; };
 		A0CD316B185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */; };
@@ -170,6 +173,8 @@
 		A07AD49E17E0818200A3F735 /* token-atom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "token-atom@2x.png"; path = "resources/token-atom@2x.png"; sourceTree = "<group>"; };
 		A0A97486186F352B004468AC /* FKTextField+UIResponderStandardEditActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FKTextField+UIResponderStandardEditActions.h"; sourceTree = "<group>"; };
 		A0A97487186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FKTextField+UIResponderStandardEditActions.m"; sourceTree = "<group>"; };
+		A0A974A3186F75B0004468AC /* FKTextField+UITextInputTraits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FKTextField+UITextInputTraits.h"; sourceTree = "<group>"; };
+		A0A974A4186F75B0004468AC /* FKTextField+UITextInputTraits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FKTextField+UITextInputTraits.m"; sourceTree = "<group>"; };
 		A0CD3167185CC1D100EB93B2 /* FKTextLoupeMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextLoupeMagnifierView.h; sourceTree = "<group>"; };
 		A0CD3168185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTextLoupeMagnifierView.m; sourceTree = "<group>"; };
 		A0CD316C185DC6C000EB93B2 /* FKTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTextCaretView.h; sourceTree = "<group>"; };
@@ -343,14 +348,16 @@
 				A0F0BE0F16388E050017AEC3 /* FKTextContentView.h */,
 				A0F0BE1016388E050017AEC3 /* FKTextContentView.m */,
 				A0F0BE1116388E050017AEC3 /* FKTextContentView_Internal.h */,
-				A0F0BE1216388E050017AEC3 /* FKTextField+UITextInput.h */,
-				A0F0BE1316388E050017AEC3 /* FKTextField+UITextInput.m */,
-				A0A97486186F352B004468AC /* FKTextField+UIResponderStandardEditActions.h */,
-				A0A97487186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m */,
 				A0F0BE1416388E050017AEC3 /* FKTextField.h */,
 				A0F0BE1516388E050017AEC3 /* FKTextField.m */,
 				A0F0BE1616388E050017AEC3 /* FKTextField_Internal.h */,
 				A0F0BE1716388E050017AEC3 /* FKTextFieldDelegate.h */,
+				A0F0BE1216388E050017AEC3 /* FKTextField+UITextInput.h */,
+				A0F0BE1316388E050017AEC3 /* FKTextField+UITextInput.m */,
+				A0A97486186F352B004468AC /* FKTextField+UIResponderStandardEditActions.h */,
+				A0A97487186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m */,
+				A0A974A3186F75B0004468AC /* FKTextField+UITextInputTraits.h */,
+				A0A974A4186F75B0004468AC /* FKTextField+UITextInputTraits.m */,
 				A0F3043A1638943800D8F09D /* FKTextInteractionAssistant.h */,
 				A0F3043C1638944900D8F09D /* FKTextInteractionAssistant.m */,
 				A0F0BE1A16388E050017AEC3 /* FKTextInteractionAssistant_Internal.h */,
@@ -417,6 +424,7 @@
 				A0F304321638914800D8F09D /* FKTextSelectionView.h in Headers */,
 				A0F304331638914800D8F09D /* FKTextSelectionView_Internal.h in Headers */,
 				A0CD3173185DD30E00EB93B2 /* FKTextRangeView.h in Headers */,
+				A0A974A5186F75B0004468AC /* FKTextField+UITextInputTraits.h in Headers */,
 				A0F304351638914800D8F09D /* FKTokenField_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +636,7 @@
 				A0CD317A185DEC8F00EB93B2 /* FKSelectionGrabber.m in Sources */,
 				A0CD3170185DC6C000EB93B2 /* FKTextCaretView.m in Sources */,
 				A0CD317F185E5AB000EB93B2 /* FKTextRangeMagnifierView.m in Sources */,
+				A0A974A7186F75B0004468AC /* FKTextField+UITextInputTraits.m in Sources */,
 				A0CD3175185DD30E00EB93B2 /* FKTextRangeView.m in Sources */,
 				A0F0BE4616388FE90017AEC3 /* FKTextAppearance.m in Sources */,
 				A0F0BE4716388FE90017AEC3 /* FKTextContentView.m in Sources */,
@@ -652,6 +661,7 @@
 				A0CD316F185DC6C000EB93B2 /* FKTextCaretView.m in Sources */,
 				A0F0BE2616388E050017AEC3 /* FKScrollField.m in Sources */,
 				A0A97489186F352B004468AC /* FKTextField+UIResponderStandardEditActions.m in Sources */,
+				A0A974A6186F75B0004468AC /* FKTextField+UITextInputTraits.m in Sources */,
 				A0F0BE2716388E050017AEC3 /* FKTextAppearance.m in Sources */,
 				A0F0BE2816388E050017AEC3 /* FKTextContentView.m in Sources */,
 				A0CD316A185CC1D100EB93B2 /* FKTextLoupeMagnifierView.m in Sources */,

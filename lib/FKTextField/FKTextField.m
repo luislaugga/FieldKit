@@ -157,8 +157,6 @@
 
 - (BOOL)resignFirstResponder
 {
-    
-    
     self.editing = NO;
     
 	return [super resignFirstResponder];
@@ -167,8 +165,6 @@
 
 - (BOOL)becomeFirstResponder
 {
-    
-    
     self.editing = YES;
     
     return [super becomeFirstResponder];
@@ -194,8 +190,6 @@
 
 - (void)layoutSubviews
 {
-    
-    
     // Update content view
     [_contentView setFrame:self.bounds];
     [_contentView updateContentIfNeeded];

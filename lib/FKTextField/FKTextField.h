@@ -42,9 +42,9 @@
     
     NSDictionary * _markedTextStyle;
     UITextStorageDirection _selectionAffinity;
-    id<UITextInputDelegate> _inputDelegate;
-    id<UITextInputTokenizer> _tokenizer;
-    
+    id<UITextInputDelegate> _inputDelegate; // __unsafe_unretained id<UITextInputDelegate> _inputDelegate;
+    id<UITextInputTokenizer> _tokenizer; //
+
     id<FKTextFieldDelegate> _delegate;
 }
 

@@ -253,36 +253,37 @@
 - (CGRect)textFirstRectForRange:(NSRange)range
 {
     NSInteger index = range.location;
-    
-    // Metrics
-    CGFloat ascent = ceilf(fabs(self.font.ascender)); // Note: using fabs() for typically negative descender from fonts
-    CGFloat descent = ceilf(fabs(self.font.descender)); // Note: using ceilf() for rounding up to nearest integer
-    
+
     // Iterate over our CTLines, looking for the line that encompasses the given range
     NSArray *lines = (NSArray *) CTFrameGetLines(_frame);
     NSInteger linesCount = [lines count];  
-    CGPoint origins[linesCount]; 
-    CTFrameGetLineOrigins(_frame, CFRangeMake(0, linesCount), origins);
-    
-    CGRect textFirstRect = CGRectZero;
-    
-    for (int i = 0; i < linesCount; i++) {
-        CTLineRef line = (CTLineRef) [lines objectAtIndex:i];
+    for (int i = 0; i < linesCount; i++)
+    {
+        CTLineRef line = (__bridge CTLineRef) [lines objectAtIndex:i];
         CFRange lineRange = CTLineGetStringRange(line);
         NSInteger localIndex = index - lineRange.location;
-        if (localIndex >= 0 && localIndex < lineRange.length) {
-            // For this sample, we use just the first line that intersects range
+        if (localIndex >= 0 && localIndex < lineRange.length)
+        {
+			// For this sample, we use just the first line that intersects range
             NSInteger finalIndex = MIN(lineRange.location + lineRange.length, range.location + range.length);
-            // Create a rect for the given range within this line
+            
+			// Create a rect for the given range within this line
             CGFloat xStart = CTLineGetOffsetForStringIndex(line, index, NULL);
             CGFloat xEnd = CTLineGetOffsetForStringIndex(line, finalIndex, NULL);
-            CGPoint origin = origins[i];
-            textFirstRect = CGRectMake(xStart, origin.y - descent, xEnd - xStart, ascent + descent);
-            break;
+            
+            // Origin
+            CGPoint origin;
+            CTFrameGetLineOrigins(_frame, CFRangeMake(i, 0), &origin);
+            
+            // Metrics
+            CGFloat ascent, descent;
+            CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
+            
+            return CGRectMake(xStart, origin.y - descent, xEnd - xStart, ascent + descent);
         }
     }
     
-    return [self convertRectToUIViewDefaultCoordinateSystem:textFirstRect];
+    return CGRectNull;
 }
 
 - (NSArray *)textRectsForRange:(NSRange)range

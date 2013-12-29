@@ -65,6 +65,15 @@
     return color;
 }
 
++ (UIColor *)defaultMarkedSelectionRangeColor
+{
+    static UIColor *color = nil;
+    if (color == nil) {
+        color = [[UIColor alloc] initWithRed:0.85 green:0.53 blue:0.69 alpha:0.20];
+    }
+    return color;
+}
+
 + (UIColor *)defaultSelectionGrabberColor
 {
     static UIColor *color = nil;

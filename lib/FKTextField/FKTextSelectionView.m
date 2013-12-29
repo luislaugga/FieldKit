@@ -66,6 +66,8 @@
         self.caretView = [FKTextCaretView defaultCaretView];
         [self addSubview:_caretView];
         
+        // Default
+        _visible = NO;
         _selectionRange = NSMakeRange(0, 0);
     }
     return self;
@@ -89,6 +91,7 @@
     [_caretView hide];
     
     _visible = NO;
+    _selectionRange = NSMakeRange(NSNotFound, 0);
 }
 
 #pragma mark -
@@ -96,22 +99,19 @@
 
 - (void)setSelectionRange:(NSRange)selectionRange
 {
-    // Update if different
-    if(_selectionRange.location != selectionRange.location || _selectionRange.length != selectionRange.length)
+    if(_visible)
     {
-        if(selectionRange.location != NSNotFound)
+        // Update if different
+        if(_selectionRange.location != selectionRange.location || _selectionRange.length != selectionRange.length)
         {
-            // Notify selection will change to container's responder input delegate
-            [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
-            
-            // Assign selection range
-            _selectionRange = selectionRange;
-            
-            // Update selection if it's the case
-            [self updateSelectionIfNeeded];
-            
-            // Notify selection did change to container's responder input delegate
-            [_selectingContainer.responder.inputDelegate selectionDidChange:_selectingContainer.responder];
+            if(selectionRange.location != NSNotFound)
+            {
+                // Assign selection range
+                _selectionRange = selectionRange;
+                
+                // Update selection if it's the case
+                [self updateSelectionIfNeeded];
+            }
         }
     }
 }
@@ -149,13 +149,16 @@
 
 - (void)setCaretSelectionForPoint:(CGPoint)point
 {
+    // Notify selection will change to container's responder input delegate
+    [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
+    
     // Set selection location based on index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     
     // Caret selection
     if(self.selectionRange.length == 0) // Previous is caret selection
     {
-        if(self.selectionRange.location == index) // same location
+        if( self.selectionRange.location == index) // same location
         {
             [self toggleSelectionMenu]; // toggle selection menu
         }
@@ -175,10 +178,14 @@
         // Hide selection menu
         [self toggleSelectionMenu];
     }
+
 }
 
 - (void)setWordSelectionForPoint:(CGPoint)point
 {
+    // Notify selection will change to container's responder input delegate
+    [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
+    
     // Set selection location+length based on word that contains index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     NSRange range = [_selectingContainer.textContentView textWordRangeForIndex:index]; // word range for closest index
@@ -186,6 +193,9 @@
     
     // Show selection menu
     [self toggleSelectionMenu];
+
+    // Notify selection will change to container's responder input delegate
+    [_selectingContainer.responder.inputDelegate selectionDidChange:_selectingContainer.responder];
 }
 
 #pragma mark -
@@ -201,6 +211,9 @@
 
 - (void)beginSelectionChangeForPoint:(CGPoint)point
 {
+    // Notify selection will change to container's responder input delegate
+    [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
+    
     if(_selectionRange.length > 0) // going into range
     {
         // Hide selection menu
@@ -282,6 +295,9 @@
     [self hideMagnifier];
     
     _selectionChange = FKTextSelectionChangeNone; // change to none
+    
+    // Notify selection did change to container's responder input delegate
+    [_selectingContainer.responder.inputDelegate selectionDidChange:_selectingContainer.responder];
 }
 
 #pragma mark -
@@ -310,17 +326,11 @@
         updatedSelectionRange.location += insertedText.length;
     }
     
-    // Notify text will change to container's responder input delegate
-    [_selectingContainer.responder.inputDelegate textWillChange:_selectingContainer.responder];
-    
     // Update content
     _selectingContainer.textContentView.text = mutableText;
     
     // Update selection
     self.selectionRange = updatedSelectionRange;
-    
-    // Notify text did change to container's responder input delegate
-    [_selectingContainer.responder.inputDelegate textDidChange:_selectingContainer.responder];
     
     // Clean up
     [mutableText release];
@@ -353,17 +363,11 @@
         updatedSelectionRange.length = 0;
     }
     
-    // Notify text will change to container's responder input delegate
-    [_selectingContainer.responder.inputDelegate textWillChange:_selectingContainer.responder];
-    
     // Update content
     _selectingContainer.textContentView.text = mutableText;
     
     // Update selection
     self.selectionRange = updatedSelectionRange;
-    
-    // Notify text did change to container's responder input delegate
-    [_selectingContainer.responder.inputDelegate textDidChange:_selectingContainer.responder];
     
     // Clean up
     [mutableText release];
@@ -404,19 +408,13 @@
     }
     
     // Now replace characters in text storage
-    [mutableText replaceCharactersInRange:replacementRange withString:replacementText];    
-    
-    // Notify text will change to container's responder input delegate
-    [_selectingContainer.responder.inputDelegate textWillChange:_selectingContainer.responder];
+    [mutableText replaceCharactersInRange:replacementRange withString:replacementText];
     
     // Update content
     _selectingContainer.textContentView.text = mutableText;
     
     // Update selection
     self.selectionRange = updatedSelectionRange;
-    
-    // Notify text did change to container's responder input delegate
-    [_selectingContainer.responder.inputDelegate textDidChange:_selectingContainer.responder];
     
     // Clean up
     [mutableText release];

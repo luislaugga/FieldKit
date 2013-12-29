@@ -27,6 +27,8 @@
 
 #import "FKTextField+UITextInput.h"
 
+#import "FKTextAppearance.h"
+
 @implementation FKTextField (UITextInput)
 
 #pragma mark -
@@ -90,32 +92,42 @@
 
 - (UITextRange *)selectedTextRange
 {
-    return [FKTextRange textRangeWithRange:_selectionView.selectionRange];
+    PrettyLog;
+    return [FKTextRange textRangeWithNSRange:_selectionView.selectionRange];
 }
 
 - (void)setSelectedTextRange:(UITextRange *)range
 {
+    PrettyLog;
     _selectionView.selectionRange = ((FKTextRange *)range).range;
 }
 
 - (NSDictionary *)markedTextStyle
 {
-    return nil;
+    Log(@"markedTextStyle {..}");
+    return @{UITextInputTextBackgroundColorKey:[FKTextAppearance defaultMarkedSelectionRangeColor]};
 }
 
 - (void)setMarkedTextStyle:(NSDictionary *)markedTextStyle
 {
     // do nothing
+    Log(@"setMarkedTextStyle %@", markedTextStyle);
 }
 
 - (UITextRange *)markedTextRange
 {
-    return [FKTextRange textRangeWithRange:NSMakeRange(NSNotFound, 0)];
+    Log(@"markedTextRange ?");
+    return [FKTextRange textRangeWithNSRange:NSMakeRange(NSNotFound, 0)];
+    //return [FKTextRange textRangeWithNSRange:_selectionView.selectionRange]; // no marked text
+    //NSRange range = [_contentView textWordRangeForIndex:_selectionView.selectionRange.location]; // word range for closest index
+    //return [FKTextRange textRangeWithNSRange:range];
 }
 
 - (void)setMarkedTextRange:(UITextRange *)range
 {
+    PrettyLog;
     // do nothing
+    Log(@"setMarkedTextRange [%d, %d]", ((FKTextRange *)range).range.location, ((FKTextRange *)range).range.length);
 }
 
 - (UITextPosition *)beginningOfDocument
@@ -148,11 +160,13 @@
 - (void)setMarkedText:(NSString *)markedText selectedRange:(NSRange)selectedRange  // selectedRange is a range within the markedText
 {
     // do nothing
+    Log(@"setMarkedText %@ range [%d, %d]", markedText, selectedRange.location, selectedRange.length);
 }
 
 - (void)unmarkText
 {
     // do nothing
+    Log(@"unmarkText");
 }
 
 #pragma mark -
@@ -168,7 +182,7 @@
     FKTextPosition * _fromPosition = (FKTextPosition *)fromPosition;
     FKTextPosition * _toPosition = (FKTextPosition *)toPosition;    
     NSRange range = NSMakeRange(MIN(_fromPosition.index, _toPosition.index), ABS(_toPosition.index - _fromPosition.index));
-    return [FKTextRange textRangeWithRange:range]; 
+    return [FKTextRange textRangeWithNSRange:range]; 
 }
 
 - (UITextPosition *)positionFromPosition:(UITextPosition *)position offset:(NSInteger)offset
@@ -286,8 +300,16 @@
     
     // Return range using our UITextRange implementation
 	// Note that range is not currently checked against document range.
-    return [FKTextRange textRangeWithRange:range];  
+    return [FKTextRange textRangeWithNSRange:range];  
 }
+
+/*!
+ Return the character offset of a position in a document’s text that falls within a given range.
+ */
+//- (NSInteger)characterOffsetOfPosition:(UITextPosition *)position withinRange:(UITextRange *)range
+//{
+//    
+//}
 
 #pragma mark -
 #pragma mark Writing Direction (UITextInput)
@@ -318,7 +340,7 @@
 {
     FKTextRange * _range = (FKTextRange *)range;    
     CGRect textFirstRect = [_contentView textFirstRectForRange:_range.range];
-    return CGRectOffset(textFirstRect, _contentView.frame.origin.x, _contentView.frame.origin.y);   
+    return [self convertRect:textFirstRect fromView:_contentView];
 }
 
 - (CGRect)caretRectForPosition:(UITextPosition *)position
@@ -326,6 +348,12 @@
     FKTextPosition * _position = (FKTextPosition *)position;
     CGRect textOffsetRect = [_contentView textOffsetRectForIndex:_position.index];
     return CGRectOffset(textOffsetRect, _contentView.frame.origin.x, _contentView.frame.origin.y);
+}
+
+- (NSArray *)selectionRectsForRange:(UITextRange *)range
+{
+    Log(@"selectionRectsForRange [%d, %d]", ((FKTextPosition *)range.start).index, ((FKTextPosition *)range.end).index);
+    return @[];
 }
 
 #pragma mark -
@@ -345,14 +373,21 @@
 {
 	// Not implemented in this sample.  Could utilize underlying 
 	// SimpleCoreTextView:closestIndexToPoint:point
-    return nil;
+    Log(@"closestPositionToPoint (%f,%f) %@", point.x, point.y, range);
+    NSUInteger index = [_contentView textClosestIndexForPoint:point];
+    return [FKTextPosition textPositionWithIndex:index];
 }
 
 - (UITextRange *)characterRangeAtPoint:(CGPoint)point
 {
 	// Not implemented in this sample.  Could utilize underlying 
 	// SimpleCoreTextView:closestIndexToPoint:point
-    return nil;
+    Log(@"characterRangeAtPoint (%f,%f)", point.x, point.y);
+    //NSRange range = [_contentView textWordRangeForIndex:_selectionView.selectionRange.location]; // word range for closest index
+    //return [FKTextRange textRangeWithNSRange:range];
+    NSUInteger index = [_contentView textClosestIndexForPoint:point]; // closest index
+    NSRange range = [_contentView textWordRangeForIndex:index]; // word range for closest index
+    return [FKTextRange textRangeWithNSRange:range];
 }
 
 #pragma mark -
@@ -392,7 +427,7 @@
 
 @synthesize range = _range;
 
-+ (FKTextRange *)textRangeWithRange:(NSRange)range
++ (FKTextRange *)textRangeWithNSRange:(NSRange)range
 {
     if (range.location == NSNotFound)
         return nil;

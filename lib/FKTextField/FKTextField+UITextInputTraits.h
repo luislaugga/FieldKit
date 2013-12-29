@@ -1,6 +1,6 @@
 /*
  
- FKTextAppearance.h
+ FKTextField+UITextInputTraits.h
  FieldKit
  
  Copyright (cc) 2012 Luis Laugga.
@@ -25,58 +25,21 @@
  
 */
 
-#import <Foundation/Foundation.h>
+#import "FKTextField.h"
+#import "FKTextField_Internal.h"
 
-@interface FKTextAppearance : NSObject
-
-/*!
- Default text font
- */
-+ (UIFont *)defaultFont;
+#pragma mark -
+#pragma mark FKTextField (UITextInputTraits)
 
 /*!
- Default text color
+ @abstract FKTextField UITextInput protocol addition category
+ @discussion 
+ Check UITextInput protocol for the required methods and properties
  */
-+ (UIColor *)defaultTextColor;
+@interface FKTextField (UITextInputTraits) <UITextInputTraits>
 
-/*!
- Default background color
- */
-+ (UIColor *)defaultBackgroundColor;
-
-/*!
- Default selection caret color
- */
-+ (UIColor *)defaultSelectionCaretColor;
-
-/*!
- Default selection range color
- */
-+ (UIColor *)defaultSelectionRangeColor;
-
-/*!
- Default marked selection range color
- */
-+ (UIColor *)defaultMarkedSelectionRangeColor;
-
-/*!
- Default selection grabber color
- */
-+ (UIColor *)defaultSelectionGrabberColor;
-
-/*!
- Default selection caret rect frame
- */
-+ (CGRect)selectionCaretFrameForTextRect:(CGRect)textRect;
-
-/*!
- Default start selection grabber rect frame
- */
-+ (CGRect)startSelectionGrabberFrameForTextRect:(CGRect)textRect;
-
-/*!
- Default end selection grabber rect frame
- */
-+ (CGRect)endSelectionGrabberFrameForTextRect:(CGRect)textRect;
+@property(nonatomic) UITextSpellCheckingType spellCheckingType;
+@property(nonatomic) UITextAutocorrectionType autocorrectionType;
+@property(nonatomic) UITextAutocapitalizationType autocapitalizationType;
 
 @end
