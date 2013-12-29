@@ -58,7 +58,8 @@ typedef enum {
 {
     UIView<FKTextSelectingContainer> * _selectingContainer;
     
-    NSRange _selectionRange; // current selection range (caret if length is 0)
+    NSRange _markedTextRange; // current marked text range (the selectedTextRange always occurs within the marked text)
+    NSRange _selectedTextRange; // current selection range (caret if length is 0)
     
     FKTextSelectionChange _selectionChange; // current selection change type
     CGPoint _selectionChangeBeginPoint; // current selection change begin point
@@ -72,7 +73,8 @@ typedef enum {
     BOOL _isSelectionMenuVisible; // when the selection menu is visible this flag is set to YES
 }
 
-@property(nonatomic, assign) NSRange selectionRange;
+@property(nonatomic, assign) NSRange markedTextRange;
+@property(nonatomic, assign) NSRange selectedTextRange;
 
 /*!
  Required initialization method

@@ -27,6 +27,7 @@
 
 #import "FKTextField+UIResponderStandardEditActions.h"
 #import "FKTextField+UITextInput.h"
+#import "FKTextField+Spelling.h"
 
 @implementation FKTextField (UIResponderStandardEditActions)
 
@@ -39,7 +40,7 @@
 - (void)copy:(id)sender
 {
     // Grab the selected text string
-    NSString * selectedText = [self textInRange:[FKTextRange textRangeWithNSRange:_selectionView.selectionRange]];
+    NSString * selectedText = [self textInRange:[FKTextRange textRangeWithNSRange:_selectionView.selectedTextRange]];
     if(selectedText)
     {
         // Set the selected text string to the general UIPasteboard
@@ -53,7 +54,7 @@
 - (void)cut:(id)sender
 {
     // Grab the current selection
-    FKTextRange * textSelection = [FKTextRange textRangeWithNSRange:_selectionView.selectionRange];
+    FKTextRange * textSelection = [FKTextRange textRangeWithNSRange:_selectionView.selectedTextRange];
 
 #if !__has_feature(objc_arc)
     [textSelection retain];
@@ -81,16 +82,21 @@
  */
 - (void)paste:(id)sender
 {
-    // Notify text will change to container's responder input delegate
+    // External event, notify text will change to container's responder input delegate
     [_inputDelegate textWillChange:self];
 
     // Grab the selected text string from the general UIPasteboard
     NSString * pasteString = [[UIPasteboard generalPasteboard] string];
     if(pasteString)
     {
+        // Prepare for spell-check
+        _textCheckerRange = NSMakeRange(_selectionView.selectedTextRange.location, pasteString.length);
+        
         // Replace the selected text by the paste string
-        //[self replaceRange:[FKTextRange textRangeWithNSRange_selectionView.selectionRange] withText:pasteString];
         [_selectionView insertTextIntoSelection:pasteString];
+        
+        // Run spell-check
+        [self spellCheck];
     }
     
     // Notify text did change to container's responder input delegate
@@ -105,14 +111,14 @@
  */
 - (void)select:(id)sender
 {
-    // Notify selection will change to container's responder input delegate
+    // External event, notify selection will change to container's responder input delegate
     [_inputDelegate selectionWillChange:self];
     
     // Find selection range for current selection
-    NSRange selectRange = [_contentView textWordRangeForIndex:_selectionView.selectionRange.location];
+    NSRange selectRange = [_contentView textWordRangeForIndex:_selectionView.selectedTextRange.location];
     
     // Select
-    _selectionView.selectionRange = selectRange;
+    _selectionView.selectedTextRange = selectRange;
     
     // Notify selection did change to container's responder input delegate
     [_inputDelegate selectionDidChange:self];
@@ -123,11 +129,11 @@
  */
 - (void)selectAll:(id)sender
 {
-    // Notify selection will change to container's responder input delegate
+    // External event, notify selection will change to container's responder input delegate
     [_inputDelegate selectionWillChange:self];
     
     // Select from start to end
-    _selectionView.selectionRange = NSMakeRange(0, _contentView.text.length);
+    _selectionView.selectedTextRange = NSMakeRange(0, _contentView.text.length);
     
     // Notify selection did change to container's responder input delegate
     [_inputDelegate selectionDidChange:self];
@@ -138,7 +144,7 @@
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
-    if(_selectionView.selectionRange.length) // range selection
+    if(_selectionView.selectedTextRange.length) // range selection
     {
         if(action == @selector(cut:) || action == @selector(copy:) || action == @selector(paste:))
             return YES;

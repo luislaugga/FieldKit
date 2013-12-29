@@ -37,9 +37,6 @@
  Check UITextInput protocol for the required methods and properties
  */
 @interface FKTextField (UITextInput) <UITextInput>
-
-//@property (nonatomic, assign) id<UITextInputDelegate> inputDelegate;
-
 @end
 
 #pragma mark -

@@ -252,14 +252,15 @@
 
 - (CGRect)textFirstRectForRange:(NSRange)range
 {
+    Log(@"textFirstRectForRange [%d, %d]", range.location, range.length);
     NSInteger index = range.location;
 
     // Iterate over our CTLines, looking for the line that encompasses the given range
-    NSArray *lines = (NSArray *) CTFrameGetLines(_frame);
+    NSArray * lines = (NSArray *)CTFrameGetLines(_frame);
     NSInteger linesCount = [lines count];  
     for (int i = 0; i < linesCount; i++)
     {
-        CTLineRef line = (__bridge CTLineRef) [lines objectAtIndex:i];
+        CTLineRef line = (CTLineRef)[lines objectAtIndex:i];
         CFRange lineRange = CTLineGetStringRange(line);
         NSInteger localIndex = index - lineRange.location;
         if (localIndex >= 0 && localIndex < lineRange.length)

@@ -28,6 +28,7 @@
 #import "FKTextField.h"
 #import "FKTextField_Internal.h"
 #import "FKTextField+UITextInput.h"
+#import "FKTextField+Spelling.h"
 
 #import "FKTextAppearance.h"
 
@@ -79,6 +80,8 @@
     [_selectionView release];
     [_contentView removeFromSuperview];
     [_contentView release];
+    
+    self.textChecker = nil;
     
     [super dealloc];
 }

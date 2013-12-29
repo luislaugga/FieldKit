@@ -45,7 +45,14 @@
     @protected
     FKTextContentView * _contentView;
     FKTextSelectionView * _selectionView;
-    FKTextInteractionAssistant * _interactionAssistant;    
+    FKTextInteractionAssistant * _interactionAssistant;
+    
+    UITextChecker * _textChecker; // FKTextField+Spelling
+    NSRange _textCheckerRange; // Range pending for spell checking
+    dispatch_queue_t _textCheckerQueue;
+    NSMutableArray * _textCheckerMisspelledWords;
+    NSRange _textCheckerMisspelledWordsRange;
+    UIView * _textCheckerMisspelledWordsView;
 }
 
 @property(nonatomic, readwrite) BOOL editing;

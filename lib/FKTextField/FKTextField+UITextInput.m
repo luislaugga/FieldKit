@@ -26,6 +26,7 @@
 */
 
 #import "FKTextField+UITextInput.h"
+#import "FKTextField+Spelling.h"
 
 #import "FKTextAppearance.h"
 
@@ -41,11 +42,22 @@
 
 - (void)insertText:(NSString *)text 
 {
+    Log(@"insert Text '%@'", text);
+    
+    // Insert text into selection
     [_selectionView insertTextIntoSelection:text];
+    
+    // Check spelling for every word
+    if([text isEqualToString:@" "])
+    {
+        _textCheckerRange = [_contentView textWordRangeForIndex:_selectionView.selectedTextRange.location-1]; // word range for current selection
+        [self spellCheck];
+    }
 }
 
-- (void)deleteBackward 
+- (void)deleteBackward
 {
+    // Delete text from selection
     [_selectionView deleteTextFromSelection];
 }
 
@@ -93,19 +105,19 @@
 - (UITextRange *)selectedTextRange
 {
     PrettyLog;
-    return [FKTextRange textRangeWithNSRange:_selectionView.selectionRange];
+    return [FKTextRange textRangeWithNSRange:_selectionView.selectedTextRange];
 }
 
 - (void)setSelectedTextRange:(UITextRange *)range
 {
     PrettyLog;
-    _selectionView.selectionRange = ((FKTextRange *)range).range;
+    _selectionView.selectedTextRange = ((FKTextRange *)range).range;
 }
 
 - (NSDictionary *)markedTextStyle
 {
     Log(@"markedTextStyle {..}");
-    return @{UITextInputTextBackgroundColorKey:[FKTextAppearance defaultMarkedSelectionRangeColor]};
+    return @{UITextInputTextBackgroundColorKey:[FKTextAppearance defaultMarkedTextRangeColor]};
 }
 
 - (void)setMarkedTextStyle:(NSDictionary *)markedTextStyle
@@ -116,18 +128,14 @@
 
 - (UITextRange *)markedTextRange
 {
-    Log(@"markedTextRange ?");
-    return [FKTextRange textRangeWithNSRange:NSMakeRange(NSNotFound, 0)];
-    //return [FKTextRange textRangeWithNSRange:_selectionView.selectionRange]; // no marked text
-    //NSRange range = [_contentView textWordRangeForIndex:_selectionView.selectionRange.location]; // word range for closest index
-    //return [FKTextRange textRangeWithNSRange:range];
+    Log(@"markedTextRange [%d, %d]", _selectionView.markedTextRange.location, _selectionView.markedTextRange.length);
+    return [FKTextRange textRangeWithNSRange:_selectionView.markedTextRange];
 }
 
 - (void)setMarkedTextRange:(UITextRange *)range
 {
-    PrettyLog;
-    // do nothing
     Log(@"setMarkedTextRange [%d, %d]", ((FKTextRange *)range).range.location, ((FKTextRange *)range).range.length);
+    _selectionView.markedTextRange = NSMakeRange(((FKTextRange *)range).range.location, ((FKTextRange *)range).range.length);
 }
 
 - (UITextPosition *)beginningOfDocument
@@ -157,16 +165,62 @@
     [_selectionView replaceTextInRange:((FKTextRange *)range).range withText:textReplacement];
 }
 
+/*!
+ Insert the provided text and marks it to indicate that it is part of an active input session.
+ */
 - (void)setMarkedText:(NSString *)markedText selectedRange:(NSRange)selectedRange  // selectedRange is a range within the markedText
 {
-    // do nothing
-    Log(@"setMarkedText %@ range [%d, %d]", markedText, selectedRange.location, selectedRange.length);
+    Log(@"setMarkedText %@ selectedRange [%d, %d]", markedText, selectedRange.location, selectedRange.length);
+    
+    NSRange selectedTextRange = _selectionView.selectedTextRange;
+    NSRange markedTextRange = _selectionView.markedTextRange;
+    
+    if (markedTextRange.location != NSNotFound)
+    {
+        if (!markedText)
+            markedText = @"";
+		
+        // Replace characters in text storage and update markedTextRange length
+        [_selectionView replaceTextInRange:markedTextRange withText:markedText];
+        markedTextRange.length = markedText.length;
+    }
+    else if (selectedTextRange.length > 0)
+    {
+		// There currently isn't a marked text range, but there is a selected range,
+		// so replace text storage at selected range and update markedTextRange.
+        [_selectionView replaceTextInRange:selectedTextRange withText:markedText];
+        markedTextRange.location = selectedTextRange.location;
+        markedTextRange.length = markedText.length;
+    }
+    else
+    {
+		// There currently isn't marked or selected text ranges, so just insert
+		// given text into storage and update markedTextRange.
+        [_selectionView insertTextIntoSelection:markedText];
+        
+        markedTextRange.location = selectedTextRange.location;
+        markedTextRange.length = markedText.length;
+    }
+    
+	// Updated selected text range and underlying SimpleCoreTextView
+    selectedTextRange = NSMakeRange(selectedRange.location + markedTextRange.location, selectedRange.length);
+    _selectionView.markedTextRange = markedTextRange;
+    _selectionView.selectedTextRange = selectedTextRange;
 }
 
 - (void)unmarkText
 {
-    // do nothing
-    Log(@"unmarkText");
+    PrettyLog;
+    
+    _selectionView.markedTextRange = NSMakeRange(NSNotFound, 0);
+    NSRange markedTextRange = _selectionView.markedTextRange;
+    
+    if (markedTextRange.location == NSNotFound)
+        return;
+    
+	// unmark the underlying selectionView marked text range
+    markedTextRange.location = NSNotFound;
+    _selectionView.markedTextRange = markedTextRange;
 }
 
 #pragma mark -
@@ -383,7 +437,7 @@
 	// Not implemented in this sample.  Could utilize underlying 
 	// SimpleCoreTextView:closestIndexToPoint:point
     Log(@"characterRangeAtPoint (%f,%f)", point.x, point.y);
-    //NSRange range = [_contentView textWordRangeForIndex:_selectionView.selectionRange.location]; // word range for closest index
+    //NSRange range = [_contentView textWordRangeForIndex:_selectionView.selectedTextRange.location]; // word range for closest index
     //return [FKTextRange textRangeWithNSRange:range];
     NSUInteger index = [_contentView textClosestIndexForPoint:point]; // closest index
     NSRange range = [_contentView textWordRangeForIndex:index]; // word range for closest index

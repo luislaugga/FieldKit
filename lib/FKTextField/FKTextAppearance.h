@@ -57,7 +57,7 @@
 /*!
  Default marked selection range color
  */
-+ (UIColor *)defaultMarkedSelectionRangeColor;
++ (UIColor *)defaultMarkedTextRangeColor;
 
 /*!
  Default selection grabber color

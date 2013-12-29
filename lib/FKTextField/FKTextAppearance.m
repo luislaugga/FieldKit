@@ -65,7 +65,7 @@
     return color;
 }
 
-+ (UIColor *)defaultMarkedSelectionRangeColor
++ (UIColor *)defaultMarkedTextRangeColor
 {
     static UIColor *color = nil;
     if (color == nil) {

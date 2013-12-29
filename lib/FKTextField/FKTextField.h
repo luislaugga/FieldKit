@@ -40,8 +40,9 @@
     BOOL _editable;
     BOOL _editing;
     
-    NSDictionary * _markedTextStyle;
+    NSDictionary * _markedTextStyle; // FIXME
     UITextStorageDirection _selectionAffinity;
+    
     id<UITextInputDelegate> _inputDelegate; // __unsafe_unretained id<UITextInputDelegate> _inputDelegate;
     id<UITextInputTokenizer> _tokenizer; //
 

@@ -32,7 +32,8 @@
 
 @implementation FKTextSelectionView
 
-@synthesize selectionRange = _selectionRange;
+@synthesize markedTextRange = _markedTextRange;
+@synthesize selectedTextRange = _selectedTextRange;
 @synthesize selectingContainer = _selectingContainer;
 @synthesize caretView = _caretView;
 
@@ -68,7 +69,8 @@
         
         // Default
         _visible = NO;
-        _selectionRange = NSMakeRange(0, 0);
+        _markedTextRange = NSMakeRange(NSNotFound, 0);
+        _selectedTextRange = NSMakeRange(0, 0);
     }
     return self;
 }
@@ -91,23 +93,23 @@
     [_caretView hide];
     
     _visible = NO;
-    _selectionRange = NSMakeRange(NSNotFound, 0);
+    _selectedTextRange = NSMakeRange(NSNotFound, 0);
 }
 
 #pragma mark -
 #pragma mark Properties
 
-- (void)setSelectionRange:(NSRange)selectionRange
+- (void)setSelectedTextRange:(NSRange)selectionRange
 {
     if(_visible)
     {
         // Update if different
-        if(_selectionRange.location != selectionRange.location || _selectionRange.length != selectionRange.length)
+        if(_selectedTextRange.location != selectionRange.location || _selectedTextRange.length != selectionRange.length)
         {
             if(selectionRange.location != NSNotFound)
             {
                 // Assign selection range
-                _selectionRange = selectionRange;
+                _selectedTextRange = selectionRange;
                 
                 // Update selection if it's the case
                 [self updateSelectionIfNeeded];
@@ -121,7 +123,7 @@
 
 - (void)updateSelectionIfNeeded
 {
-    if(_selectionRange.length > 0) // going into range
+    if(_selectedTextRange.length > 0) // going into range
     {
         if(_rangeView == nil) // previous was caret
         {
@@ -140,7 +142,7 @@
         }
 
         // Update caret view position
-        [_caretView update:[_selectingContainer.textContentView textOffsetRectForIndex:_selectionRange.location]];
+        [_caretView update:[_selectingContainer.textContentView textOffsetRectForIndex:_selectedTextRange.location]];
     }
 }
 
@@ -149,23 +151,23 @@
 
 - (void)setCaretSelectionForPoint:(CGPoint)point
 {
-    // Notify selection will change to container's responder input delegate
+    // External event, notify selection will change to container's responder input delegate
     [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
     
     // Set selection location based on index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     
     // Caret selection
-    if(self.selectionRange.length == 0) // Previous is caret selection
+    if(self.selectedTextRange.length == 0) // Previous is caret selection
     {
-        if( self.selectionRange.location == index) // same location
+        if( self.selectedTextRange.location == index) // same location
         {
             [self toggleSelectionMenu]; // toggle selection menu
         }
         else
         {
             [self hideSelectionMenu]; // hide selection menu
-            self.selectionRange = NSMakeRange(index, 0); // set location
+            self.selectedTextRange = NSMakeRange(index, 0); // set location
         }
         
         // Touch the caret view
@@ -173,7 +175,7 @@
     }
     else // Previous selection is range selection
     {
-        self.selectionRange = NSMakeRange(index, 0); // set location
+        self.selectedTextRange = NSMakeRange(index, 0); // set location
         
         // Hide selection menu
         [self toggleSelectionMenu];
@@ -183,13 +185,13 @@
 
 - (void)setWordSelectionForPoint:(CGPoint)point
 {
-    // Notify selection will change to container's responder input delegate
+    // External event, notify selection will change to container's responder input delegate
     [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
     
     // Set selection location+length based on word that contains index closest to point
     NSUInteger index = [_selectingContainer.textContentView textClosestIndexForPoint:point]; // closest index
     NSRange range = [_selectingContainer.textContentView textWordRangeForIndex:index]; // word range for closest index
-    self.selectionRange = range; // set word range
+    self.selectedTextRange = range; // set word range
     
     // Show selection menu
     [self toggleSelectionMenu];
@@ -203,7 +205,7 @@
 
 - (BOOL)shouldBeginSelectionChangeForPoint:(CGPoint)point
 {
-    if(_selectionRange.length > 0)
+    if(_selectedTextRange.length > 0)
         return [_rangeView pointCanDrag:point]; // range test
     else
         return [_caretView pointCanDrag:point]; // caret test
@@ -211,10 +213,10 @@
 
 - (void)beginSelectionChangeForPoint:(CGPoint)point
 {
-    // Notify selection will change to container's responder input delegate
+    // External event, notify selection will change to container's responder input delegate
     [_selectingContainer.responder.inputDelegate selectionWillChange:_selectingContainer.responder];
     
-    if(_selectionRange.length > 0) // going into range
+    if(_selectedTextRange.length > 0) // going into range
     {
         // Hide selection menu
         [self toggleSelectionMenu];
@@ -253,26 +255,26 @@
     
     if(_selectionChange == FKTextSelectionChangeCaret)
     {
-        self.selectionRange = NSMakeRange(index, 0); // set caret location
+        self.selectedTextRange = NSMakeRange(index, 0); // set caret location
     }
     else
     {
         if(_selectionChange == FKTextSelectionChangeStartGrabber)
         {
             // start grabber
-            NSUInteger end = self.selectionRange.location+self.selectionRange.length;
+            NSUInteger end = self.selectedTextRange.location+self.selectedTextRange.length;
             NSUInteger loc = index < end ? index : end-1;
             NSUInteger length = end-loc;
-            self.selectionRange = NSMakeRange(loc, length); // set word range
+            self.selectedTextRange = NSMakeRange(loc, length); // set word range
             
         }
         else
         {
             // end grabber
-            NSUInteger start = self.selectionRange.location;
+            NSUInteger start = self.selectedTextRange.location;
             NSUInteger loc = start;
             NSUInteger length = index > start ? index-start : 1;
-            self.selectionRange = NSMakeRange(loc, length); // set word range
+            self.selectedTextRange = NSMakeRange(loc, length); // set word range
         }
     }
     
@@ -309,10 +311,10 @@
     NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
     
     // Create selection change copy
-    NSRange updatedSelectionRange = _selectionRange;
+    NSRange updatedSelectionRange = _selectedTextRange;
     
     // Apply changes
-    if (_selectionRange.length > 0)
+    if (_selectedTextRange.length > 0)
     {
 		// Replace selected text with user-entered text
         [mutableText replaceCharactersInRange:updatedSelectionRange withString:insertedText];
@@ -330,7 +332,7 @@
     _selectingContainer.textContentView.text = mutableText;
     
     // Update selection
-    self.selectionRange = updatedSelectionRange;
+    self.selectedTextRange = updatedSelectionRange;
     
     // Clean up
     [mutableText release];
@@ -338,14 +340,14 @@
 
 - (void)deleteTextFromSelection
 {
-    if(_selectionRange.location == 0 && _selectionRange.length == 0)
+    if(_selectedTextRange.location == 0 && _selectedTextRange.length == 0)
         return; // nothing to delete
     
     // Create mutable copy
     NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
     
     // Create selection change copy
-    NSRange updatedSelectionRange = _selectionRange;
+    NSRange updatedSelectionRange = _selectedTextRange;
     
     // Apply changes
     if (updatedSelectionRange.length > 0) 
@@ -367,7 +369,7 @@
     _selectingContainer.textContentView.text = mutableText;
     
     // Update selection
-    self.selectionRange = updatedSelectionRange;
+    self.selectedTextRange = updatedSelectionRange;
     
     // Clean up
     [mutableText release];
@@ -383,7 +385,7 @@
     NSMutableString * mutableText = [_selectingContainer.textContentView.text mutableCopy];
  
     // Create selection change copy
-    NSRange updatedSelectionRange = _selectionRange;
+    NSRange updatedSelectionRange = _selectedTextRange;
     
     // Check replacementRange length against text boundaries
     if ((replacementRange.location+replacementRange.length) > [mutableText length])
@@ -414,7 +416,7 @@
     _selectingContainer.textContentView.text = mutableText;
     
     // Update selection
-    self.selectionRange = updatedSelectionRange;
+    self.selectedTextRange = updatedSelectionRange;
     
     // Clean up
     [mutableText release];
@@ -448,7 +450,7 @@
 {
     if(_rangeView != nil)
     {
-        _rangeView.rects = [_selectingContainer.textContentView textRectsForRange:_selectionRange];
+        _rangeView.rects = [_selectingContainer.textContentView textRectsForRange:_selectedTextRange];
     }
 }
 
@@ -557,7 +559,7 @@
 
         // Calculate selection CGRect
         CGRect selectionRect;
-        if(_selectionRange.length)
+        if(_selectedTextRange.length)
         {
             selectionRect = CGRectMake(_rangeView.startEdge.origin.x, _rangeView.startEdge.origin.y, _rangeView.endEdge.origin.x-_rangeView.startEdge.origin.x, _rangeView.startEdge.size.height + _rangeView.endEdge.origin.y-_rangeView.startEdge.origin.y);
         }
