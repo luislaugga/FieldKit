@@ -53,21 +53,25 @@ __FKScrollField:__
 
 # Examples
 
-__FieldKit Overview:__
+__Overview:__
 
-A FieldKit overview example with all fields presented in a UIScrollView.
+A FieldKit overview example with all fields presented inside a *UIScrollView*.
 
-__Colors:__
+* FKTextField
+* FKTokenField
+* FKScrollField
 
-A TokenField example, using UIColor instances as represented objects. The provided TokenFieldCell is subclassed. The background color and display string are derived from the UIColor...
+__Color Tokens:__
+
+A *FKTokenField* example, using *UIColor* instances as represented objects. The provided TokenFieldCell is subclassed. The background color and display string are derived from the UIColor.
 
 __Message Composer:__
 
-TODO
+A composer view similar to the iOS *Messages* application. 
 
 __Mail Composer:__
 
-TODO
+A composer view similar to the iOS *Mail* application.
 
 __Keywords:__
 
@@ -76,7 +80,5 @@ TODO
 ## Roadmap
 
 * Full iPad support (not tested)
-* Spelling
-* Copy/Paste (clipboard)
 * ARC support
 * iOS 7 UI
