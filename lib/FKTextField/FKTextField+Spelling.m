@@ -145,11 +145,57 @@
                         misspelledWordView.backgroundColor = [FKTextAppearance defaultMarkedTextRangeColor];
                         [_textCheckerMisspelledWordsView addSubview:misspelledWordView];
                         misspelledWord.view = misspelledWordView;
+                        [misspelledWordView release];
+                    }
+                    else
+                    {
+                        CGRect textFirstRect = [selectingContainer.textContentView textFirstRectForRange:misspelledWord.range]; // Update view
+                        CGRect viewRect = [self convertRect:textFirstRect fromView:_contentView];
+                        misspelledWord.view.frame = viewRect;
                     }
                 }
             }
         });
     });
+}
+
+- (void)updateMisspelledWords
+{
+    UIView<FKTextSelectingContainer> * selectingContainer = self;
+    
+    NSInteger selectionChangeTextLocation = _selectionView.selectionChangeTextLocation;
+    NSInteger selectionChangeTextLength = _selectionView.selectionChangeTextLength;
+    
+    NSRange selectionChangeTextRange;
+    if(selectionChangeTextLength > 0)
+        selectionChangeTextRange = NSMakeRange(selectionChangeTextLocation, selectionChangeTextLength);
+    else
+        selectionChangeTextRange = NSMakeRange(selectionChangeTextLocation-selectionChangeTextLength-1, -selectionChangeTextLength);
+    
+    for(FKTextCheckerMisspelledWord * misspelledWord in _textCheckerMisspelledWords)
+    {
+        // Check if misspelled words has view
+        if(misspelledWord.view != nil)
+        {
+            // Check if misspelled word intersects change and remove it
+            if(NSIntersectionRange(misspelledWord.range, selectionChangeTextRange).length > 0)
+            {
+                // mark for removal
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [misspelledWord.view removeFromSuperview];
+                    [_textCheckerMisspelledWords removeObject:misspelledWord];
+                });
+            }
+            // Check if misspelled words was affected by selection change
+            else if(misspelledWord.range.location >= selectionChangeTextLocation)
+            {
+                misspelledWord.range = NSMakeRange(misspelledWord.range.location+selectionChangeTextLength, misspelledWord.range.length);
+                CGRect textFirstRect = [selectingContainer.textContentView textFirstRectForRange:misspelledWord.range];
+                CGRect viewRect = [self convertRect:textFirstRect fromView:_contentView];
+                misspelledWord.view.frame = viewRect;
+            }
+        }
+    }
 }
 
 @end

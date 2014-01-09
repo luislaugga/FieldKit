@@ -34,6 +34,7 @@
 
 @synthesize markedTextRange = _markedTextRange;
 @synthesize selectedTextRange = _selectedTextRange;
+@synthesize selectionChangeTextLocation = _selectionChangeTextLocation, selectionChangeTextLength = _selectionChangeTextLength;
 @synthesize selectingContainer = _selectingContainer;
 @synthesize caretView = _caretView;
 
@@ -313,6 +314,10 @@
     // Create selection change copy
     NSRange updatedSelectionRange = _selectedTextRange;
     
+    // Update selection change text range
+    _selectionChangeTextLocation = _selectedTextRange.location;
+    _selectionChangeTextLength = insertedText.length;
+    
     // Apply changes
     if (_selectedTextRange.length > 0)
     {
@@ -355,6 +360,10 @@
 		// Delete the selected text
         [mutableText deleteCharactersInRange:updatedSelectionRange];
         updatedSelectionRange.length = 0;
+        
+        // Update selection change text range
+        _selectionChangeTextLocation = _selectedTextRange.location;
+        _selectionChangeTextLength = -_selectedTextRange.length; // -[1,n] characters deleted
     } 
     else if (updatedSelectionRange.location > 0) 
     {
@@ -363,6 +372,10 @@
         updatedSelectionRange.length = 1;
         [mutableText deleteCharactersInRange:updatedSelectionRange];
         updatedSelectionRange.length = 0;
+        
+        // Update selection change text range
+        _selectionChangeTextLocation = _selectedTextRange.location;
+        _selectionChangeTextLength = -1; // -1 character deleted
     }
     
     // Update content

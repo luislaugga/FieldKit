@@ -252,7 +252,6 @@
 
 - (CGRect)textFirstRectForRange:(NSRange)range
 {
-    Log(@"textFirstRectForRange [%d, %d]", range.location, range.length);
     NSInteger index = range.location;
 
     // Iterate over our CTLines, looking for the line that encompasses the given range

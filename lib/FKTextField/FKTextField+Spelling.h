@@ -43,6 +43,11 @@
 @property (nonatomic, retain) UITextChecker * textChecker;
 
 /*!
+ Update the misspelled words's view position
+ */
+- (void)updateMisspelledWords;
+
+/*!
  Spell-Check the text
  */
 - (void)spellCheck;

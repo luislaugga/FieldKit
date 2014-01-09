@@ -64,6 +64,9 @@ typedef enum {
     FKTextSelectionChange _selectionChange; // current selection change type
     CGPoint _selectionChangeBeginPoint; // current selection change begin point
     
+    NSInteger _selectionChangeTextLocation; // selection change location for text range when insertTextIntoSelection: or deleteTextFromSelection is called
+    NSInteger _selectionChangeTextLength; // selection change length (positive or negative) for text range when insertTextIntoSelection: or deleteTextFromSelection is called
+    
     FKTextCaretView * _caretView; // caret view
     FKTextRangeView * _rangeView; // range view
     FKTextLoupeMagnifierView * _loupeMagnifierView; // used with caret
@@ -75,6 +78,9 @@ typedef enum {
 
 @property(nonatomic, assign) NSRange markedTextRange;
 @property(nonatomic, assign) NSRange selectedTextRange;
+
+@property(nonatomic, assign) NSInteger selectionChangeTextLocation;
+@property(nonatomic, assign) NSInteger selectionChangeTextLength; // positive for insert, negative for delete
 
 /*!
  Required initialization method

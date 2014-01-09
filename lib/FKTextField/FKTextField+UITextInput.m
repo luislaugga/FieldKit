@@ -47,6 +47,9 @@
     // Insert text into selection
     [_selectionView insertTextIntoSelection:text];
     
+    // Update spelling marked words
+    [self updateMisspelledWords]; // TODO refactor
+    
     // Check spelling for every word
     if([text isEqualToString:@" "])
     {
@@ -59,6 +62,9 @@
 {
     // Delete text from selection
     [_selectionView deleteTextFromSelection];
+    
+    // Update spelling marked words
+    [self updateMisspelledWords]; // TODO refactor
 }
 
 
