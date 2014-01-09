@@ -38,16 +38,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
     {
-        _tokenFieldCompletions = [[ViewController tokenFieldCompletions] retain];
+        _tokenFieldCompletions = [ViewController tokenFieldCompletions];
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [_tokenFieldCompletions release];
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
@@ -61,8 +56,6 @@
     self.navigationItem.rightBarButtonItem = sendButtonItem;
     self.navigationItem.title = @"New Message";
     
-    [cancelButtonItem release];
-    [sendButtonItem release];
     
     // Configure
     self.navigationItem.rightBarButtonItem.enabled = NO; // disable send until user fills-in required fields
@@ -107,11 +100,7 @@
 {
     [super viewDidUnload];
     
-    [_toTokenField release];
-    [_ccTokenField release];
     //[_bccTokenField release];
-    [_subjectTextField release];
-    [_bodyTextField release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -170,7 +159,7 @@
         }
     }
     
-    return [completionsForSubstring autorelease];
+    return completionsForSubstring;
 }
 
 

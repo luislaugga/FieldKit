@@ -38,16 +38,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
     {
-        _tokenFieldCompletions = [[ViewController tokenFieldCompletions] retain];
+        _tokenFieldCompletions = [ViewController tokenFieldCompletions];
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [_tokenFieldCompletions release];
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
@@ -85,8 +80,6 @@
 {
     [super viewDidUnload];
     
-    [_textField release];
-    [_textView release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -107,9 +100,8 @@
 {
     PrettyLog;
     
-    NSArray * representedObjects = [_tokenField.representedObjects retain];
+    NSArray * representedObjects = _tokenField.representedObjects;
     NSLog(@"there are %d represented objects", [representedObjects count]);
-    [representedObjects release];
     
 }
 
@@ -145,7 +137,7 @@
         }
     }
     
-    return [completionsForSubstring autorelease];
+    return completionsForSubstring;
 }
 
 

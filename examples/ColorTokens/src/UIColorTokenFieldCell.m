@@ -48,13 +48,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.lighterColor = nil;
-    self.darkerColor = nil;
-    [super dealloc];
-}
-
 - (NSString *)displayString
 {
     UIColor * color = (UIColor *)self.representedObject;

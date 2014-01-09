@@ -31,6 +31,30 @@
 		A08F69101635FCF700130C8C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F690F1635FCF700130C8C /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A0C51911187F21F000FE03D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A039A768161F8C08009E4C10;
+			remoteInfo = Test;
+		};
+		A0C51913187F21F000FE03D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A01C02121620D8B4003DA76F;
+			remoteInfo = "Static Library";
+		};
+		A0C51915187F21F000FE03D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A01C02401620D9BA003DA76F;
+			remoteInfo = "Resources Bundle";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A070EC4A187EC03F006C82E0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		A070EC4B187EC03F006C82E0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = SOURCE_ROOT; };
@@ -54,7 +78,7 @@
 		A070EC67187EC099006C82E0 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-120.png"; path = "resources/icon-120.png"; sourceTree = SOURCE_ROOT; };
 		A070EC68187EC099006C82E0 /* icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-144.png"; path = "resources/icon-144.png"; sourceTree = SOURCE_ROOT; };
 		A070EC69187EC099006C82E0 /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-152.png"; path = "resources/icon-152.png"; sourceTree = SOURCE_ROOT; };
-		A070EC88187EC5E9006C82E0 /* libFieldKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libFieldKit.a; path = "../../build/Debug-iphoneos/libFieldKit.a"; sourceTree = "<group>"; };
+		A070EC88187EC5E9006C82E0 /* libFieldKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFieldKit.a; path = "../../build/Debug-iphoneos/libFieldKit.a"; sourceTree = "<group>"; };
 		A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FieldKit.xcodeproj; path = ../../FieldKit.xcodeproj; sourceTree = "<group>"; };
 		A08F68B71635F83A00130C8C /* FKColorTokens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FKColorTokens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A08F68BB1635F83A00130C8C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -200,6 +224,16 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		A0C5190B187F21F000FE03D2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0C51912187F21F000FE03D2 /* Test.octest */,
+				A0C51914187F21F000FE03D2 /* libFieldKit.a */,
+				A0C51916187F21F000FE03D2 /* FieldKit.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,12 +273,42 @@
 			mainGroup = A08F68AC1635F83A00130C8C;
 			productRefGroup = A08F68B81635F83A00130C8C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A0C5190B187F21F000FE03D2 /* Products */;
+					ProjectRef = A07AD45917E07E2700A3F735 /* FieldKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A08F68B61635F83A00130C8C /* FKColorTokens */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A0C51912187F21F000FE03D2 /* Test.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Test.octest;
+			remoteRef = A0C51911187F21F000FE03D2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A0C51914187F21F000FE03D2 /* libFieldKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFieldKit.a;
+			remoteRef = A0C51913187F21F000FE03D2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A0C51916187F21F000FE03D2 /* FieldKit.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FieldKit.bundle;
+			remoteRef = A0C51915187F21F000FE03D2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A08F68B51635F83A00130C8C /* Resources */ = {
@@ -364,6 +428,7 @@
 		A08F68DF1635F83B00130C8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "support/FKColorTokens-Prefix.pch";
 				INFOPLIST_FILE = "support/FKColorTokens-Info.plist";
@@ -375,6 +440,7 @@
 		A08F68E01635F83B00130C8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "support/FKColorTokens-Prefix.pch";
 				INFOPLIST_FILE = "support/FKColorTokens-Info.plist";
