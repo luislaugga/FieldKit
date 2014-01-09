@@ -95,6 +95,9 @@
         // Replace the selected text by the paste string
         [_selectionView insertTextIntoSelection:pasteString];
         
+        // Update spelling marked words
+        [self updateMisspelledWords]; // TODO refactor
+        
         // Run spell-check
         [self spellCheck];
     }
