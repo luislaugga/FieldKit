@@ -1,3 +1,20 @@
+## 0.1.2
+
+Features:
+
+  - Selection menu with support for the clipboard operations: Copy, Cut, Paste, Select and Select All
+  - Autocorrection while user is typing with suggestions (using UITextInputStringTokenizer)
+  - Spell-check support with misspelled words overlay view
+  
+Bugfixes:
+
+ - Fix bug in CTFrameGetLineOrigins. Calling it with CFRange of length 0 causes it to crash.
+ 
+Examples:
+
+ - Refactored all examples, including project structure, resources and name
+ - Added MailComposer and MessageComposer example placeholders
+ 
 ## 0.1.1
 
 Features:
