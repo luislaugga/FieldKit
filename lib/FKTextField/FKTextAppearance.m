@@ -51,7 +51,7 @@
 {
     static UIColor *color = nil;
     if (color == nil) {
-        color = [[UIColor alloc] initWithRed:0.20 green:0.37 blue:0.95 alpha:0.95];
+        color = [[UIColor alloc] initWithRed:0.25882352941176 green:0.41960784313725 blue:0.96470588235294 alpha:1.0]; // rgb = (66,107,246), a = 100%
     }
     return color;
 }
@@ -60,7 +60,7 @@
 {
     static UIColor *color = nil;
     if (color == nil) {
-        color = [[UIColor alloc] initWithRed:0.20 green:0.36 blue:0.65 alpha:0.20];    
+        color = [[UIColor alloc] initWithRed:0.0078431372549 green:0.34117647058824 blue:0.65098039215686 alpha:0.2]; // rgb = (2,87,166), a = 20%
     }    
     return color;
 }
@@ -69,7 +69,7 @@
 {
     static UIColor *color = nil;
     if (color == nil) {
-        color = [[UIColor alloc] initWithRed:0.85 green:0.53 blue:0.69 alpha:0.20];
+        color = [[UIColor alloc] initWithRed:1.0 green:0.0 blue:0.0 alpha:0.15]; // rgb = (255,0,0), a = 15%
     }
     return color;
 }
@@ -78,7 +78,7 @@
 {
     static UIColor *color = nil;
     if (color == nil) {
-        color = [[UIColor alloc] initWithRed:0.20 green:0.37 blue:0.95 alpha:0.95];
+        color = [[UIColor alloc] initWithRed:0.07843137254902 green:0.43529411764706 blue:0.88235294117647 alpha:1.0]; // rgb = (20,111,225), a = 100%
     }    
     return color;
 }
@@ -86,15 +86,30 @@
 #pragma mark -
 #pragma mark Frames
 
-#define kFKTextAppearanceSelectionCaretWidth 3
+#define kFKTextAppearanceSelectionCaretWidth 2
 
 + (CGRect)selectionCaretFrameForTextRect:(CGRect)textRect
 {
     return CGRectMake(textRect.origin.x, textRect.origin.y, kFKTextAppearanceSelectionCaretWidth, textRect.size.height);
 }
 
-#define kFKTextAppearanceSelectionGrabberWidth 3
-#define kFKTextAppearanceSelectionGrabberHeightOffset 10
+#define kFKTextAppearanceMarkedTextWidthOffset 1
+#define kFKTextAppearanceMarkedTextHeightOffset 4
+
++ (CGRect)markedTextFrameForTextRect:(CGRect)textRect
+{
+    return CGRectMake(textRect.origin.x, textRect.origin.y-kFKTextAppearanceMarkedTextHeightOffset, textRect.size.width+kFKTextAppearanceMarkedTextWidthOffset, textRect.size.height+kFKTextAppearanceMarkedTextHeightOffset);
+}
+
+#define kFKTextAppearanceSelectionGrabberWidth 2
+#define kFKTextAppearanceSelectionGrabberHeightOffset 4
+#define kFKTextAppearanceSelectionGrabberDotWidth 11
+
+
++ (CGRect)selectionGrabberDotFrame
+{
+    return CGRectMake(0, 0, kFKTextAppearanceSelectionGrabberDotWidth, kFKTextAppearanceSelectionGrabberDotWidth);
+}
 
 + (CGRect)startSelectionGrabberFrameForTextRect:(CGRect)textRect
 {

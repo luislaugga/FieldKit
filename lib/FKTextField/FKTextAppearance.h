@@ -70,6 +70,16 @@
 + (CGRect)selectionCaretFrameForTextRect:(CGRect)textRect;
 
 /*!
+ Default marked text rect frame
+ */
++ (CGRect)markedTextFrameForTextRect:(CGRect)textRect;
+
+/*!
+ Default selection grabber dot rect frame
+ */
++ (CGRect)selectionGrabberDotFrame;
+
+/*!
  Default start selection grabber rect frame
  */
 + (CGRect)startSelectionGrabberFrameForTextRect:(CGRect)textRect;

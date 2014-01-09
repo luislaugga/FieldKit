@@ -48,10 +48,12 @@
     {
         self.backgroundColor = [FKTextAppearance defaultSelectionGrabberColor];
         
-        NSBundle * bundle = [NSBundle bundleForClass:[self class]];
-        UIImage * dotImage = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-drag-dot" ofType:@"png"]];
-        _dotView = [[UIImageView alloc] initWithImage:dotImage];
+        _dotView = [[FKSelectionGrabberDot alloc] init];
         [self addSubview:_dotView];
+
+#if !__has_feature(objc_arc)
+        [_dotView release];
+#endif
     }
     return self;
 }
@@ -76,7 +78,7 @@
     }
     else if(_grabberType == FKSelectionEndGrabber)
     {
-        _dotView.frame = CGRectMake(-_dotView.frame.size.width/2+2, frame.size.height-4, _dotView.frame.size.width, _dotView.frame.size.height);
+        _dotView.frame = CGRectMake(-_dotView.frame.size.width/2+1, frame.size.height-4, _dotView.frame.size.width, _dotView.frame.size.height);
     }
     
     [super setFrame:frame];
@@ -93,10 +95,37 @@
     }
     else if(grabberType == FKSelectionEndGrabber)
     {
-        _dotView.frame = CGRectMake(self.frame.origin.x-_dotView.frame.size.width/2+1, self.frame.origin.y+self.frame.size.height, _dotView.frame.size.width, _dotView.frame.size.height);
+        _dotView.frame = CGRectMake(self.frame.origin.x-_dotView.frame.size.width/2, self.frame.origin.y+self.frame.size.height, _dotView.frame.size.width, _dotView.frame.size.height);
     }
     
     _grabberType = grabberType;
+}
+
+@end
+
+#pragma mark -
+#pragma mark FKSelectionGrabberDot
+
+@implementation FKSelectionGrabberDot
+
+- (id)init
+{
+    self = [super initWithFrame:[FKTextAppearance selectionGrabberDotFrame]];
+    if(self)
+    {
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGColorRef color = [FKTextAppearance defaultSelectionGrabberColor].CGColor;
+    CGContextSetFillColorWithColor(context, color);
+    CGContextSetStrokeColorWithColor(context, color);
+    CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width, rect.size.height));
 }
 
 @end

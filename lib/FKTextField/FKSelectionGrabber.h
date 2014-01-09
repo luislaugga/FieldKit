@@ -28,7 +28,8 @@
 #import <UIKit/UIKit.h>
 
 @class FKTextRangeView;
-//@class UISelectionGrabberDot, UITextRangeView;
+
+@class FKSelectionGrabberDot; //, UITextRangeView;
 
 /*!
  @abstract Selection Grabber Type
@@ -45,8 +46,7 @@ typedef enum {
     BOOL m_activeFlattened;
     BOOL m_alertFlattened;
     BOOL m_animating;
-    //UISelectionGrabberDot *m_dotView;
-    UIImageView * _dotView;
+    FKSelectionGrabberDot * _dotView;
     //BOOL m_isDotted;
     BOOL m_navigationTransitionFlattened;
     int m_orientation;
@@ -119,5 +119,9 @@ typedef enum {
  @return YES if the draggable rectangle contains the point (CGRectContainsPoint).
  */
 - (BOOL)pointCanDrag:(CGPoint)point;
+
+@end
+
+@interface FKSelectionGrabberDot : UIView
 
 @end

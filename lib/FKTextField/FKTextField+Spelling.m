@@ -198,8 +198,9 @@
             else if(misspelledWord.range.location >= selectionChangeTextLocation)
             {
                 misspelledWord.range = NSMakeRange(misspelledWord.range.location+selectionChangeTextLength, misspelledWord.range.length);
-                CGRect textFirstRect = [selectingContainer.textContentView textFirstRectForRange:misspelledWord.range];
-                CGRect viewRect = [self convertRect:textFirstRect fromView:_contentView];
+                CGRect textRect = [selectingContainer.textContentView textFirstRectForRange:misspelledWord.range];
+                CGRect markedTextRect = [FKTextAppearance markedTextFrameForTextRect:textRect];
+                CGRect viewRect = [self convertRect:markedTextRect fromView:_contentView];
                 misspelledWord.view.frame = viewRect;
             }
         }
