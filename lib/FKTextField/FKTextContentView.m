@@ -265,7 +265,7 @@
         NSInteger localIndex = index - lineRange.location;
         if (localIndex >= 0 && localIndex < lineRange.length)
         {
-			// For this sample, we use just the first line that intersects range
+			// just the first line that intersects range TODO make it multi-line
             NSInteger finalIndex = MIN(lineRange.location + lineRange.length, range.location + range.length);
             
 			// Create a rect for the given range within this line
@@ -274,12 +274,12 @@
             
             // Origin
             CGPoint origin;
-            CTFrameGetLineOrigins(_frame, CFRangeMake(i, 0), &origin);
+            CTFrameGetLineOrigins(_frame, CFRangeMake(i, 1), &origin);
             
             // Metrics
             CGFloat ascent, descent;
-            CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
-            
+            CTLineGetTypographicBounds((__bridge CTLineRef)line, &ascent, &descent, NULL);
+    
             return CGRectMake(xStart, origin.y - descent, xEnd - xStart, ascent + descent);
         }
     }
