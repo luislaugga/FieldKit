@@ -46,13 +46,13 @@
     id<UITextInputDelegate> _inputDelegate; // __unsafe_unretained id<UITextInputDelegate> _inputDelegate;
     id<UITextInputTokenizer> _tokenizer; //
 
-    id<FKTextFieldDelegate> _delegate;
+    id<FKTextFieldDelegate> __unsafe_unretained _delegate;
 }
 
 @property(nonatomic, copy) NSString * text; 
-@property(nonatomic, retain) UIColor * textColor; 
-@property(nonatomic, retain) UIFont * font;
-@property(nonatomic, assign) id<FKTextFieldDelegate> delegate;
+@property(nonatomic, strong) UIColor * textColor; 
+@property(nonatomic, strong) UIFont * font;
+@property(nonatomic, unsafe_unretained) id<FKTextFieldDelegate> delegate;
 
 @property(nonatomic, readonly, getter=isEditing) BOOL editing;
 @property(nonatomic, getter=isEditable) BOOL editable;

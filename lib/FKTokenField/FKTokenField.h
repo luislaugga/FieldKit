@@ -44,7 +44,7 @@
     NSCharacterSet * _tokenizingCharacterSet; // default is newline
     
     NSTimeInterval _completionDelay; // delay before display completion view
-    UIView * _completionSuperview; // host UIView for completion view
+    UIView * __unsafe_unretained _completionSuperview; // host UIView for completion view
     
     NSMutableArray * _tokenFieldCells;
     
@@ -76,7 +76,7 @@
  The view should take as much space in the screen as possible, such as a UIViewController root view
  This value can't be nil.
  */
-@property(nonatomic, assign) UIView * completionSuperview;
+@property(nonatomic, unsafe_unretained) UIView * completionSuperview;
 
 /*!
  Sets the default token style used for each token
@@ -87,7 +87,7 @@
 /*!
  In addition to FKTokenFieldDelagate protocol, the delegate must also conform to FKTextFieldDelegate
  */
-@property(nonatomic, assign) id<FKTokenFieldDelegate> delegate;
+@property(nonatomic, unsafe_unretained) id<FKTokenFieldDelegate> delegate;
 
 /*!
  Returns the default completion delay interval in seconds

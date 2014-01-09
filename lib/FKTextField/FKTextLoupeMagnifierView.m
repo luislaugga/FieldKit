@@ -29,6 +29,7 @@
 
 @implementation FKTextLoupeMagnifierView
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     [_loupeLow release];
@@ -37,6 +38,7 @@
     
     [super dealloc];
 }
+#endif
 
 - (id)init
 {
@@ -46,16 +48,26 @@
         self.backgroundColor = [UIColor clearColor];
         
         NSBundle * bundle = [NSBundle bundleForClass:[self class]];
+#if !__has_feature(objc_arc)
         _loupeLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-lo" ofType:@"png"]] retain];
         _loupeMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-mask" ofType:@"png"]] retain];
         _loupeHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-hi" ofType:@"png"]] retain];
+#else
+        _loupeLow = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-lo" ofType:@"png"]];
+        _loupeMask = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-mask" ofType:@"png"]];
+        _loupeHigh = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-hi" ofType:@"png"]];
+#endif
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
+#if !__has_feature(objc_arc)
     UIImage * contentImage = [[self contentImage] retain];
+#else
+    UIImage * contentImage = [self contentImage];
+#endif
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -68,7 +80,6 @@
     
     [_loupeHigh drawInRect:rect];
     
-    [contentImage release];
 }
 
 - (UIImage *)contentImage

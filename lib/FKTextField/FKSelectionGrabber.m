@@ -34,10 +34,12 @@
 #pragma mark -
 #pragma mark Initialization
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     [super dealloc];
 }
+#endif
 
 - (id)init
 {

@@ -35,8 +35,8 @@
  */
 @interface FKTextSelectionView ()
 
-@property(nonatomic, assign) UIView<FKTextSelectingContainer> * selectingContainer;
-@property(nonatomic, retain) UIView * caretView;
+@property(nonatomic, unsafe_unretained) UIView<FKTextSelectingContainer> * selectingContainer;
+@property(nonatomic, strong) UIView * caretView;
 
 /*!
  Shows range view

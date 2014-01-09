@@ -65,11 +65,11 @@
     //    BOOL m_inputViewIsChanging;
 }
 @property(readonly) CGRect startEdge;
-@property(retain) FKSelectionGrabber * startGrabber;
+@property(strong) FKSelectionGrabber * startGrabber;
 @property(readonly) CGRect endEdge;
-@property(retain) FKSelectionGrabber * endGrabber;
+@property(strong) FKSelectionGrabber * endGrabber;
 @property(nonatomic, copy) NSArray * rects;
-@property(nonatomic, retain) NSMutableArray * rectViews;
+@property(nonatomic, strong) NSMutableArray * rectViews;
 
 /*!
  Default range view for CGRect factory helper

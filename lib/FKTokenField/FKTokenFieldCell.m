@@ -75,6 +75,7 @@
     return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     self.text = nil;
@@ -83,7 +84,9 @@
     self.representedObject = nil; // release
     
     [super dealloc];
+
 }
+#endif
 
 #pragma mark -
 #pragma mark Properties

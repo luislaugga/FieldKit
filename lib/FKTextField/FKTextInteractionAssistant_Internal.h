@@ -35,11 +35,11 @@
  */
 @interface FKTextInteractionAssistant ()
 
-@property(nonatomic, assign) UIView<FKTextSelectingContainer> * selectingContainer;
-@property(nonatomic, retain) UITapGestureRecognizer * singleTapGesture; // @synthesize singleTapGesture = _singleTapGesture;
-@property(nonatomic, retain) UITapGestureRecognizer * doubleTapGesture; // @synthesize doubleTapGesture = _doubleTapGesture;
-@property(nonatomic, retain) UIPanGestureRecognizer * dragGesture; // @synthesize dragGesture = _dragGesture;
-@property(nonatomic, retain) UILongPressGestureRecognizer * longPressureGesture; // @synthesize longPressureGesture = _longPressureGesture;
+@property(nonatomic, unsafe_unretained) UIView<FKTextSelectingContainer> * selectingContainer;
+@property(nonatomic, strong) UITapGestureRecognizer * singleTapGesture; // @synthesize singleTapGesture = _singleTapGesture;
+@property(nonatomic, strong) UITapGestureRecognizer * doubleTapGesture; // @synthesize doubleTapGesture = _doubleTapGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer * dragGesture; // @synthesize dragGesture = _dragGesture;
+@property(nonatomic, strong) UILongPressGestureRecognizer * longPressureGesture; // @synthesize longPressureGesture = _longPressureGesture;
 
 /*! 
  Action method for single-tap UITapGestureRecognizer

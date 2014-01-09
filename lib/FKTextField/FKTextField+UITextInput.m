@@ -475,7 +475,12 @@
 {
     FKTextPosition * textPosition = [[FKTextPosition alloc] init];
     textPosition.index = index;
+    
+#if !__has_feature(objc_arc)
     return [textPosition autorelease];
+#else
+    return textPosition;
+#endif
 }
 
 @end
@@ -494,7 +499,12 @@
     
     FKTextRange * textRange = [[FKTextRange alloc] init];
     textRange.range = range;
+    
+#if !__has_feature(objc_arc)
     return [textRange autorelease];
+#else
+    return textRange;
+#endif
 }
 
 /*!

@@ -51,8 +51,8 @@
 }
 
 @property (nonatomic, copy) NSString * text; 
-@property (nonatomic, retain) UIColor * textColor;
-@property (nonatomic, retain) UIFont * font;
+@property (nonatomic, strong) UIColor * textColor;
+@property (nonatomic, strong) UIFont * font;
 
 /*!
  Updates text

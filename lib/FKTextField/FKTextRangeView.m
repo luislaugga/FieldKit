@@ -68,12 +68,15 @@
 - (void)dealloc
 {
     self.rects = nil;
+    
+#if !__has_feature(objc_arc)
     self.rectViews = nil;
     
     self.startGrabber = nil;
     self.endGrabber = nil;
     
     [super dealloc];
+#endif
 }
 
 #pragma mark -
@@ -95,7 +98,9 @@
             [rectView removeFromSuperview];
         
         [_rectViews removeAllObjects];
+#if !__has_feature(objc_arc)
         [_rects release];
+#endif
         _rects = nil;
     }
     
@@ -142,7 +147,12 @@
 {
     UIView * rangeView = [[UIView alloc] initWithFrame:rect];
     [rangeView setBackgroundColor:[FKTextAppearance defaultSelectionRangeColor]];
+    
+#if !__has_feature(objc_arc)
     return [rangeView autorelease];
+#else
+    return rangeView;
+#endif
 }
 
 #pragma mark -

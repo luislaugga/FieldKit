@@ -29,6 +29,7 @@
 
 @implementation FKTextRangeMagnifierView
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     [_magnifierRangedLow release];
@@ -37,6 +38,7 @@
     
     [super dealloc];
 }
+#endif
 
 - (id)init
 {
@@ -46,16 +48,27 @@
         self.backgroundColor = [UIColor clearColor];
         
         NSBundle * bundle = [NSBundle bundleForClass:[self class]];
+        
+#if !__has_feature(objc_arc)
         _magnifierRangedLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-lo" ofType:@"png"]] retain];
         _magnifierRangedMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-mask" ofType:@"png"]] retain];
         _magnifierRangedHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-hi" ofType:@"png"]] retain];
+#else
+        _magnifierRangedLow = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-lo" ofType:@"png"]];
+        _magnifierRangedMask = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-mask" ofType:@"png"]];
+        _magnifierRangedHigh = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-hi" ofType:@"png"]];
+#endif
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
+#if !__has_feature(objc_arc)
     UIImage * contentImage = [[self contentImage] retain];
+#else
+    UIImage * contentImage = [self contentImage];
+#endif
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -68,7 +81,9 @@
     
     [_magnifierRangedHigh drawInRect:rect];
     
+#if !__has_feature(objc_arc)
     [contentImage release];
+#endif
 }
 
 - (UIImage *)contentImage

@@ -39,18 +39,25 @@ static const NSTimeInterval FKTextCaretBlinkRate = 0.5;
 #pragma mark -
 #pragma mark Initialization
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     self.blinkTimer = nil;
     [super dealloc];
 }
+#endif
 
 + (FKTextCaretView *)defaultCaretView
 {
     // Create and set caret view using default values
     FKTextCaretView * caretView = [[FKTextCaretView alloc] init];
     caretView.backgroundColor = [FKTextAppearance defaultSelectionCaretColor];
+    
+#if !__has_feature(objc_arc)
     return [caretView autorelease];
+#else
+    return caretView;
+#endif
 }
 
 - (id)init

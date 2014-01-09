@@ -58,6 +58,7 @@
     return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     // Text properties
@@ -70,20 +71,23 @@
     
     [super dealloc];
 }
+#endif
 
 #pragma mark -
 #pragma mark Properties
 
 - (void)setText:(NSString *)text
 {
-    
-    
     if (_text == text) 
         return;
     
+#if !__has_feature(objc_arc)
     NSString * oldValue = _text;
     _text = [text copy];
     [oldValue release];
+#else
+    _text = [text copy];
+#endif
     
     if(_text != nil)
     {
@@ -97,9 +101,13 @@
     if (_textColor == textColor) 
         return;
     
+#if !__has_feature(objc_arc)
     UIColor * oldValue = _textColor;
     _textColor = [textColor retain];
     [oldValue release];
+#else
+    _textColor = textColor;
+#endif
     
     if(_textColor != nil)
     {    
@@ -107,7 +115,7 @@
         CGColorRef cgTextColor = CGColorCreateCopy(_textColor.CGColor);
         
         // Set CTFont instance in our attributes dictionary, to be set on our attributed string
-        [self.attributes setObject:(id)cgTextColor forKey:(NSString *)kCTForegroundColorAttributeName];
+        [self.attributes setObject:(__bridge id)cgTextColor forKey:(NSString *)kCTForegroundColorAttributeName];
         
         // Release CGColor object
         CGColorRelease(cgTextColor);
@@ -121,18 +129,22 @@
 {
     if (_font == font)
         return;
-    
+
+#if !__has_feature(objc_arc)
     UIFont *oldValue = _font;
     _font = [font retain];
     [oldValue release];
-    
+#else
+    _font = font;
+#endif
+
     if(_font != nil)
     {
         // Find matching CTFont via name and size
         CTFontRef ctFont = CTFontCreateWithName((CFStringRef)self.font.fontName, self.font.pointSize, NULL);        
         
         // Set CTFont instance in our attributes dictionary, to be set on our attributed string
-        [self.attributes setObject:(id)ctFont forKey:(NSString *)kCTFontAttributeName];
+        [self.attributes setObject:(__bridge id)ctFont forKey:(NSString *)kCTFontAttributeName];
         
         // Release CTFont object
         CFRelease(ctFont);       
@@ -160,9 +172,11 @@
     // Create the Core Text frame using our current view rect bounds
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
     _frame =  CTFramesetterCreateFrame(_framesetter, CFRangeMake(0, 0), [path CGPath], NULL);
-    
+
+#if !__has_feature(objc_arc)
     // Release attributed string
     [attributedString release];
+#endif
     
     // Mark view to be re-drawn
     [self setNeedsDisplay];
@@ -211,7 +225,7 @@
     // Special case, insertion point at final position in text after newline
     if (index == _text.length && [_text characterAtIndex:(index - 1)] == '\n') 
     {
-        CTLineRef line = (CTLineRef)[lines lastObject];
+        CTLineRef line = (__bridge CTLineRef)[lines lastObject];
         CFRange range = CTLineGetStringRange(line);
         CGFloat offset = CTLineGetOffsetForStringIndex(line, range.location, NULL);
         CGPoint origin;
@@ -235,7 +249,7 @@
 
     for (int i = 0; i < linesCount; i++) 
     {
-        CTLineRef line = (CTLineRef)[lines objectAtIndex:i];
+        CTLineRef line = (__bridge CTLineRef)[lines objectAtIndex:i];
         CFRange cfRange = CTLineGetStringRange(line);
         NSRange range = NSMakeRange(cfRange.location, cfRange.length);
         
@@ -259,7 +273,7 @@
     NSInteger linesCount = [lines count];  
     for (int i = 0; i < linesCount; i++)
     {
-        CTLineRef line = (CTLineRef)[lines objectAtIndex:i];
+        CTLineRef line = (__bridge CTLineRef)[lines objectAtIndex:i];
         CFRange lineRange = CTLineGetStringRange(line);
         NSInteger localIndex = index - lineRange.location;
         if (localIndex >= 0 && localIndex < lineRange.length)
@@ -277,7 +291,7 @@
             
             // Metrics
             CGFloat ascent, descent;
-            CTLineGetTypographicBounds((__bridge CTLineRef)line, &ascent, &descent, NULL);
+            CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
     
             return CGRectMake(xStart, origin.y - descent, xEnd - xStart, ascent + descent);
         }
@@ -302,7 +316,7 @@
     NSMutableArray * textRects = [[NSMutableArray alloc] initWithCapacity:linesCount];
     
     for (int i = 0; i < [lines count]; i++) {
-        CTLineRef line = (CTLineRef) [lines objectAtIndex:i];
+        CTLineRef line = (__bridge CTLineRef) [lines objectAtIndex:i];
         CFRange cfLineRange = CTLineGetStringRange(line);
         NSRange lineRange = NSMakeRange(cfLineRange.location, cfLineRange.length);
         NSRange intersectionRange = [self textIntersectionRangeBetweenRange:lineRange andOtherRange:range];
@@ -318,8 +332,12 @@
             [textRects addObject:[NSValue valueWithCGRect:[self convertRectToUIViewDefaultCoordinateSystem:lineSelectionRect]]];
         }
     }    
-    
+
+#if !__has_feature(objc_arc)
     return [textRects autorelease];
+#else
+    return textRects;
+#endif
 }
 
 - (NSUInteger)textClosestIndexForPoint:(CGPoint)point
@@ -340,7 +358,7 @@
         {
 			// This line origin is closest to the y-coordinate of our point,
 			// now look for the closest string index in this line.
-            CTLineRef line = (CTLineRef) [lines objectAtIndex:i];
+            CTLineRef line = (__bridge CTLineRef) [lines objectAtIndex:i];
             return CTLineGetStringIndexForPosition(line, _point);
         }
     }
@@ -355,7 +373,7 @@
     
     for (int i = 0; i < [lines count]; i++) 
     {
-        __block CTLineRef line = (CTLineRef) [lines objectAtIndex:i];
+        __block CTLineRef line = (__bridge CTLineRef) [lines objectAtIndex:i];
         CFRange cfRange = CTLineGetStringRange(line);
         NSRange range = NSMakeRange(cfRange.location == kCFNotFound ? NSNotFound : cfRange.location, cfRange.length == kCFNotFound ? 0 : cfRange.length);
         

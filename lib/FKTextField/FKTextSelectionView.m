@@ -45,9 +45,12 @@
 {
     // Clean up
     self.selectingContainer = nil;
+    
+#if !__has_feature(objc_arc)
     self.caretView = nil;
     
     [super dealloc];
+#endif
 }
 
 - (id)initWithSelectingContainer:(UIView<FKTextSelectingContainer> *)selectingContainer
@@ -340,7 +343,9 @@
     self.selectedTextRange = updatedSelectionRange;
     
     // Clean up
+#if !__has_feature(objc_arc)
     [mutableText release];
+#endif
 }
 
 - (void)deleteTextFromSelection
@@ -385,7 +390,9 @@
     self.selectedTextRange = updatedSelectionRange;
     
     // Clean up
+#if !__has_feature(objc_arc)
     [mutableText release];
+#endif
 }
 
 - (void)replaceTextInRange:(NSRange)replacementRange withText:(NSString *)replacementText
@@ -432,7 +439,9 @@
     self.selectedTextRange = updatedSelectionRange;
     
     // Clean up
+#if !__has_feature(objc_arc)
     [mutableText release];
+#endif
 }
 
 #pragma mark -
@@ -453,7 +462,9 @@
     if(_rangeView != nil)
     {
         [_rangeView removeFromSuperview];
+#if !__has_feature(objc_arc)
         [_rangeView release];
+#endif
         _rangeView = nil;
         [self setNeedsDisplay];
     }
@@ -507,7 +518,9 @@
         if(_loupeMagnifierView != nil)
         {
             [_loupeMagnifierView removeFromSuperview];
+#if !__has_feature(objc_arc)
             [_loupeMagnifierView release];
+#endif
             _loupeMagnifierView = nil;
             [self setNeedsDisplay];
         }
@@ -517,7 +530,9 @@
         if(_rangeMagnifierView != nil)
         {
             [_rangeMagnifierView removeFromSuperview];
+#if !__has_feature(objc_arc)
             [_rangeMagnifierView release];
+#endif
             _rangeMagnifierView = nil;
             [self setNeedsDisplay];
         }

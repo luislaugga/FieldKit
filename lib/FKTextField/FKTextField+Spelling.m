@@ -54,16 +54,22 @@
     }
     else if(textChecker == nil)
     {
+#if !__has_feature(objc_arc)
         [_textChecker release];
-        _textChecker = nil;
         [_textCheckerMisspelledWords release];
+#endif
+        _textChecker = nil;
         dispatch_release(_textCheckerQueue);
     }
     else
     {
+#if !__has_feature(objc_arc)
         UITextChecker * _previous_textChecker = _textChecker;
         _textChecker = [textChecker retain];
         [_previous_textChecker release];
+#else
+        _textChecker = textChecker;
+#endif
     }
 }
 
@@ -145,7 +151,9 @@
                         misspelledWordView.backgroundColor = [FKTextAppearance defaultMarkedTextRangeColor];
                         [_textCheckerMisspelledWordsView addSubview:misspelledWordView];
                         misspelledWord.view = misspelledWordView;
+#if !__has_feature(objc_arc)
                         [misspelledWordView release];
+#endif
                     }
                     else
                     {
@@ -217,7 +225,11 @@
     textCheckerMisspelledWord.range = range;
     textCheckerMisspelledWord.guesses = guesses;
     
+#if !__has_feature(objc_arc)
     return [textCheckerMisspelledWord autorelease];
+#else
+    return textCheckerMisspelledWord;
+#endif
 }
 
 @end

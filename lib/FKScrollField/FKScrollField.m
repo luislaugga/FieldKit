@@ -63,14 +63,18 @@
 
 - (void)dealloc
 {
+#if !__has_feature(objc_arc)
     [_textField release];
     if(_textView != nil)
         [_textView release];
+#endif
     
     // Remove self key-value observing
     [self removeObserver:self forKeyPath:@"editing"];
     
+#if !__has_feature(objc_arc)
     [super dealloc];
+#endif
 }
 
 #pragma mark -
@@ -275,8 +279,8 @@
         [self showTextView:_textField.text];
     }
     
-    if(delegate && [delegate respondsToSelector:@selector(textFieldDidChange:)])
-       [delegate textFieldDidChange:self];
+//    if(delegate && [delegate respondsToSelector:@selector(textFieldDidChange:)])
+//       [delegate textFieldDidChange:self];
 }
 
 #pragma mark -
@@ -339,8 +343,8 @@
         }
     }
     
-    if(delegate && [delegate respondsToSelector:@selector(textFieldDidChange:)])
-        [delegate textFieldDidChange:self];
+//    if(delegate && [delegate respondsToSelector:@selector(textFieldDidChange:)])
+//        [delegate textFieldDidChange:self];
 }
 
 @end

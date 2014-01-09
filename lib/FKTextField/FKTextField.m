@@ -75,15 +75,18 @@
 - (void)dealloc
 {
     // Clean up
-    [_interactionAssistant release];
     [_selectionView removeFromSuperview];
-    [_selectionView release];
     [_contentView removeFromSuperview];
-    [_contentView release];
-    
     self.textChecker = nil;
     
+#if !__has_feature(objc_arc)
+    [_interactionAssistant release];
+    [_selectionView release];
+    [_contentView release];
+    
     [super dealloc];
+#endif
+    
 }
 
 #pragma mark -

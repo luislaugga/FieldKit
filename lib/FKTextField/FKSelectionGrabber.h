@@ -57,7 +57,7 @@ typedef enum {
 @property BOOL activeFlattened;
 @property BOOL alertFlattened;
 @property BOOL animating;
-@property(readonly) FKTextRangeView * hostView;
+@property(unsafe_unretained, readonly) FKTextRangeView * hostView;
 @property BOOL isDotted;
 @property BOOL navigationTransitionFlattened;
 @property int orientation;

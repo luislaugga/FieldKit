@@ -55,7 +55,6 @@
         singleTapGesture.delegate = self;
         [_selectingContainer addGestureRecognizer:singleTapGesture];
         self.singleTapGesture = singleTapGesture;
-        [singleTapGesture release];
         
         // Set up double tap gesture
         UITapGestureRecognizer * doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidDoubleTap:)];
@@ -63,7 +62,6 @@
         doubleTapGesture.delegate = self;
         [_selectingContainer addGestureRecognizer:doubleTapGesture];
         self.doubleTapGesture = doubleTapGesture;
-        [doubleTapGesture release];
 
         // Set up drag gesture recognizer
         UIPanGestureRecognizer * dragGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(userDidDrag:)];
@@ -72,14 +70,19 @@
         dragGesture.delegate = self;
         [_selectingContainer addGestureRecognizer:dragGesture];
         self.dragGesture = dragGesture;
-        [dragGesture release];
         
         // Set up long press gesture recognizer
         UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(userDidLongPress:)];
         longPressGesture.delegate = self;
         [_selectingContainer addGestureRecognizer:longPressGesture];
         self.longPressureGesture = longPressGesture;
+        
+#if !__has_feature(objc_arc)
+        [singleTapGesture release];
+        [doubleTapGesture release];
+        [dragGesture release];
         [longPressGesture release];
+#endif
     }
     return self;
 }
@@ -87,14 +90,14 @@
 - (void)dealloc
 {
     // Clean up
+#if !__has_feature(objc_arc)
     self.singleTapGesture = nil;
     self.doubleTapGesture = nil;
     self.dragGesture = nil;
     self.longPressureGesture = nil;
-    
+#endif
     self.selectingContainer = nil;
     
-    [super dealloc];
 }
 
 #pragma mark -
@@ -204,7 +207,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if([_selectingContainer.textContentView hitTest:[touch locationInView:_selectingContainer.textContentView] withEvent:nil] == NO)
+    if([_selectingContainer.textContentView hitTest:[touch locationInView:_selectingContainer.textContentView] withEvent:nil] == nil)
         return NO;
     
     if(gestureRecognizer == self.doubleTapGesture && _selectingContainer.responder.isEditing == NO)

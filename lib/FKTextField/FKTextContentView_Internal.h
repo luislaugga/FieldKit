@@ -32,7 +32,7 @@
  */
 @interface FKTextContentView ()
 
-@property (nonatomic, retain) NSMutableDictionary * attributes;
+@property (nonatomic, strong) NSMutableDictionary * attributes;
 
 /*!
  Clean up rendering cached objects and other data

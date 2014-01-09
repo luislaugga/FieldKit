@@ -64,14 +64,14 @@
  */
 @interface FKTextCheckerMisspelledWord : NSObject
 {
-    UIView * _view;
+    UIView * __unsafe_unretained _view;
     NSRange _range;
     NSArray * _guesses;
 }
 
-@property (nonatomic, assign) UIView * view;
+@property (nonatomic, unsafe_unretained) UIView * view;
 @property (nonatomic) NSRange range;
-@property (nonatomic, retain) NSArray * guesses;
+@property (nonatomic, strong) NSArray * guesses;
 
 /*!
  Class method to create an instance with a given NSRange range and NSArray of word guesses

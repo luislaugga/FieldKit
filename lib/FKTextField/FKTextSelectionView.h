@@ -56,7 +56,7 @@ typedef enum {
  */
 @interface FKTextSelectionView : UIView
 {
-    UIView<FKTextSelectingContainer> * _selectingContainer;
+    UIView<FKTextSelectingContainer> * __unsafe_unretained _selectingContainer;
     
     NSRange _markedTextRange; // current marked text range (the selectedTextRange always occurs within the marked text)
     NSRange _selectedTextRange; // current selection range (caret if length is 0)

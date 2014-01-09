@@ -17,10 +17,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.1</string>
+	<string>0.1.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.1-8-g72378df (Debug)</string>
+	<string>0.1.2-0-g494bac5 (Debug)</string>
 </dict>
 </plist>

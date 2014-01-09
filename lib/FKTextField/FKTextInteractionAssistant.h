@@ -36,7 +36,7 @@
  */
 @interface FKTextInteractionAssistant : NSObject <UIGestureRecognizerDelegate>
 {
-    UIView<FKTextSelectingContainer> * _selectingContainer;
+    UIView<FKTextSelectingContainer> * __unsafe_unretained _selectingContainer;
     UITapGestureRecognizer * _singleTapGesture;
     UITapGestureRecognizer * _doubleTapGesture;
     UIPanGestureRecognizer * _dragGesture;

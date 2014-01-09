@@ -36,7 +36,7 @@ typedef NSUInteger FKTokenStyle;
 
 @interface FKTokenFieldCell : UIControl
 {
-    UIFont * _font;
+    UIFont * __unsafe_unretained _font;
     NSString * _text;
     
     id _representedObject;
@@ -47,9 +47,9 @@ typedef NSUInteger FKTokenStyle;
 }
 
 @property(nonatomic, copy) NSString * text;
-@property(nonatomic, assign) UIFont * font;
+@property(nonatomic, unsafe_unretained) UIFont * font;
 
-@property(nonatomic, retain) id representedObject;
+@property(nonatomic, strong) id representedObject;
 
 @property(nonatomic, readonly, getter = isScaled) BOOL scaled;
 @property(nonatomic, readonly) CGSize size;

@@ -38,7 +38,7 @@
     NSTimer * _blinkTimer;
     BOOL _blink;
 }
-@property (nonatomic, retain) NSTimer * blinkTimer;
+@property (nonatomic, strong) NSTimer * blinkTimer;
 @property (nonatomic) BOOL blink;
 
 /*!

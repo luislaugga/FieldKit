@@ -39,7 +39,7 @@
     NSArray * _completionArray;
     UITableView * _completionListView;
     
-    FKTokenFieldCell * _selectedTokenFieldCell;
+    FKTokenFieldCell * __unsafe_unretained _selectedTokenFieldCell;
     
     UILongPressGestureRecognizer * _longPressGestureRecognizer;
     CGPoint _longPressGestureHitOffset;
@@ -47,11 +47,11 @@
     BOOL _needsLayoutAnimated;
 }
 
-@property(nonatomic, retain) NSMutableArray * tokenFieldCells;
-@property(nonatomic, assign) FKTokenFieldCell * selectedTokenFieldCell;
-@property(nonatomic, retain) NSTimer * completionTimer;
-@property(nonatomic, retain) NSArray * completionArray;
-@property(nonatomic, retain) UITableView * completionListView;
+@property(nonatomic, strong) NSMutableArray * tokenFieldCells;
+@property(nonatomic, unsafe_unretained) FKTokenFieldCell * selectedTokenFieldCell;
+@property(nonatomic, strong) NSTimer * completionTimer;
+@property(nonatomic, strong) NSArray * completionArray;
+@property(nonatomic, strong) UITableView * completionListView;
 
 /*!
  Will set _needsLayoutAnimated flag and wrap the layoutSubviews with UIView animation block

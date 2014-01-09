@@ -88,13 +88,17 @@
         completionListView.delegate = self;
         completionListView.dataSource = self;
         self.completionListView = completionListView;
+#if !__has_feature(objc_arc)
         [completionListView release];
+#endif
         
         // Set up long press gesture recognizer
         _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
         _longPressGestureRecognizer.delegate = self;
         [self addGestureRecognizer:_longPressGestureRecognizer];
+#if !__has_feature(objc_arc)
         [_longPressGestureRecognizer release];
+#endif
         
         // Register for keyboard notifications (needed to get keyboard's frame)
         [self registerForKeyboardNotifications];
@@ -113,12 +117,14 @@
     [self removeGestureRecognizer:_longPressGestureRecognizer];
     
     // Release objects
+#if !__has_feature(objc_arc)
     self.tokenizingCharacterSet = nil;
     self.tokenFieldCells = nil;
     self.completionListView = nil;
     self.completionTimer = nil;
-
+    
     [super dealloc];
+#endif
 }
 
 #pragma mark -
@@ -136,7 +142,11 @@
         }
     }
     
+#if !__has_feature(objc_arc)
     return [mutableRepresentedObjects autorelease];
+#else
+    return mutableRepresentedObjects;
+#endif
 }
 
 - (void)setRepresentedObjects:(NSArray *)representedObjects
@@ -385,7 +395,11 @@
     
     if(_delegate && [_delegate respondsToSelector:@selector(tokenField:cellForRepresentedObject:)])
     {
+#if !__has_feature(objc_arc)
         tokenFieldCell = [[self.delegate tokenField:self cellForRepresentedObject:representedObject] retain];
+#else
+        tokenFieldCell = [self.delegate tokenField:self cellForRepresentedObject:representedObject];
+#endif
         tokenFieldCell.text = displayString;
         tokenFieldCell.font = _contentView.font;
     }
@@ -403,7 +417,11 @@
     // Add token field cell
     [self addTokenFieldCell:tokenFieldCell];
     
+#if !__has_feature(objc_arc)
     return [tokenFieldCell autorelease];
+#else
+    return tokenFieldCell;
+#endif
 }
 
 - (void)addTokenFieldCell:(FKTokenFieldCell *)tokenFieldCell
@@ -435,8 +453,9 @@
     
     if(shouldRemove)
     {
+#if !__has_feature(objc_arc)
         [tokenFieldCell retain];
-        
+#endif
         [tokenFieldCell removeFromSuperview];
         [self.tokenFieldCells removeObject:tokenFieldCell];
         [self setNeedsLayout];
@@ -444,7 +463,9 @@
         if(_delegate && [_delegate respondsToSelector:@selector(tokenField:didRemoveRepresentedObject:atIndex:)])
             [self.delegate tokenField:self didRemoveRepresentedObject:tokenFieldCell.representedObject atIndex:index];
         
+#if !__has_feature(objc_arc)
         [tokenFieldCell release];
+#endif
     }
 }
 
@@ -521,7 +542,9 @@
             // Move from one index to another
             if(index < previousIndex || index > previousIndex + 1)
             {
+#if !__has_feature(objc_arc)
                 [_selectedTokenFieldCell retain];
+#endif
                 [_tokenFieldCells removeObject:_selectedTokenFieldCell]; 
                 
                 if(index < [_tokenFieldCells count])
@@ -529,7 +552,9 @@
                 else
                     [_tokenFieldCells addObject:_selectedTokenFieldCell]; // Place at the end
                 
+#if !__has_feature(objc_arc)
                 [_selectedTokenFieldCell release];
+#endif
                 
                 [self setNeedsLayoutAnimated:YES];
             }
@@ -689,8 +714,12 @@
         cell = [tableView dequeueReusableCellWithIdentifier:StringCompletionCellIdentifier];
         if (cell == nil) 
         {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:StringCompletionCellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:StringCompletionCellIdentifier];
             cell.accessoryType = UITableViewCellAccessoryNone;
+
+#if !__has_feature(objc_arc)
+            [cell autorelease];
+#endif
         }
         
         NSString * completionString = (NSString *)completion;
@@ -704,8 +733,12 @@
         cell = [tableView dequeueReusableCellWithIdentifier:DictionaryCompletionCellIdentifier];
         if (cell == nil) 
         {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DictionaryCompletionCellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DictionaryCompletionCellIdentifier];
             cell.accessoryType = UITableViewCellAccessoryNone;
+            
+#if !__has_feature(objc_arc)
+            [cell autorelease];
+#endif
             
             UILabel * secondDetailTextLabel = [[UILabel alloc] initWithFrame:cell.detailTextLabel.frame];
             secondDetailTextLabel.tag = SecondDetailTextLabelTag;
@@ -714,7 +747,10 @@
             secondDetailTextLabel.highlightedTextColor = cell.detailTextLabel.highlightedTextColor;
             secondDetailTextLabel.textColor = cell.detailTextLabel.textColor;
             [cell.contentView addSubview:secondDetailTextLabel];
+            
+#if !__has_feature(objc_arc)
             [secondDetailTextLabel release];
+#endif
             
             cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
             cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:14.0f];
@@ -739,8 +775,12 @@
         cell = [tableView dequeueReusableCellWithIdentifier:InvalidCompletionCellIdentifier];
         if (cell == nil) 
         {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:InvalidCompletionCellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:InvalidCompletionCellIdentifier];
             cell.accessoryType = UITableViewCellAccessoryNone;
+            
+#if !__has_feature(objc_arc)
+            [cell autorelease];
+#endif
         }
         
         cell.textLabel.text = @"Invalid Completion Object";
