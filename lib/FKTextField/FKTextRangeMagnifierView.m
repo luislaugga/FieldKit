@@ -27,12 +27,21 @@
 
 #import "FKTextRangeMagnifierView.h"
 
+#define kTextRangeMagnifierViewHalfWidth 70
+#define kTextRangeMagnifierViewWidth 139
+#define kTextRangeMagnifierViewHalfHeight 28
+#define kTextRangeMagnifierViewHeight 55
+
+#define kTextRangeMagnifierViewMaskWidth 129.0f
+#define kTextRangeMagnifierViewMaskHeight 32.0f
+#define kTextRangeMagnifierViewMaskOffsetX 5.0f
+#define kTextRangeMagnifierViewMaskOffsetY 3.0f
+
 @implementation FKTextRangeMagnifierView
 
 #if !__has_feature(objc_arc)
 - (void)dealloc
 {
-    [_magnifierRangedLow release];
     [_magnifierRangedMask release];
     [_magnifierRangedHigh release];
     
@@ -42,7 +51,7 @@
 
 - (id)init
 {
-    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 145.0f, 59.0f)];
+    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, kTextRangeMagnifierViewWidth, kTextRangeMagnifierViewHeight)];
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
@@ -50,11 +59,9 @@
         NSBundle * bundle = [NSBundle bundleForClass:[self class]];
         
 #if !__has_feature(objc_arc)
-        _magnifierRangedLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-lo" ofType:@"png"]] retain];
         _magnifierRangedMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-mask" ofType:@"png"]] retain];
         _magnifierRangedHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-hi" ofType:@"png"]] retain];
 #else
-        _magnifierRangedLow = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-lo" ofType:@"png"]];
         _magnifierRangedMask = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-mask" ofType:@"png"]];
         _magnifierRangedHigh = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-magnifier-ranged-hi" ofType:@"png"]];
 #endif
@@ -72,11 +79,12 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    [_magnifierRangedLow drawInRect:rect];
+    //[_magnifierRangedMask drawInRect:rect];
+    CGRect maskRect = CGRectMake(rect.origin.x+kTextRangeMagnifierViewMaskOffsetX, rect.origin.y+kTextRangeMagnifierViewMaskOffsetY, kTextRangeMagnifierViewMaskWidth, kTextRangeMagnifierViewMaskHeight);
     
     CGContextSaveGState(context);
-    CGContextClipToMask(context, rect, _magnifierRangedMask.CGImage);
-    [contentImage drawInRect:rect];
+    CGContextClipToMask(context, maskRect, _magnifierRangedMask.CGImage);
+    [contentImage drawInRect:maskRect];
     CGContextRestoreGState(context);
     
     [_magnifierRangedHigh drawInRect:rect];
@@ -91,7 +99,7 @@
     // Create a graphics context with the target size
     // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
     // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
-    CGSize imageSize = CGSizeMake(145.0f, 59.0f);//[[UIScreen mainScreen] bounds].size;
+    CGSize imageSize = CGSizeMake(kTextRangeMagnifierViewMaskWidth, kTextRangeMagnifierViewMaskHeight);
     if (NULL != UIGraphicsBeginImageContextWithOptions)
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     else
@@ -101,7 +109,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     // Translate context to the loupe magnifier position
-    CGContextTranslateCTM(context, -_position.x+50.0f, -_position.y-10.0f);
+    CGContextTranslateCTM(context, -_position.x+kTextRangeMagnifierViewHalfWidth, -_position.y-kTextRangeMagnifierViewHeight);
     
     // Iterate over every window from back to front
     for (UIWindow *window in [[UIApplication sharedApplication] windows])
@@ -124,7 +132,7 @@
 - (void)setPosition:(CGPoint)position
 {
     _position = position;
-    self.frame = CGRectMake(position.x-73.0f, position.y-40.0f, 145.0f, 59.0f);
+    self.frame = CGRectMake(position.x-kTextRangeMagnifierViewHalfWidth, position.y, kTextRangeMagnifierViewWidth, kTextRangeMagnifierViewHeight);
     [self setNeedsDisplay];
 }
 

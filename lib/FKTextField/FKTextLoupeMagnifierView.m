@@ -27,12 +27,21 @@
 
 #import "FKTextLoupeMagnifierView.h"
 
+#define kTextLoupeMagnifierViewHalfWidth 60.0f
+#define kTextLoupeMagnifierViewWidth 119.0f
+#define kTextLoupeMagnifierViewHalfHeight 60.0f
+#define kTextLoupeMagnifierViewHeight 119.0f
+
+#define kTextLoupeMagnifierViewMaskWidth 114.0f
+#define kTextLoupeMagnifierViewMaskHeight 114.0f
+#define kTextLoupeMagnifierViewMaskOffsetX 2.5f
+#define kTextLoupeMagnifierViewMaskOffsetY 0.5f
+
 @implementation FKTextLoupeMagnifierView
 
 #if !__has_feature(objc_arc)
 - (void)dealloc
 {
-    [_loupeLow release];
     [_loupeMask release];
     [_loupeHigh release];
     
@@ -42,18 +51,16 @@
 
 - (id)init
 {
-    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 127.0f, 127.0f)];
+    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, kTextLoupeMagnifierViewWidth, kTextLoupeMagnifierViewHeight)];
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
         
         NSBundle * bundle = [NSBundle bundleForClass:[self class]];
 #if !__has_feature(objc_arc)
-        _loupeLow = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-lo" ofType:@"png"]] retain];
         _loupeMask = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-mask" ofType:@"png"]] retain];
         _loupeHigh = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-hi" ofType:@"png"]] retain];
 #else
-        _loupeLow = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-lo" ofType:@"png"]];
         _loupeMask = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-mask" ofType:@"png"]];
         _loupeHigh = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"FieldKit.bundle/kb-loupe-hi" ofType:@"png"]];
 #endif
@@ -71,15 +78,19 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    [_loupeLow drawInRect:rect];
+    //[_magnifierRangedMask drawInRect:rect];
+    CGRect maskRect = CGRectMake(rect.origin.x+kTextLoupeMagnifierViewMaskOffsetX, rect.origin.y+kTextLoupeMagnifierViewMaskOffsetY, kTextLoupeMagnifierViewMaskWidth, kTextLoupeMagnifierViewMaskHeight);
     
     CGContextSaveGState(context);
-    CGContextClipToMask(context, rect, _loupeMask.CGImage);
-    [contentImage drawInRect:rect];
+    CGContextClipToMask(context, maskRect, _loupeMask.CGImage);
+    [contentImage drawInRect:maskRect];
     CGContextRestoreGState(context);
     
     [_loupeHigh drawInRect:rect];
     
+#if !__has_feature(objc_arc)
+    [contentImage release];
+#endif
 }
 
 - (UIImage *)contentImage
@@ -87,7 +98,7 @@
     // Create a graphics context with the target size
     // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
     // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
-    CGSize imageSize = CGSizeMake(100.0f, 100.0f);//[[UIScreen mainScreen] bounds].size;
+    CGSize imageSize = CGSizeMake(kTextLoupeMagnifierViewMaskWidth, kTextLoupeMagnifierViewMaskHeight);//[[UIScreen mainScreen] bounds].size;
     if (NULL != UIGraphicsBeginImageContextWithOptions)
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     else
@@ -97,7 +108,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     // Translate context to the loupe magnifier position
-    CGContextTranslateCTM(context, -_position.x+50.0f, -_position.y+30.0f);
+    CGContextTranslateCTM(context, -_position.x+kTextLoupeMagnifierViewHalfWidth, -_position.y);
     
     // Iterate over every window from back to front
     for (UIWindow *window in [[UIApplication sharedApplication] windows])
@@ -120,7 +131,7 @@
 - (void)setPosition:(CGPoint)position
 {
     _position = position;
-    self.frame = CGRectMake(position.x-63.0f, position.y-127.0f, 127.0f, 127.0f);
+    self.frame = CGRectMake(position.x-kTextLoupeMagnifierViewHalfWidth, position.y-kTextLoupeMagnifierViewHalfHeight, kTextLoupeMagnifierViewWidth, kTextLoupeMagnifierViewHeight);
     [self setNeedsDisplay];
 }
 

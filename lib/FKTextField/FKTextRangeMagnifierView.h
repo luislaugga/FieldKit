@@ -35,7 +35,6 @@
  */
 @interface FKTextRangeMagnifierView : UIView
 {
-    UIImage * _magnifierRangedLow;
     UIImage * _magnifierRangedMask;
     UIImage * _magnifierRangedHigh;
     
