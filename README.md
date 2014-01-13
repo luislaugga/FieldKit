@@ -53,27 +53,25 @@ __FKScrollField:__
 
 # Examples
 
-__Overview:__
+## Overview
 
-A FieldKit overview example with all fields presented inside a *UIScrollView*.
+The *Overview* example shows how to use *FKTextField* and *FKTokenField*. The text field are presented inside a scroll view.
 
-* FKTextField
-* FKTokenField
-* FKScrollField
+![FieldKit Overview Example Screenshot](https://raw.github.com/laugga/fieldkit/master/docs/figures/overview_example_screenshot.png "FieldKit Overview Example Screenshot")
 
-__Color Tokens:__
+## Color Tokens
 
 A *FKTokenField* example, using *UIColor* instances as represented objects. The provided TokenFieldCell is subclassed. The background color and display string are derived from the UIColor.
 
-__Message Composer:__
+## Mail Composer
 
-A composer view similar to the iOS *Messages* application. 
+A composer view similar to the iOS *Mail* application. (*work in progress*)
 
-__Mail Composer:__
+## Message Composer
 
-A composer view similar to the iOS *Mail* application.
+TODO
 
-__Keywords:__
+## Keywords
 
 TODO
 
