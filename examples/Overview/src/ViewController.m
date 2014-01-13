@@ -50,25 +50,25 @@
     
     self.navigationItem.title = @"FieldKit Overview";
     
-    NSString * text = @"Classes that adopt the UITextInput protocol (and conform with inherited protocols) interact with the text input system and thus acquire features such as autocorrection and multistage text input for their documents. (Multistage text input is required when the language is ideographic and the keyboard is phonetic.)";
-    
-    _textField = [[FKTextField alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
-    _textField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-    _textField.font = [UIFont systemFontOfSize:18.0f];
-    [_scrollView addSubview:_textField];
-    
-    _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2 + 1, self.view.bounds.size.width+10, self.view.bounds.size.height/2-1)];
-    _textView.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-    _textView.contentInset = UIEdgeInsetsMake(0, -8, 0, 0);
-    [_scrollView addSubview:_textView];
-    
-    _tokenField = [[FKTokenField alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height+1, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
+    _tokenField = [[FKTokenField alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
     _tokenField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-    _tokenField.font = [UIFont systemFontOfSize:15.0f];
+    _tokenField.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
     _tokenField.completionSuperview = self.view;
     _tokenField.delegate = self;
     _tokenField.representedObjects = [NSArray arrayWithObjects:@"Janet Canady", @"Albert Deltoro", @"Luis Laugga", @"Maria", @"Yellow", @"Super Store", @"Very Looonngg Name", nil];
     [_scrollView addSubview:_tokenField];
+    
+    NSString * text = @"Classes that adopt the UITextInput protocol (and conform with inherited protocols) interact with the text input system and thus acquire features such as autocorrection and multistage text input for their documents. (Multistage text input is required when the language is ideographic and the keyboard is phonetic.)";
+    
+    _textField = [[FKTextField alloc] initWithFrame:CGRectMake(0,  self.view.bounds.size.height/2+1, self.view.bounds.size.width, self.view.bounds.size.height/2-1)];
+    _textField.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+    //_textField.font = [UIFont systemFontOfSize:18.0f];
+    [_scrollView addSubview:_textField];
+    
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height + 1, self.view.bounds.size.width+10, self.view.bounds.size.height/2-1)];
+    _textView.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+    //_textView.contentInset = UIEdgeInsetsMake(0, -8, 0, 0);
+    [_scrollView addSubview:_textView];
     
     [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, self.view.bounds.size.height*2)];
     
