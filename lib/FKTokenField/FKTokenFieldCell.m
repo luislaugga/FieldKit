@@ -37,15 +37,17 @@
 @synthesize scaled = _scaled;
 @synthesize size = _size;
 
-#define kTokenFieldCellInsetLeft 8
-#define kTokenFieldCellInsetTop 3
-#define kTokenFieldCellStretchCap 12
+#define kTokenFieldCellInsetLeft 5 // token text label left offset in pixels
+#define kTokenFieldCellInsetTop 3 // token text label top offset in pixels
+#define kTokenFieldCellStretchCapLeft 6
+#define kTokenFieldCellStretchCapTop 6
 #define kTokenFieldCellOpacity 1.0
 
-#define kTokenFieldCellScaledFactor 1.2
-#define kTokenFieldCellScaledInsetLeft 10
+#define kTokenFieldCellScaledFactor 1.25
+#define kTokenFieldCellScaledInsetLeft 9
 #define kTokenFieldCellScaledInsetTop 4
-#define kTokenFieldCellScaledStretchCap 15
+#define kTokenFieldCellScaledStretchCapLeft 6
+#define kTokenFieldCellScaledStretchCapTop 6
 #define kTokenFieldCellScaledOpacity 0.9
 
 #define kTokenFieldCellScaledAnimationDuration 0.15
@@ -155,7 +157,7 @@
     if(self.scaled)
     {
         NSString * selectedScaledPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom-selected-scaled" ofType:@"png"];
-        backgroundImage = [[UIImage imageWithContentsOfFile:selectedScaledPath] stretchableImageWithLeftCapWidth:kTokenFieldCellScaledStretchCap topCapHeight:kTokenFieldCellScaledStretchCap];
+        backgroundImage = [[UIImage imageWithContentsOfFile:selectedScaledPath] stretchableImageWithLeftCapWidth:kTokenFieldCellScaledStretchCapLeft topCapHeight:kTokenFieldCellScaledStretchCapTop];
        
         textColor = [UIColor whiteColor];
         textFont = [UIFont fontWithName:_font.fontName size:floorf(_font.pointSize*kTokenFieldCellScaledFactor)];
@@ -166,16 +168,16 @@
         if(self.selected)
         {
             NSString * selectedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom-selected" ofType:@"png"];
-            backgroundImage = [[UIImage imageWithContentsOfFile:selectedPath] stretchableImageWithLeftCapWidth:kTokenFieldCellStretchCap topCapHeight:kTokenFieldCellStretchCap];
+            backgroundImage = [[UIImage imageWithContentsOfFile:selectedPath] stretchableImageWithLeftCapWidth:kTokenFieldCellStretchCapLeft topCapHeight:kTokenFieldCellStretchCapTop];
             
             textColor = [UIColor whiteColor];
         }
         else
         {
             NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"FieldKit.bundle/token-atom" ofType:@"png"];
-            backgroundImage = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:kTokenFieldCellStretchCap topCapHeight:kTokenFieldCellStretchCap];
+            backgroundImage = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:kTokenFieldCellStretchCapLeft topCapHeight:kTokenFieldCellStretchCapTop];
             
-            textColor = [UIColor blackColor];
+            textColor = [UIColor colorWithRed:0.55686274509804 green:0.55686274509804 blue:0.57647058823529 alpha:1.0];
         }
         
         textFont = _font;

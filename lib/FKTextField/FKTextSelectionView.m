@@ -97,7 +97,7 @@
     [_caretView hide];
     
     _visible = NO;
-    _selectedTextRange = NSMakeRange(NSNotFound, 0);
+    _selectedTextRange = NSMakeRange(0, 0);
 }
 
 #pragma mark -

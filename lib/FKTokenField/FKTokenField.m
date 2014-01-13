@@ -47,8 +47,8 @@
 @synthesize selectedTokenFieldCell = _selectedTokenFieldCell;
 @dynamic delegate;
 
-#define kFKTokenFieldDefaultInset CGSizeMake(4,6)
-#define kFKTokenFieldDefaultPadding CGSizeMake(4,16)
+#define kFKTokenFieldDefaultInset CGSizeMake(5,5)
+#define kFKTokenFieldDefaultPadding CGSizeMake(7,12)
 #define kFKTokenFieldDefaultTokenizers [NSCharacterSet characterSetWithCharactersInString:@"\n"]
 #define kFKTokenFieldDefaultCompletionDelay 0.25
 #define kFKTokenFieldDefaultCompletionAnimationDuration 0.4
@@ -631,7 +631,7 @@
         const CGFloat completionInputViewHeight = _inset.height + _contentView.font.lineHeight + _inset.height;
         const CGFloat completionlistViewVerticalOffset = completionInputViewFrame.origin.y + _contentView.frame.origin.y + _contentView.font.lineHeight + _inset.height;
         CGRect completionListViewFrame = CGRectMake(0, completionlistViewVerticalOffset, _completionSuperview.bounds.size.width, _completionSuperview.bounds.size.height - _keyboardFrame.size.height - completionInputViewHeight);
-        _completionListView.frame = completionListViewFrame;
+        _completionListView.frame = completionInputViewFrame;
        
         // Add to completion superview
         [_completionSuperview addSubview:self];
@@ -647,7 +647,7 @@
     if([_completionListView superview])
     {
         // Animation offset
-        CGFloat animationVerticalOffset =  _inset.height + _contentView.font.lineHeight + _inset.height - _completionListView.frame.origin.y;
+        CGFloat animationVerticalOffset = -_inset.height + _contentView.font.lineHeight + _inset.height - _completionListView.frame.origin.y;
 
         // Set up animation
         [UIView beginAnimations:nil context:NULL];
