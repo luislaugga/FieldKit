@@ -1,3 +1,9 @@
+## 0.1.3
+
+Other:
+  
+  - Support for CocoaPods added
+
 ## 0.1.2
 
 Features:
