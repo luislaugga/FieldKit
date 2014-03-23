@@ -60,7 +60,7 @@ fi
 
 # Target will build dependencies for one of the selected platforms (iphoneos or iphonesimulator)
 # Build the other unselected platform in order to have builds for both platforms (will merge then into a fat library)
-xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk ${FRAMEWORK_OTHER_PLATFORM}${FRAMEWORK_SDK_VERSION} BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}" SYMROOT="${SYMROOT}" $ACTION
+xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk ${FRAMEWORK_OTHER_PLATFORM}${FRAMEWORK_SDK_VERSION} ARCHS="${ARCHS_STANDARD}" ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}" SYMROOT="${SYMROOT}" $ACTION
 
 # Merge the two static libraries into one fat binary
 lipo -create "${BUILT_PRODUCTS_DIR}/${FRAMEWORK_EXECUTABLE_PATH}" "${FRAMEWORK_OTHER_BUILT_PRODUCTS_DIR}/${FRAMEWORK_EXECUTABLE_PATH}" -output "${BUILT_PRODUCTS_DIR}/${FRAMEWORK_WRAPPER_NAME}/Versions/A/${FRAMEWORK_TARGET_NAME}"
