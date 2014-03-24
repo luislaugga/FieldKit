@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = 'lib/**/*.{h,m}'
   s.resource_bundles = { 'FieldKit' => ['resources/*.png'] }
 
-  s.public_header_files = 'lib/*.h'
+  s.public_header_files = 'lib/**/*.h'
   s.prefix_header_file = 'support/FieldKit-Prefix.pch'
   s.frameworks = 'Foundation', 'UIKit', 'CoreText', 'CoreGraphics', 'QuartzCore'
 end

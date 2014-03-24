@@ -25,6 +25,6 @@
  
 */
 
-#import <FieldKit/FKTextField.h>
-#import <FieldKit/FKTokenField.h>
-#import <FieldKit/FKScrollField.h>
+#import "FKTextField.h"
+#import "FKTokenField.h"
+#import "FKScrollField.h"

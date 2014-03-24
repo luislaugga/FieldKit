@@ -20,13 +20,48 @@ FieldKit is a UI library of custom text fields for iOS:
 
 ## How to use FieldKit in your project
 
-In Xcode:
+### CocoaPods
 
-1. Add CoreText.framework dependency
-2. Import the FieldKit.framework to your project
-  2.1. Add '-ObjC' to "Other Linker Flags" (in order to load categories)
-  2.2. Add FieldKit.framework
-  2.3. Add FieldKit.bundle
+1. Create or edit an existing text file named Podfile in your Xcode project directory:
+
+```ruby
+platform :ios, '5.1'
+
+pod "FieldKit", '~> 0.1.4'
+```
+
+2. Install FieldKit in your project:
+
+```bash
+$ pod install
+```
+
+3. Open the Xcode workspace instead of the project file when building your project:
+
+```bash
+$ open YourProject.xcworkspace
+```
+
+4. Use FieldKit in your project:
+
+```obj-c
+#import <FieldKit/FieldKit.h>
+```
+
+### Framework
+
+1. Open FieldKit.xcodeproj
+2. Select the 'Framework' scheme
+3. Build (this will build two products, 'FieldKit.framework' and 'FieldKit.bundle')
+4. Import the FieldKit.framework to your project
+5. Add '-ObjC' to *Other Linker Flag* in *Build Settings* target section (in order to load Objective-C class categories) 
+6. Add FieldKit.framework to *Link Binary with Libraries* in *Build Phases* target section
+7. Add FiekdKit.bundle to your project resources
+
+You also need to add the following frameworks to your project:
+
+* CoreText.framework
+* CoreGraphics.framework
   
 ## Overview
 
