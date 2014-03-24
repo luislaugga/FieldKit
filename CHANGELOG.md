@@ -1,3 +1,9 @@
+## 0.1.4
+
+Fixes:
+  
+  - CocoaPods public header files
+	
 ## 0.1.3
 
 Other:
