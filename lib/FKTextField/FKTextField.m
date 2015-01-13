@@ -51,23 +51,7 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        // Set up view
-        self.backgroundColor = [FKTextAppearance defaultBackgroundColor];
-        _editing = NO;
-        _editable = YES; // default
-        
-        // Set up content view
-        _contentView = [[FKTextContentView alloc] initWithFrame:self.bounds];
-        _contentView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin); // autoresizing handled in layoutSubviews
-        _contentView.contentMode = UIViewContentModeBottomLeft; // don't scale text content view
-        [self addSubview:_contentView];
-        
-        // Set up selection view
-        _selectionView = [[FKTextSelectionView alloc] initWithSelectingContainer:self];
-        _selectionView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
-        
-        // Set up interaction assistant
-        _interactionAssistant = [[FKTextInteractionAssistant alloc] initWithSelectingContainer:self];
+        [ self setupInstance ] ;
     }
     return self;
 }
@@ -89,10 +73,36 @@
     
 }
 
+- (void)awakeFromNib
+{
+    [ self setupInstance ] ;
+}
+
+- (void)setupInstance
+{
+    // Set up view
+    self.backgroundColor = [FKTextAppearance defaultBackgroundColor];
+    _editing = NO;
+    _editable = YES; // default
+    
+    // Set up content view
+    _contentView = [[FKTextContentView alloc] initWithFrame:self.bounds];
+    _contentView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin); // autoresizing handled in layoutSubviews
+    _contentView.contentMode = UIViewContentModeBottomLeft; // don't scale text content view
+    [self addSubview:_contentView];
+    
+    // Set up selection view
+    _selectionView = [[FKTextSelectionView alloc] initWithSelectingContainer:self];
+    _selectionView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
+    
+    // Set up interaction assistant
+    _interactionAssistant = [[FKTextInteractionAssistant alloc] initWithSelectingContainer:self];
+}
+
 #pragma mark -
 #pragma mark Properties
 
-- (NSString *)text 
+- (NSString *)text
 {
     return _contentView.text;
 }

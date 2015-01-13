@@ -43,22 +43,14 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        // Set up self
-        self.clipsToBounds = NO;
-        
-        // Set up subviews
-        _textView = nil;
-        _textField = [[UITextField alloc] init];
-        _textField.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        //_textField.clipsToBounds = NO;
-        [_textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        _textField.delegate = self;
-        [self addSubview:_textField];    
-        
-        // Add self key-value observing
-        [self addObserver:self forKeyPath:@"editing" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
+        [ self setupInstance ] ;
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [ self setupInstance ] ;
 }
 
 - (void)dealloc
@@ -75,6 +67,24 @@
 #if !__has_feature(objc_arc)
     [super dealloc];
 #endif
+}
+
+- (void)setupInstance
+{
+    // Set up self
+    self.clipsToBounds = NO;
+    
+    // Set up subviews
+    _textView = nil;
+    _textField = [[UITextField alloc] init];
+    _textField.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    //_textField.clipsToBounds = NO;
+    [_textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    _textField.delegate = self;
+    [self addSubview:_textField];
+    
+    // Add self key-value observing
+    [self addObserver:self forKeyPath:@"editing" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
 }
 
 #pragma mark -
