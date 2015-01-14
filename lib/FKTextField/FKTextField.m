@@ -75,6 +75,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self setupInstance];
 }
 
