@@ -28,6 +28,7 @@
 #import "FKTokenField.h"
 #import "FKTokenField_Internal.h"
 #import "FKTextField+UITextInput.h"
+#import "FKTextField_Internal.h"
 
 @implementation FKTokenField
 
@@ -65,7 +66,7 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        [ self setupInstance ] ;
+        [self setupInstance];
     }
     return self;
 }
@@ -93,12 +94,12 @@
 
 - (void)awakeFromNib
 {
-    [ self setupInstance ] ;
+    [self setupInstance];
 }
 
 - (void)setupInstance
 {
-    [ super setupInstance ] ;
+    [super setupInstance];
     
     // Set up view
     self.backgroundColor = [UIColor whiteColor];

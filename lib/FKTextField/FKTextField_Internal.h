@@ -57,6 +57,7 @@
 
 @property(nonatomic, readwrite) BOOL editing;
 
+- (void)setupInstance;
 - (void)showSelectionView:(BOOL)visible;
 
 @end

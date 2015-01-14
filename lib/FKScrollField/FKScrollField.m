@@ -43,14 +43,14 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        [ self setupInstance ] ;
+        [self setupInstance];
     }
     return self;
 }
 
 - (void)awakeFromNib
 {
-    [ self setupInstance ] ;
+    [self setupInstance];
 }
 
 - (void)dealloc
