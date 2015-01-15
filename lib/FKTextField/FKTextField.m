@@ -169,64 +169,55 @@
 
 - (BOOL)canBecomeFirstResponder
 {
-    BOOL becoming = YES ;
-    
-    return becoming;
-}
-
-- (BOOL)canResignFirstResponder
-{
-    BOOL resigning = YES ;
-    
-    return resigning ;
+    return YES;
 }
 
 - (BOOL)resignFirstResponder
 {
-    BOOL resigning = YES ;
+    BOOL willResign = YES ;
     
-    resigning = [ super resignFirstResponder ] ;
+    willResign = [super resignFirstResponder] ;
     
-    if ( self.editing && resigning && _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
+    if ( self.editing && willResign && _delegate && [_delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
     {
-        resigning = [ _delegate textFieldShouldEndEditing:self ] ;
+        willResign = [_delegate textFieldShouldEndEditing:self] ;
     }
     
-    if ( self.editing && resigning )
+    if ( self.editing && willResign )
     {
         self.editing = NO;
         
-        if ( _delegate && ( [_delegate respondsToSelector:@selector(textFieldDidEndEditing:) ]))
+        if ( _delegate && ( [_delegate respondsToSelector:@selector(textFieldDidEndEditing:)]))
         {
-            [_delegate textFieldDidEndEditing:self ] ;
+            [_delegate textFieldDidEndEditing:self] ;
         }
     }
     
-	return resigning ;
+	return willResign ;
 }
 
 - (BOOL)becomeFirstResponder
 {
-    BOOL becoming = YES ;
+    BOOL willBecome = YES ;
     
-    becoming = [ super becomeFirstResponder ] ;
+    willBecome = [super becomeFirstResponder] ;
     
-    if ( !self.editing && becoming && _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
+    if ( !self.editing && willBecome && _delegate && [_delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
     {
-        becoming = [ _delegate textFieldShouldBeginEditing:self ] ;
+        willBecome = [_delegate textFieldShouldBeginEditing:self] ;
     }
     
-    if ( !self.editing && becoming )
+    if ( !self.editing && willBecome )
     {
         self.editing = YES;
         
         if ( _delegate && [_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
         {
-            [ _delegate textFieldDidBeginEditing:self ] ;
+            [_delegate textFieldDidBeginEditing:self] ;
         }
     }
     
-    return becoming;
+    return willBecome;
 }
 
 - (UIView *)inputAccessoryView
