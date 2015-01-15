@@ -269,7 +269,6 @@
         CGRect contentViewFrame = _contentView.frame;
         contentViewFrame.origin.x = offset.x;
         contentViewFrame.origin.y = offset.y + 2; // check with cell for insets...
-        contentViewFrame.size.height = offset.y + offsetTolerance ;
      
         // Update content view
         _contentView.frame = contentViewFrame;
