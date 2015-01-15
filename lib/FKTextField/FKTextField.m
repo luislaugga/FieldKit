@@ -51,7 +51,7 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        [self setupInstance];
+        [self setupTextFieldInstance];
     }
     return self;
 }
@@ -76,10 +76,10 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self setupInstance];
+    [self setupTextFieldInstance];
 }
 
-- (void)setupInstance
+- (void)setupTextFieldInstance
 {
     // Set up view
     self.backgroundColor = [FKTextAppearance defaultBackgroundColor];

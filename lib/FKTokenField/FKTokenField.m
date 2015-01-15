@@ -63,9 +63,9 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) 
+    if (self)
     {
-        [self setupInstance];
+        [self setupTokenFieldInstance];
     }
     return self;
 }
@@ -94,10 +94,10 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self setupInstance];
+    [self setupTokenFieldInstance];
 }
 
-- (void)setupInstance
+- (void)setupTokenFieldInstance
 {
     // Set up view
     self.backgroundColor = [UIColor whiteColor];

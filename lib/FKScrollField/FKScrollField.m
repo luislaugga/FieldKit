@@ -43,7 +43,7 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        [self setupInstance];
+        [self setupScrollFieldInstance];
     }
     return self;
 }
@@ -51,7 +51,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self setupInstance];
+    [self setupScrollFieldInstance];
 }
 
 - (void)dealloc
@@ -70,7 +70,7 @@
 #endif
 }
 
-- (void)setupInstance
+- (void)setupScrollFieldInstance
 {
     // Set up self
     self.clipsToBounds = NO;
