@@ -171,22 +171,12 @@
 {
     BOOL becoming = YES ;
     
-    if ( _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
-    {
-        becoming = [ _delegate textFieldShouldBeginEditing:self ] ;
-    }
-    
     return becoming;
 }
 
 - (BOOL)canResignFirstResponder
 {
     BOOL resigning = YES ;
-    
-    if ( _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
-    {
-        resigning = [ _delegate textFieldShouldEndEditing:self ] ;
-    }
     
     return resigning ;
 }
@@ -197,7 +187,12 @@
     
     resigning = [ super resignFirstResponder ] ;
     
-    if ( resigning )
+    if ( self.editing && resigning && _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
+    {
+        resigning = [ _delegate textFieldShouldEndEditing:self ] ;
+    }
+    
+    if ( self.editing && resigning )
     {
         self.editing = NO;
         
@@ -216,7 +211,12 @@
     
     becoming = [ super becomeFirstResponder ] ;
     
-    if ( becoming )
+    if ( !self.editing && becoming && _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
+    {
+        becoming = [ _delegate textFieldShouldBeginEditing:self ] ;
+    }
+    
+    if ( !self.editing && becoming )
     {
         self.editing = YES;
         
