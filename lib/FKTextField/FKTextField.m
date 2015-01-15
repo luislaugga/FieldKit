@@ -169,22 +169,64 @@
 
 - (BOOL)canBecomeFirstResponder
 {
-    return YES;
+    BOOL becoming = YES ;
+    
+    if ( _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
+    {
+        becoming = [ _delegate textFieldShouldBeginEditing:self ] ;
+    }
+    
+    return becoming;
+}
+
+- (BOOL)canResignFirstResponder
+{
+    BOOL resigning = YES ;
+    
+    if ( _delegate && [ _delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
+    {
+        resigning = [ _delegate textFieldShouldEndEditing:self ] ;
+    }
+    
+    return resigning ;
 }
 
 - (BOOL)resignFirstResponder
 {
-    self.editing = NO;
+    BOOL resigning = YES ;
     
-	return [super resignFirstResponder];
+    resigning = [ super resignFirstResponder ] ;
+    
+    if ( resigning )
+    {
+        self.editing = NO;
         
+        if ( _delegate && ( [_delegate respondsToSelector:@selector(textFieldDidEndEditing:) ]))
+        {
+            [_delegate textFieldDidEndEditing:self ] ;
+        }
+    }
+    
+	return resigning ;
 }
 
 - (BOOL)becomeFirstResponder
 {
-    self.editing = YES;
+    BOOL becoming = YES ;
     
-    return [super becomeFirstResponder];
+    becoming = [ super becomeFirstResponder ] ;
+    
+    if ( becoming )
+    {
+        self.editing = YES;
+        
+        if ( _delegate && [_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
+        {
+            [ _delegate textFieldDidBeginEditing:self ] ;
+        }
+    }
+    
+    return becoming;
 }
 
 - (UIView *)inputAccessoryView
