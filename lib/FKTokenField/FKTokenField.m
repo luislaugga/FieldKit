@@ -63,45 +63,9 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) 
+    if (self)
     {
-        // Set up view
-        self.backgroundColor = [UIColor whiteColor];
-        
-        // Set up default geometry properties
-        _inset = kFKTokenFieldDefaultInset;
-        _padding = kFKTokenFieldDefaultPadding;
-        
-        // Set up default tokenizing character set
-        self.tokenizingCharacterSet = kFKTokenFieldDefaultTokenizers;
-        
-        // Set up token fields
-        self.tokenFieldCells = [NSMutableArray array];
-        _selectedTokenFieldCell = nil;
-        
-        // Set up completion view
-        self.completionTimer = nil;
-        self.completionDelay = kFKTokenFieldDefaultCompletionDelay;
-        self.completionSuperview = nil;
-        UITableView * completionListView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-        completionListView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
-        completionListView.delegate = self;
-        completionListView.dataSource = self;
-        self.completionListView = completionListView;
-#if !__has_feature(objc_arc)
-        [completionListView release];
-#endif
-        
-        // Set up long press gesture recognizer
-        _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-        _longPressGestureRecognizer.delegate = self;
-        [self addGestureRecognizer:_longPressGestureRecognizer];
-#if !__has_feature(objc_arc)
-        [_longPressGestureRecognizer release];
-#endif
-        
-        // Register for keyboard notifications (needed to get keyboard's frame)
-        [self registerForKeyboardNotifications];
+        [self setupTokenFieldInstance];
     }
     return self;
 }
@@ -125,6 +89,53 @@
     
     [super dealloc];
 #endif
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setupTokenFieldInstance];
+}
+
+- (void)setupTokenFieldInstance
+{
+    // Set up view
+    self.backgroundColor = [UIColor whiteColor];
+    
+    // Set up default geometry properties
+    _inset = kFKTokenFieldDefaultInset;
+    _padding = kFKTokenFieldDefaultPadding;
+    
+    // Set up default tokenizing character set
+    self.tokenizingCharacterSet = kFKTokenFieldDefaultTokenizers;
+    
+    // Set up token fields
+    self.tokenFieldCells = [NSMutableArray array];
+    _selectedTokenFieldCell = nil;
+    
+    // Set up completion view
+    self.completionTimer = nil;
+    self.completionDelay = kFKTokenFieldDefaultCompletionDelay;
+    self.completionSuperview = nil;
+    UITableView * completionListView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+    completionListView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
+    completionListView.delegate = self;
+    completionListView.dataSource = self;
+    self.completionListView = completionListView;
+#if !__has_feature(objc_arc)
+    [completionListView release];
+#endif
+    
+    // Set up long press gesture recognizer
+    _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+    _longPressGestureRecognizer.delegate = self;
+    [self addGestureRecognizer:_longPressGestureRecognizer];
+#if !__has_feature(objc_arc)
+    [_longPressGestureRecognizer release];
+#endif
+    
+    // Register for keyboard notifications (needed to get keyboard's frame)
+    [self registerForKeyboardNotifications];
 }
 
 #pragma mark -
