@@ -1,5 +1,7 @@
 # FieldKit
 
+*This project is no longer being actively maintained.*
+
 ## Introduction
 
 FieldKit is a UI library of custom text fields for iOS:
